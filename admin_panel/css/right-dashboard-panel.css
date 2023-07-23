@@ -1,0 +1,299 @@
+/*  ======= Content ========
+ +++++ Right-side panel +++++
+1. TOP of right-side panel 
+   1.1 theme toggler
+   1.2 Admin Profile
+2. RECENT UPDATES section
+   2.1 update div styling
+3. SALES ANALYTICS SECTION 
+   3.1 item card
+   3.2 Icon of item card 
+   3.3 Info of item card
+ ====================== */
+
+/* right-side panel */
+
+#right-side-panel {
+  /* background-color: white; */
+  margin-top: 1.5rem;
+}
+/* 1. TOP of right-side panel  */
+#right-side-panel .top {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  background-color: var(--color-background);
+  padding: 10px;
+  border-radius: var(--border-radius-2);
+}
+#right-side-panel .top button {
+  display: none;
+}
+/* 1.1 THEME TOGGLER (dark mode and light mode)  */
+#right-side-panel .theme-toggler {
+  background-color: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.6rem;
+  width: 4.2rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-1);
+}
+#right-side-panel .theme-toggler i {
+  font-size: 1.2rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#right-side-panel .theme-toggler i.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--border-radius-1);
+  transition: all 0.3s ease-in;
+}
+
+/*   1.2 Admin Profile*/
+#right-side-panel .top .profile {
+  display: flex;
+  gap: 10px;
+  text-align: right;
+}
+
+/* 2. RECENT UPDATES section  */
+#recent-update {
+  margin-top: 1rem;
+}
+#recent-update h2 {
+  margin-bottom: 0.8rem;
+}
+
+#recent-update .update-container {
+  background-color: var(--color-background);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+#recent-update .update-container:hover {
+  box-shadow: none;
+}
+
+/* 2.1 update div styling */
+#recent-update .update-container .update {
+  display: grid;
+  grid-template-columns: 4rem auto;
+  align-items: center;
+}
+
+#recent-update .update-container .update .profile-photo > img,
+#admin-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 3. SALES ANALYTICS SECTION  */
+
+#sales-analytics {
+  margin-top: 2rem;
+}
+#sales-analytics h2 {
+  margin-bottom: 0.8rem;
+}
+/* 3.1 item card  */
+#sales-analytics .item-card {
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  padding: 1.4rem var(--card-padding);
+  border-radius: var(--border-radius-3);
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+#sales-analytics .item-card:hover {
+  box-shadow: none;
+}
+#sales-analytics .add-product-card, 
+#sales-analytics .add-category-card {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#sales-analytics .add-product-card{
+  border: 2px dashed var(--color-primary);
+  color: var(--color-primary);
+}
+#sales-analytics .add-category-card{
+  border: 2px dashed blue;
+  color: blue;
+}
+
+#sales-analytics .add-category-card > div,
+#sales-analytics .add-product-card > div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+/* 3.2 Icon of item card  */
+#sales-analytics .item-card .icon {
+  display: flex;
+  padding: 0.6rem;
+  color: var(--color-white);
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+#sales-analytics .online-card .icon {
+  background-color: var(--color-success);
+}
+#sales-analytics .new-customer-card .icon {
+  background-color: var(--color-primary);
+}
+/* 3.3 Info of item card */
+#sales-analytics .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+#sales-analytics .add-product-card div h3,
+#sales-analytics .add-category-card div h3 {
+  font-weight: 600;
+}
+
+
+#add-category-btn{
+  background-color: transparent;
+  width: 100%;
+}
+
+/* Overlay & popup form  */
+
+#overlay{
+  display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ background-color: rgba(0, 0, 0, 0.7);
+ z-index: 990;
+}
+
+#add-category-form{
+ display: none;
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ border: 0.3px solid grey;
+ box-shadow: 3px 4px 6px black;
+ background-color: var(--color-light);
+ border-radius: 35px;
+ padding: 25px;
+ z-index: 999;
+}
+
+
+#add-category-form div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+
+#add-category-form label{
+  color: orange;
+}
+
+#add-category-form .group{
+  display: flex;
+}
+
+#add-category-form input[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  color: white;
+}
+#add-category-form input[type="submit"]:hover {
+  background-color: darkblue;
+  cursor: pointer;
+}
+
+.info-emoji {
+  color: rgb(0, 94, 244);
+  font-size: 5rem;
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+
+
+ #close-btn-relative{
+  position: relative;
+ }
+ #close-add-category-form{
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 5px;
+  color: orange;
+}
+#close-add-category-form:hover{
+  color: red;
+  cursor: pointer;
+}
+
+/* For tablet  */
+@media screen and (max-width: 780px) {
+  #right-side-panel {
+    width: 95%;
+    margin: 0 auto 4rem;
+  }
+  #right-side-panel .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 4.6rem;
+    margin: 0;
+    padding: 0 0.8rem;
+    align-items: center;
+    box-shadow: 0 1rem 1rem var(--color-light);
+    z-index: 2;
+  }
+
+  #right-side-panel .theme-toggler {
+    position: absolute;
+    right: 5%;
+    width: 4.4rem;
+  }
+  #right-side-panel .profile .info {
+    display: none;
+  }
+  #right-side-panel .top button {
+    display: inline-block;
+    position: absolute;
+    left: 1rem;
+    background-color: transparent;
+    color: var(--color-dark);
+    cursor: pointer;
+  }
+  #right-side-panel button i {
+    font-size: 2rem;
+  }
+}

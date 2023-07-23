@@ -1,0 +1,137 @@
+/*  All product TABLE  */
+.product-section {
+  margin-top: 2rem;
+}
+.product-section h2 {
+  margin-bottom: 0.8rem;
+}
+.product-section a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+}
+.all-product-table {
+  width: 100%;
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.all-product-table:hover {
+  box-shadow: none;
+}
+ 
+.all-product-table .product-tbl-img {
+  width: 85px;
+  height: 100px;
+}
+ 
+.all-product-table .view-btn,
+.all-product-table .update-status-btn {
+  padding: 10px 5px;
+  border-radius: 10px;
+  color: var(--color-dark);
+  background-color: transparent;
+  width: 99px;
+}
+.all-product-table .view-btn:hover {
+  color: var(--color-white);
+  background-color: darkblue;
+}
+.all-product-table .update-status-btn:hover {
+  color: var(--color-white);
+  background-color: orange;
+}
+
+.order-approval,
+.delivery-status {
+  width: 100px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid var(--color-info-dark);
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--color-white);
+}
+.text-red {
+  color: red;
+}
+.text-orange {
+  color: orange;
+}
+.text-green {
+  color: lime;
+}
+
+.address {
+  width: 200px;
+}
+
+/* Popup confirm form  */
+
+#confirm-status-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 990;
+}
+
+#confirm-status-box {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 240px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 999;
+  background-color: var(--color-white);
+  padding: 25px;
+}
+
+#confirm-status-box div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+}
+
+#confirm-status-box .info {
+  color: rgb(255, 172, 48);
+}
+
+#confirm-status-box button {
+  width: 100px;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+  background-color: transparent;
+  border: 1px solid black;
+}
+#confirm-status-box button:hover {
+  cursor: pointer;
+}
+#confirm-status-box #confirm-btn:hover {
+  background-color: rgb(221, 163, 3);
+}
+#confirm-status-box #cancel-btn:hover {
+  background-color: rgb(23, 9, 105);
+}
+
+#confirm-status-box #information-icon {
+  font-size: 5rem;
+  color: darkblue;
+}
+
+/* overriding the property from the library */
+.dataTables_wrapper .dataTables_length select{
+  background-color: var(--color-white);
+}

@@ -1,0 +1,145 @@
+/*  All product TABLE  */
+#category-tbl-section {
+  margin-top: 2rem;
+}
+#category-tbl-section h2 {
+  margin-bottom: 0.8rem;
+}
+#category-tbl-section button,
+#category-tbl-section a
+{
+  text-align: center;
+  margin: 1rem auto;
+  background-color: var(--color-white);
+}
+#category-tbl-section button:hover{
+  cursor: pointer;
+}
+#all-category-table {
+  width: 100%;
+  padding: var(--card-padding);
+  background: var(--color-white);
+  border-radius: var(--card-border-radius); 
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+#all-category-table:hover {
+  box-shadow: none;
+}
+
+#all-category-table tbody td {
+  height: 1.5rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+#all-category-table .edit-btn,
+#all-category-table .remove-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+#all-category-table .remove-btn:hover{
+  color: black ;
+}
+
+.no-pointer {
+  cursor: initial !important;
+}
+/* overlay & popup category update form  */
+#overlay{
+   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 990;
+}
+
+#add-category-form,
+#update-category-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 0.3px solid grey;
+  box-shadow: 3px 4px 6px black;
+  background-color: var(--color-light);
+  border-radius: 35px;
+  padding: 25px;
+  z-index: 999;
+}
+
+ 
+#add-category-form div,
+#update-category-form div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.5rem;
+}
+#update-category-form a {
+  width: 100px;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+
+#update-category-form p,
+#add-category-form label,
+#update-category-form label{
+  color: orange;
+}
+
+#add-category-form .group,
+#update-category-form .group{
+  display: flex;
+}
+
+#add-category-form input[type="submit"],
+#update-category-form input[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  color: white;
+}
+#add-category-form input[type="submit"]:hover,
+#update-category-form input[type="submit"]:hover {
+  background-color: darkblue;
+  cursor: pointer;
+}
+
+.smilly-emoji,
+.info-emoji {
+  color: rgb(0, 94, 244);
+  font-size: 5rem;
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+
+
+ #close-btn-relative{
+  position: relative;
+ }
+ #close-add-category-form,
+#close-update-category-form{
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 5px;
+  color: orange;
+}
+#close-add-category-form:hover,
+#close-update-category-form:hover{
+  color: red;
+  cursor: pointer;
+}

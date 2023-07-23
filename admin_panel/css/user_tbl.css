@@ -1,0 +1,42 @@
+/*  All product TABLE  */
+.customer-section {
+    margin-top: 2rem;
+  }
+  .customer-section h2 {
+    margin-bottom: 0.8rem;
+  }
+  .customer-section a {
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+
+  }
+  .all-customer-table {
+    width: 100%;
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .all-customer-table:hover {
+    box-shadow: none;
+  }
+  
+  .all-customer-table .customer-tbl-img {
+    width: 85px;
+    height: 100px;
+  }
+  .customer-tbl-action-col a{
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+
+ #empTable .view-btn,
+ #empTable .edit-btn,
+ #empTable .remove-btn
+  {
+      padding: 7px;
+      border-radius: 10px;
+  }
+  

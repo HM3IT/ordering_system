@@ -1,0 +1,43 @@
+/*  All product TABLE  */
+.product-section {
+  margin-top: 2rem;
+}
+.product-section h2 {
+  margin-bottom: 0.8rem;
+}
+.product-section a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+
+}
+.all-product-table {
+  width: 100%;
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.all-product-table:hover {
+  box-shadow: none;
+}
+
+.all-product-table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+.all-product-table .product-tbl-img {
+  width: 85px;
+  height: 100px;
+}
+
+.all-product-table .edit-btn,
+.all-product-table .remove-btn
+{
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+ 

@@ -1,0 +1,75 @@
+.customer-detail-section {
+  margin-top: 3rem;
+  border: 1px solid rgb(208, 205, 205);
+  padding: 20px;
+  height: 80dvh;
+  border-radius: 15px;
+}
+.customer-detail-section:hover{
+  border: none;
+}
+.customer-detail-section .title {
+  margin: 1rem 0;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+  box-shadow: 2px 3px 4px var(--color-white);
+}
+.customer-img,
+.customer-img img {
+  width: 120px;
+  height: 120px;
+}
+.grid-form .group {
+  width: 100%;
+  height: 90px;
+}
+.grid-form .group label {
+  display: inline-block;
+  margin: 1rem 0;
+}
+.grid-form .group input {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  border: none;
+  outline: 0.5px solid rgb(129, 124, 124);
+  border-radius: 5px;
+  text-indent: 1rem;
+}
+#customer-back-btn,
+#customer-delete-btn {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  margin: 20px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  color: var(--color-white);
+}
+#customer-delete-btn {
+  color: red;
+  border: 1px solid red;
+}
+#customer-back-btn {
+  background-color: blue;
+}
+#customer-back-btn:hover {
+  background-color: var(--color-white);
+  border: 1px solid blue;
+  color: blue;
+  box-shadow: 3px 4px 5px blue;
+}
+#customer-delete-btn:hover {
+  background-color: red;
+  color: var(--color-white);
+}
+.disable-input {
+  pointer-events: none;
+  background-color: rgb(211, 207, 207);
+}

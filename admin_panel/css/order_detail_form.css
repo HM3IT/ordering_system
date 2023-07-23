@@ -1,0 +1,58 @@
+#order-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px 10px;
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+#order-information h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.description {
+  padding: 10px;
+}
+.text-justify {
+  text-align: justify;
+}
+.product-tbl-img {
+  width: 150px;
+}
+#table-wrapper {
+  min-height: 220px;
+  max-height: 440px;
+  overflow-y: auto;
+  margin-bottom: 25px;
+}
+#all-product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#all-product-table thead {
+  position: sticky;
+  top: 0;
+}
+
+#all-product-table tr {
+  text-align: center;
+  border-collapse: collapse;
+}
+
+#payment-check{
+  display: flex;
+  gap:2rem;
+}
+#k-pay-img{
+  width: 300px;
+}
+#check-customer-btn{
+  padding: 10px 15px;
+  background-color: darkblue;
+  color: white;
+}
+#check-customer-btn:hover{
+  cursor: pointer;
+  background-color: blue;
+}

@@ -1,0 +1,218 @@
+/* ======= Content ========
+1. Main tag styling
+2. Date
+3. Insights (card styling)
+   3.1 Icon styling
+   3.2 Middle text 
+   3.3 SVG styling
+   3.4 date info
+4. Recent order TABLE 
+
+======================== */
+/* 1. Main tag styling */
+main {
+  margin-top: 1.5rem;
+  padding: 20px;
+  background-color: var(--color-background);
+  border-radius: 15px;
+}
+/* 2. Date */
+main .date {
+  display: inline-block;
+  background-color: transparent;
+  border-radius: var(--border-radius-1);
+  margin-top: 1rem;
+  padding: 0.5rem 1.6rem;
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(var(--web-kit-dark));
+}
+main .date input[type="date"] {
+  background-color: transparent;
+  color: var(--color-dark);
+}
+
+/* 3. Insights (card styling) */
+main .insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+main .insights .card {
+  background-color: var(--color-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+.insights .card:hover {
+  box-shadow: none;
+  cursor: pointer;
+}
+/* 3.1 Icon styling */
+.insights .card i {
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 2rem;
+}
+.insights .sales-card i {
+  background-color: var(--card-sale-bg-color);
+}
+.insights .order-card i {
+  background-color: var(--card-expense-bg-color);
+}
+.insights .montly-sales-card i {
+  background-color: var(--card-income-bg-color);
+}
+/* 3.2 Middle text  */
+
+.insights .card .middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.insights .card .middle .left {
+  width: 120px;
+}
+
+main .insights h3 {
+  margin: 1rem 0 0.6rem;
+  font-size: 1rem;
+}
+
+/* 3.3 SVG styling */
+
+main .insights .progress {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+main .insights svg {
+  width: 7rem;
+  height: 7rem;
+  z-index: 1;
+}
+main .insights svg circle {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 110;
+  stroke-dashoffset: 92;
+}
+main .insights .progress .number{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .insights .sales-card svg circle {
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
+main .insights .order-card svg circle {
+  stroke-dashoffset: 20;
+  stroke-dasharray:200;
+}
+main .insights .montly-sales-card svg circle {
+  stroke-dashoffset: 35;
+  stroke-dasharray: 110;
+}
+/* 3.4 date info （Card footer) */
+main .insights small {
+  display: block;
+  margin-top: 1.6rem;
+}
+
+/* 4 RRECENT ORDERS TABLE  */
+main .recent-order {
+  margin-top: 2rem;
+}
+main .recent-order h2 {
+  margin-bottom: 0.8rem;
+}
+main .recent-order a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
+}
+#recent-order-table {
+  width: 100%;
+  padding: var(--card-padding);
+  background: var(--color-white);
+  border-radius: var(--card-border-radius);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+#recent-order-table:hover {
+  box-shadow: none;
+}
+
+#recent-order-table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+#recent-order-table tbody tr:last-child td {
+  border: none;
+}
+
+/*================== MEDIA QUERIES ================== */
+/* For tablet */
+@media screen and (max-width: 1200px) {
+  main .insights {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  main .recent-order {
+    width: 94%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 8.8rem;
+  }
+  main #recent-order-table {
+    width: 83dvw;
+  }
+  main #recent-order-table thead tr th:last-child,
+  main #recent-order-table thead tr th:first-child {
+    display: none;
+  }
+  main #recent-order-table tbody tr td:last-child,
+  main #recent-order-table tbody tr td:first-child {
+    display: none;
+  }
+}
+
+/* For smaller tablet and mobile phones */
+@media screen and (max-width: 780px) {
+  main {
+    margin-top: 8 rem;
+    padding: 0 1rem;
+  }
+  main .recent-order {
+    position: relative;
+    margin: 3rem 0 0 0;
+    width: 100%;
+  }
+  main #recent-order-table {
+    width: 100%;
+    margin: 0;
+  }
+}
