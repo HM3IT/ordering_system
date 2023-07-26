@@ -18,8 +18,8 @@ if (empty($_SESSION["authentication"])) {
 }
 require "../dao/connection.php";
 
-$get_admin_password = "SELECT * FROM admin WHERE id='1'";
-$dataset = $connection->query($get_admin_password);
+$get_admin_qry = "SELECT * FROM users WHERE user_level_id ='1'";
+$dataset = $connection->query($get_admin_qry);
 $data = $dataset->fetch();
 ?>
 <!DOCTYPE html>
@@ -65,15 +65,7 @@ $data = $dataset->fetch();
                         <div class="group">
                             <label for="name">Change image</label>
                             <input type="file" id="image" name="image">
-                        </div>
-                        <div class="group">
-                            <label for="question" class="danger">Question</label>
-                            <input type="text" id="question" name="question" value=" <?php echo $data["question"] ?>" required>
-                        </div>
-                        <div class="group">
-                            <label for="answer" class="danger">Answer</label>
-                            <input type="text" id="answer" name="answer" value=" <?php echo $data["answer"] ?>" required>
-                        </div>
+                        </div>         
                     </div>
                     <a id="change-admin-password-btn" class="danger-border" onclick="openChangePasswordForm()">Change password</a>
                     <input type="submit" id="update-admin-btn" class="warning-bg" value="update" name="update-admin">

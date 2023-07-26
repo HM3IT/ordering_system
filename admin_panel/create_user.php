@@ -35,6 +35,7 @@ $dataset = $connection->query($get_user_level);
         ?>
         <section class="user-form-section">
             <h2 class="title warning">create User Account</h2>
+
             <form class="user-form" action="controller/user_account_controller.php" method="post" enctype="multipart/form-data">
                 <div>
                     <input type="hidden" name="id">
@@ -63,9 +64,11 @@ $dataset = $connection->query($get_user_level);
                         <label for="phone">Phone number:</label>
                         <input type="tel" name="phone" id="phone" placeholder="09 123 456 789" required>
                     </div>
+
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" required />
-                    <button type="button" id="togglePassword">Show/Hide</button>
+                    <input type="password" id="set_password" required />
+                    <button type="button" id="togglePassword">Show</button>
+
 
                     <label for="address" class="block">Address:</label>
                     <textarea name="address" id="address" cols="30" rows="5" required></textarea>
@@ -81,6 +84,8 @@ $dataset = $connection->query($get_user_level);
                     </div>
                 </div>
             </form>
+
+
         </section>
         <?php
         require "./pages/right-dashboard-panel.php";
@@ -88,13 +93,18 @@ $dataset = $connection->query($get_user_level);
     </div>
     <script>
         $(document).ready(function() {
-            console.log("hi");
             $("#togglePassword").click(function() {
-                var passwordInput = $("#password");
+                var passwordInput = $("#set_password");
+                var togglePasswordButton = $("#togglePassword");
+
                 if (passwordInput.attr("type") === "password") {
                     passwordInput.attr("type", "text");
+                    togglePasswordButton.text("Hide");
+                    togglePasswordButton.css("background-color", "orange");
                 } else {
                     passwordInput.attr("type", "password");
+                    togglePasswordButton.text("Show");
+                    togglePasswordButton.css("background-color", "blue"); 
                 }
             });
         });

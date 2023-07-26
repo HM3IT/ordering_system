@@ -1,40 +1,43 @@
 <?php
 require "../../dao/connection.php";
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_set_cookie_params(0);
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 }
 
 if (isset($_POST["sign-in-btn"])) {
     $name =  $_POST["name"];
-    $answer =   $_POST["answer"];
     $password = str_replace(' ', '', $_POST["password"]);
-
     $encryptedPassword = hash('sha512', $password);
 
-    $get_admin_qry = "SELECT * FROM admin";
+    $get_admin_qry = "SELECT * FROM users WHERE user_level_id = 1";
     $dataset = $connection->query($get_admin_qry);
-    $data = $dataset->fetch();
 
-    if (
-        $name === $data["name"] &&
-        $answer === $data["answer"] &&
-        $encryptedPassword ===  $data["password"]
-    ) {
-        // Set session cookie parameters
+    $found = false;
+    while ($data  = $dataset->fetch()) {
 
-        $_SESSION["name"] = $name;
-        $_SESSION["email"] = $data["email"];
-        $_SESSION["phone"] = $data["phone"];
-        $_SESSION["image"] = $data["image"];
-        $_SESSION["admin_id"] = $data["id"];
+        if (
+            $name === $data["name"] &&
+            $answer === $data["answer"] &&
+            $encryptedPassword ===  $data["password"]
+        ) {
+            // Set session cookie parameters
+            $_SESSION["admin_name"] = $name;
+            $_SESSION["admin_email"] = $data["email"];
+            $_SESSION["admin_phone"] = $data["phone"];
+            $_SESSION["admin_image"] = $data["image"];
+            $_SESSION["admin_id"] = $data["id"];
 
-        $_SESSION["status"] = "login";
-        $_SESSION["status-login"] = "valid";
-    } else {
+            $_SESSION["status"] = "login";
+            $_SESSION["status-login"] = "valid";
+            $found = true;
+            break;
+        }
+    }
+    if (!$found) {
         $_SESSION["status-login"] = "invalid";
     }
 
@@ -47,7 +50,7 @@ if (isset($_POST["authentication-check-submit"])) {
     $encryptedPassword = hash('sha512', $password);
 
     $admin_id =  $_SESSION["admin_id"];
-    $get_admin_password = "SELECT password FROM admin WHERE id=$admin_id";
+    $get_admin_password = "SELECT * FROM users WHERE id=$admin_id";
     $dataset = $connection->query($get_admin_password);
     $data = $dataset->fetch();
 
@@ -62,21 +65,20 @@ if (isset($_POST["authentication-check-submit"])) {
         echo '
     <script> 
         alert("Invalid authentication!"); 
-        location.href = "../index.php"; 
+        location.href = "../dashboard.php"; 
     </script>';
     }
 }
 
 // admin information update
 if (isset($_POST["update-admin"])) {
+
     $name =  trim($_POST["name"]);
     $email =   trim($_POST["email"]);
     $phone =   trim($_POST["phone"]);
-    $question =   ucfirst(trim($_POST["question"]));
-    $answer =   trim($_POST["answer"]);
+    $admin_id =  $_SESSION["admin_id"];
+    $admin_image =   $_SESSION["admin_image"];
 
-    // default admin's image name
-    $image_file_name = "admin.png";
     //checking whether the user upload new image or not
     if (!empty($_FILES["image"]["tmp_name"])) {
         $image_file_name = $_FILES["image"]["name"];
@@ -95,7 +97,6 @@ if (isset($_POST["update-admin"])) {
             </script>';
             // allowed up to 3MB 
             if ($image_file_size >= 1024 * 1024 * 3) {
-
                 echo '<script> 
              alert("File size is too big  (allowed up to 3 MB)");
              location.href = "../setting.php"; 
@@ -110,19 +111,18 @@ if (isset($_POST["update-admin"])) {
                 session_start();
             }
             //improve performance by caching image file name
-            $_SESSION["image"] = $image_file_name;
+            $_SESSION["admin_image"] = $image_file_name;
         } else {
             echo "target folder not found";
         }
     }
 
-    $update_admin_sql = "UPDATE admin SET 
+    $update_admin_sql = "UPDATE users SET 
     image = '$image_file_name',
     name = '$name', 
-    phone = '$phone', 
-    question = '$question', 
-    answer = '$answer' 
-    WHERE id = '1'";
+    phone = '$phone',
+    email = '$email'
+    WHERE id = '$admin_id'";
 
     if ($connection->query($update_admin_sql)) {
         echo '<script> 
@@ -137,14 +137,13 @@ if (isset($_POST["update-admin"])) {
 
 
 // change password
-
 if (!empty($_POST["new-password"])) {
     $new_password = $_POST["new-password"];
     $encryptedPassword = hash('sha512', $new_password);
 
     $admin_id =  $_SESSION["admin_id"];
 
-    $update_admin_sql = "UPDATE admin SET 
+    $update_admin_sql = "UPDATE users SET 
     password = '$encryptedPassword'
     WHERE id =  $admin_id";
 

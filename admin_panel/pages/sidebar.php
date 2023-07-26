@@ -31,7 +31,7 @@
 
                                   echo $row_count; ?></span>
     </a>
-    <a href="./product_manager.php" class="sidebar-link">
+    <a href="./menu_item_manager.php" class="sidebar-link">
       <i class="fa-solid fa-warehouse"></i>
       <h3>Menu items</h3>
     </a>

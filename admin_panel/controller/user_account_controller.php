@@ -15,6 +15,8 @@ if (isset($_GET["remove_user_id"])) {
 if (isset($_POST["create-user-submit"])) {
     $name = $_POST["name"];
     $password = $_POST["password"];
+    $encryptedPassword = hash('sha512', $password);
+
     $phone = $_POST["phone"];
     $email =  $_POST["email"];
     $address =  $_POST["address"];
@@ -34,7 +36,7 @@ if (isset($_POST["create-user-submit"])) {
 
     // Bind the values using placeholders
     $statement->bindParam(':name', $name);
-    $statement->bindParam(':password', $password);
+    $statement->bindParam(':password', $encryptedPassword );
     $statement->bindParam(':phone', $phone);
     $statement->bindParam(':email', $email);
     $statement->bindParam(':address', $address);
@@ -53,6 +55,8 @@ if (isset($_POST["update-user-submit"])) {
     $id = $_POST['id'];
     $name = $_POST["name"];
     $password = $_POST["password"];
+    $encryptedPassword = hash('sha512', $password);
+
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address =  $_POST["address"];
@@ -73,7 +77,7 @@ if (isset($_POST["update-user-submit"])) {
 
     // Bind the values using placeholders
     $statement->bindParam(':name', $name);
-    $statement->bindParam(':password', $password);
+    $statement->bindParam(':password', $encryptedPassword);
     $statement->bindParam(':email', $email);
     $statement->bindParam(':phone', $phone);
     $statement->bindParam(':address', $address);

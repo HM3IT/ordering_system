@@ -13,8 +13,8 @@
             <div class="info">
                 <p>Welcome, <b id="admin-name">
                         <?php
-                        if (isset($_SESSION["name"])) {
-                            echo $_SESSION["name"];
+                        if (isset($_SESSION["admin_name"])) {
+                            echo $_SESSION["admin_name"];
                         } else {
                             //  if the user is passed thorugh the login authentication, there have to be name varibale in session
                             echo '<script> 
@@ -31,7 +31,7 @@
                                             if (session_status() == PHP_SESSION_NONE) {
                                                 session_start();
                                             }
-                                            echo $_SESSION["image"]  ?>" alt="admin.png" id="admin-img">
+                                            echo $_SESSION["admin_image"]  ?>" alt="admin.png" id="admin-img">
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@
         <h2>Recent updates</h2>
         <div class="update-container">
             <?php
-            if (!isset($connection)) {
-                require "../dao/connection.php";
+            if (!isset($conn)) {
+                require "../dao/old_connection.php";
             }
             $get_recent_received = "SELECT `orders`.*, customer.*
             FROM `orders`
@@ -53,7 +53,7 @@
             LIMIT 3";
 
 
-            $stmt = $connection->prepare($get_recent_received);
+            $stmt = $conn->prepare($get_recent_received);
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -114,7 +114,7 @@
     
     // Query to retrieve today's total revenue
     $todayQuery = "SELECT SUM(total_price) AS today_revenue FROM orders WHERE order_date >= :today_start AND order_date <= :today_end";
-    $todayStatement = $connection->prepare($todayQuery);
+    $todayStatement = $conn->prepare($todayQuery);
     $todayStatement->bindParam(':today_start', $todayStart);
     $todayStatement->bindParam(':today_end', $todayEnd);
     $todayStatement->execute();
@@ -127,7 +127,7 @@
     
     // Query to retrieve yesterday's total revenue
     $yesterdayQuery = "SELECT SUM(total_price) AS yesterday_revenue FROM orders WHERE order_date >= :yesterday_start AND order_date <= :yesterday_end";
-    $yesterdayStatement = $connection->prepare($yesterdayQuery);
+    $yesterdayStatement = $conn->prepare($yesterdayQuery);
     $yesterdayStatement->bindParam(':yesterday_start', $yesterdayStart);
     $yesterdayStatement->bindParam(':yesterday_end', $yesterdayEnd);
     $yesterdayStatement->execute();
@@ -180,13 +180,13 @@
         // Query to fetch yesterday's new customers
         $yesterdayQuery = "SELECT COUNT(*) AS yesterday_new_customers FROM customer WHERE DATE(FROM_UNIXTIME(created_date)) = :yesterdayDate";
 
-        $todayStatement = $connection->prepare($todayQuery);
+        $todayStatement = $conn->prepare($todayQuery);
         $todayStatement->bindValue(':currentDate', $currentDate);
         $todayStatement->execute();
         $todayResult = $todayStatement->fetch(PDO::FETCH_ASSOC);
         $todayNewCustomers = $todayResult['today_new_customers'];
 
-        $yesterdayStatement = $connection->prepare($yesterdayQuery);
+        $yesterdayStatement = $conn->prepare($yesterdayQuery);
         $yesterdayStatement->bindValue(':yesterdayDate', $yesterdayDate);
         $yesterdayStatement->execute();
         $yesterdayResult = $yesterdayStatement->fetch(PDO::FETCH_ASSOC);
@@ -223,16 +223,26 @@
         <!-- END of the new customer card  -->
 
         <!-- START of add new product card  -->
-        <a href="./add_product.php">
+        <a href="./add_menu_item.php">
             <div class="item-card add-product-card">
                 <div>
                     <i class="fa-solid fa-plus"></i>
-                    <h3>Add Product</h3>
+                    <h3>Add Menu Item</h3>
                 </div>
             </div>
         </a>
         <!-- END of add new product card  -->
 
+         <!-- START of add new user   -->
+         <a href="./create_user.php">
+            <div class="item-card create-user-card">
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <h3>Create User Account</h3>
+                </div>
+            </div>
+        </a>
+        <!-- END of add new user  -->
 
         <!-- START of add new product card  -->
         <button type="button" id="add-category-btn">
@@ -243,6 +253,7 @@
                 </div>
             </div>
         </button>
+        
         <!-- END of add new product card  -->
     </section>
     <!-- END of the sales analytics section  -->

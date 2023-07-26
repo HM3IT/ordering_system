@@ -2,10 +2,6 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-require "../dao/connection.php";
-$get_admin_qry = "SELECT question FROM admin WHERE id='1'";
-$dataset = $connection->query($get_admin_qry);
-$data = $dataset->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +28,6 @@ $data = $dataset->fetch();
 
                     <div class='input-fields'>
                         <input type='text' placeholder='Username' name="name" class='input-line full-width' required></input>
-                        <input type='text' placeholder='<?php echo $data["question"] ?>' name="answer" class='input-line full-width' required></input>
                         <input type='password' placeholder='Password' name="password" class='input-line full-width' required></input>
                     </div>
                     <div>
@@ -66,7 +61,7 @@ $data = $dataset->fetch();
                     <i class="fa-regular fa-face-laugh-beam" id="smilly-emoji"></i>
                     <h2>Yey!, login successfully </h2>
                 </div>
-                <a href="./index.php" class="information-bg">OK</a>
+                <a href="./dashboard.php" class="information-bg">OK</a>
             </div>
     <?php
         }

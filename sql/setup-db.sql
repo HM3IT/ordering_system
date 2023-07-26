@@ -49,7 +49,6 @@ CREATE TABLE users (
      foreign key(user_level_id) references user_levels (id)
 );
 
-
 CREATE TABLE orders(
     id INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     order_date date,

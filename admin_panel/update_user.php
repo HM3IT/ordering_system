@@ -41,7 +41,7 @@ if (isset($_GET["update_user_id"])) {
         require "./pages/sidebar.php";
         ?>
         <section class="user-form-section">
-            <h2 class="title warning">create User Account</h2>
+            <h2 class="title warning">User Account</h2>
             <form class="user-form" action="controller/user_account_controller.php" method="post" enctype="multipart/form-data">
                 <div>
                     <input type="hidden" name="id"  value="<?php echo $data["id"] ?>">
