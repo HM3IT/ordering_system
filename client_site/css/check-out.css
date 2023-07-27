@@ -1,0 +1,156 @@
+/*====== Content =========
+1. Check out form 
+2. Pop up form 
+  =======================*/
+
+/* 1. Check out form  */
+.checkout-form-section {
+  margin-top: 3.5rem;
+}
+
+.checkout-form-section .title {
+  text-align: center;
+  letter-spacing: 5px;
+}
+.checkout-form {
+  min-width: 320px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  font-size: 1.2rem;
+  box-shadow: 3px 4px 5px black;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
+.checkout-form input[type="number"],
+.checkout-form input[type="text"],
+.checkout-form input[type="tel"] {
+  margin: 0 auto;
+  height: 35px;
+  line-height: 35px;
+}
+.checkout-form label {
+  width: 100px;
+}
+
+.checkout-form textarea {
+  height: 80px;
+  resize: none;
+}
+.checkout-form input[type="number"],
+.checkout-form input[type="text"],
+.checkout-form input[type="tel"],
+.checkout-form textarea {
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  border: 0.3px solid grey;
+  margin: 10px 0;
+}
+.checkout-form tr td .shipping-address {
+  margin: 0;
+}
+.checkout-form input[type="radio"] {
+  margin-right: 20px;
+}
+.checkout-form .kPayFields {
+  transition: all 1s ease;
+}
+#k-pay-barcode-img {
+  width: 360px;
+  height: 360px;
+  display: block;
+}
+.checkout-btn-div {
+  width: 100%;
+}
+.checkout-btn {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* overlay and popup valid or invalid noti */
+#ask-login-overlay,
+#checkout-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 99;
+}
+#ask-login-form,
+#checkout-noti-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 495px;
+  height: 160px;
+  border: 0.3px solid grey;
+  box-shadow: 3px 4px 6px black;
+  background-color: whitesmoke;
+  border-radius: 35px;
+  padding: 25px;
+  display: none;
+  z-index: 100;
+}
+#ask-login-form div,
+#checkout-noti-form div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#ask-login-form a,
+#checkout-noti-form a {
+  width: 100px;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+
+#ask-login-form #smilly-emoji,
+#checkout-noti-form #sad-emoji,
+#checkout-noti-form #smilly-emoji {
+  font-size: 5rem;
+}
+#checkout-noti-form #sad-emoji {
+  color: rgb(255, 172, 48);
+}
+#checkout-noti-form #smilly-emoji {
+  color: rgb(33, 250, 5);
+}
+#checkout-noti-form a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .checkout-form {
+    min-width: 320px;
+  }
+  .checkout-form label{
+    font-size: 1rem;
+  }
+
+.checkout-form input[type="number"],
+.checkout-form input[type="text"],
+.checkout-form input[type="tel"],
+.checkout-form textarea {
+  max-width: 360px;
+}
+.checkout-form input[type="radio"] {
+  margin-right: 0;
+}
+}

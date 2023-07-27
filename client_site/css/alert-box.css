@@ -1,0 +1,84 @@
+/* ========== content ==========
+1. overlay 
+2. common style of quantity-limit-alert-box & out-of-stock-box
+   div, info text and button
+3. distinct style
+   passage and emoji
+============================== */
+/* 1. overlay  */
+#quantity-limit-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 990;
+}
+/* 2. common style of quantity-limit-alert-box & out-of-stock-box */
+#quantity-limit-alert-box,
+#out-of-stock-box {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 240px;
+  border-radius: 20px;
+  text-align: center;
+}
+#quantity-limit-alert-box div,
+#out-of-stock-box div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#quantity-limit-alert-box .info,
+#out-of-stock-box .info {
+  color: rgb(255, 172, 48);
+}
+
+#quantity-limit-alert-box button,
+#out-of-stock-box button {
+  width: 100px;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+#quantity-limit-alert-box button:hover,
+#out-of-stock-box button:hover {
+  cursor: pointer;
+  background: radial-gradient(white, black);
+}
+
+/* 3. distinct style */
+#quantity-limit-alert-box p {
+  color: white;
+  line-height: 1.5rem;
+  letter-spacing: 1.2px;
+}
+#out-of-stock-box p {
+  color: white;
+  line-height: 1.5rem;
+  letter-spacing: 1.2px;
+}
+
+#quantity-limit-alert-box #sad-emoji {
+  color: rgb(255, 172, 48);
+  font-size: 4rem;
+}
+#out-of-stock-box #pleasure-emoji {
+  color: aquamarine;
+  font-size: 4rem;
+}
+#quantity-limit-alert-box{
+  background-color: black;
+  z-index: 999;
+}
+#out-of-stock-box{
+  background-color: #063150a8;
+  z-index: 995;
+}

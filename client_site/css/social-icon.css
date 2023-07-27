@@ -1,0 +1,96 @@
+/* =======================
+ social icon animation styling
+ 1. icon size
+ 2. list (icon container) styling
+    2.1 icon styling
+    2.2 before and after styling
+=========================== */
+
+#social {
+  display: flex;
+}
+
+/* 1. icon size */
+#social li i {
+  font-size: 35px;
+}
+
+/* 2. list (icon container) styling */
+#social li {
+  width: 75px;
+  height: 75px;
+  margin: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#social li:before,
+#social li:after {
+  content: "";
+  position: absolute;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  transition: all 0.3s linear;
+}
+
+/* 2.1 icon styling  */
+#social li:nth-child(1) .fab {
+  color: #1da1f2;
+}
+#social li:nth-child(2) .fab {
+  color: #d72888;
+}
+#social li:nth-child(3) .fab {
+  color: #007bb6;
+}
+#social li:nth-child(4) .fab {
+  color: #ff0000;
+}
+
+/* 2.2 before and after styling */
+#social li:nth-child(1):before {
+  border: 2px solid #1da1f2;
+}
+#social li:nth-child(1):after {
+  background: #1da1f2;
+}
+#social li:nth-child(2):before {
+  border: 2px solid #d72888;
+}
+#social li:nth-child(2):after {
+  background: #d72888;
+}
+#social li:nth-child(3):before {
+  border: 2px solid #007bb6;
+}
+#social li:nth-child(3):after {
+  background: #007bb6;
+}
+#social li:nth-child(4):before {
+  border: 2px solid #ff0000;
+}
+#social li:nth-child(4):after {
+  background: #ff0000;
+}
+
+#social li:after {
+  opacity: 0;
+  z-index: -1;
+}
+#social li:hover:after {
+  opacity: 1;
+  z-index: 0;
+}
+
+/* hover effect */
+#social li:hover .fab {
+  color: white;
+  transition: 0.3s linear;
+  z-index: 1;
+}
+#social li:hover:before {
+  transform: scale(1.1);
+}

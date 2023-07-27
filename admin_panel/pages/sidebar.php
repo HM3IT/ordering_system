@@ -8,14 +8,14 @@
     </div>
   </div>
   <div class="sidebar-function-container">
-    <a href="./index.php" class="sidebar-link">
+    <a href="./dashboard.php" class="sidebar-link">
       <i class="fa-solid fa-table-columns"></i>
       <h3>Dashboard</h3>
     </a>
 
     <a href="./user_manager.php" class="sidebar-link">
       <i class="fa-solid fa-user"></i>
-      <h3>User</h3>
+      <h3>Staff</h3>
     </a>
 
     <a href="./order_manager.php" class="sidebar-link">
@@ -46,7 +46,7 @@
       <h3>Settings</h3>
     </a>
 
-    <a href="./controller/admin_controller.php?logout" class="logout">
+    <a href="./controller/login_controller.php?logout" class="logout">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
       <h3>Logout</h3>
     </a>
@@ -56,7 +56,7 @@
 <div id="popup-form-authentication-check" class="authentication-check-overlay">
   <div class="popup-form-authentication-check">
     <h2>Please confirm the authentication</h2>
-    <form action="./controller/admin_controller.php" method="POST" id="popup-authentication-form">
+    <form action="./controller/login_controller.php" method="POST" id="popup-authentication-form">
       <i class="fa-solid fa-circle-xmark" onclick="closeAuthenticationCheckForm()"></i>
       <input type="password" placeholder="Password" name="password" id="password">
       <input type="submit" name="authentication-check-submit" class="information-bg" value="check">

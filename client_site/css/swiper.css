@@ -1,0 +1,81 @@
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper {
+  margin: 0;
+  width: 100%;
+  height: fit-content;
+}
+.swiper-slide {
+  height: 340px;
+  background-color: white;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: whitesmoke;
+}
+.swiper-pagination-bullet-active {
+  background-color: whitesmoke;
+}
+
+#custom-keyboards-ads1,
+#custom-keyboards-ads2,
+#custom-keyboards-ads3 {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+#custom-keyboards-ads1 {
+  background-image: url("../../images/Slider/custom-keyboard-ads1.png");
+}
+#custom-keyboards-ads2 {
+  background-image: url("../../images/Slider/custom-keyboard-ads2.png");
+}
+
+/* For tablet */
+@media screen and (max-width: 1200px) {
+  .swiper-slide {
+    height: 220px;
+  }
+  .swiper-slide img,
+  #custom-keyboards-ads1,
+  #custom-keyboards-ads2,
+  #custom-keyboards-ads3 {  
+    height: 200px;   
+  }
+}
+
+/* For tablet and large screen mobile phone */
+@media screen and (max-width: 780px) {
+  .swiper-slide {
+    height: 160px;
+  }
+  
+  #custom-keyboards-ads1,
+  #custom-keyboards-ads2,
+  #custom-keyboards-ads3 {  
+    height: 140px;  
+  }
+}
+@media screen and (max-width: 560px) {
+  .swiper-slide {
+    height: 160px;
+  }
+  
+  #custom-keyboards-ads1,
+  #custom-keyboards-ads2,
+  #custom-keyboards-ads3 {  
+    height: 100px;  
+  }
+}

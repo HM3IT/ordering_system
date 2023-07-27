@@ -1,0 +1,69 @@
+.nav-bar-btn {
+  background-color: white;
+}
+.shop-btn {
+  background-color: aqua;
+  border-radius: 20px;
+}
+.shop-btn:hover {
+  background-color: white;
+}
+
+#main-container {
+  background-color: white;
+}
+/* Pagination */
+#pagination {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#pagination a {
+  display: inline-block;
+  margin: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 45px;
+}
+.previous-page,
+.next-page {
+  background-color: #0ab1ce;
+  width: 80px;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.current-page {
+  width: 45px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.active {
+  background-color: #0ab1ce;
+}
+
+.previous-page:hover {
+  transform: translateX(-5px);
+}
+.next-page:hover {
+  transform: translateX(5px);
+}
+
+#sort-select-form {
+  display: block;
+  width: 200px;
+  position: relative;
+  top: 0;
+  left: 10%;
+}
+#sort-select-form label{
+  color: blue;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-shadow: 
+  0.025rem 0.025rem 0 white,
+  0.1rem 0.1rem 0 orangered;
+}

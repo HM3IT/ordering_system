@@ -1,0 +1,120 @@
+/*  ======Content=====
+1. search box+result container styling
+2. searched result list styling
+3. sesarched item box stylign
+  3.1 stock detial text
+  3.2 item title, description styling
+4. found-nothing text styling
+====================== */
+
+/* 1. search box+result container styling */
+.product-search-bar-container {
+  width: 440px;
+  background-color: white;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-search-bar-container form {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  border-left: 1px solid;
+}
+.product-search-bar-container form input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  height: 25px;
+  padding: 10px;
+}
+.product-search-bar-container form i {
+  padding-left: 10px;
+}
+
+/* 2. searched result list styling */
+.matched-item-lists ul li > a {
+  text-decoration: none;
+}
+.product-search-bar-container .matched-item-lists {
+  width: 550px;
+  max-height: 420px;
+  overflow-y: scroll;
+  position: absolute;
+  top: 75px;
+  left: 0;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 0.5px grey;
+  z-index: 99;
+}
+.product-search-bar-container .matched-item-lists li {
+  display: none;
+}
+.product-search-bar-container .matched-item-box {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.product-search-bar-container .matched-item-box:hover {
+  cursor: pointer;
+  color: rgb(9, 9, 173);
+}
+/* 3. sesarched item box stylign */
+
+.product-search-bar-container .matched-item-box img {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+}
+
+/* 3.1 stock detial text */
+.product-search-bar-container .stock-info {
+  display: block;
+  width: 70px;
+  line-height: 25px;
+  text-align: center;
+  height: 25px;
+  color: #fff;
+  font-weight: 600;
+}
+.in-stock {
+  background-color: rgb(60, 253, 60);
+}
+.out-stock {
+  background-color: rgb(252, 36, 16);
+}
+
+/* 3.2 item title, description styling */
+.item-title,
+.item-detail,
+.item-price {
+  margin: 2px 0;
+}
+
+.item-description {
+  font-size: 0.75rem;
+  padding: 10px;
+  text-align: justify;
+  overflow: scroll;
+}
+.item-price {
+  color: rgb(255, 0, 81);
+}
+
+/* 4. found-nothing text styling */
+.found-nothing {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}

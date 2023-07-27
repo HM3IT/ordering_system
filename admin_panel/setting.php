@@ -44,7 +44,7 @@ $data = $dataset->fetch();
         <section id="setting">
             <div>
                 <h2 class="title">Account Setting</h2>
-                <form action="./controller/admin_controller.php" method="POST" enctype="multipart/form-data">
+                <form action="./controller/login_controller.php" method="POST" enctype="multipart/form-data">
                     <div class="admin-img">
                         <img src="../images/User/<?php echo $data["image"] ?>" alt="admin.png">
                     </div>
@@ -76,7 +76,7 @@ $data = $dataset->fetch();
             <div id="popup-form-change-password" class="change-password-overlay">
                 <div class="popup-form-change-password">
                     <h2>Change Password</h2>
-                    <form action="./controller/admin_controller.php" method="POST" id="popup-change-password-form" onsubmit="validateForm(event)">
+                    <form action="./controller/login_controller.php" method="POST" id="popup-change-password-form" onsubmit="validateForm(event)">
                         <i class="fa-solid fa-circle-xmark" onclick="closeChangePasswordForm()"></i>
                         <label for="new-password">New Password:</label>
                         <input type="password" id="new-password" name="new-password" required>

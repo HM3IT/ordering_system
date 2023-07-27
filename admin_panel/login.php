@@ -12,19 +12,111 @@ if (!isset($_SESSION)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
     <div class='container'>
+        <div>
+            <h2>Ordering System For Cafe and Bakery stores</h2>
+            <h3>Available functionalities of the System</h3>
+            <table id="admin-function">
+                <tbody>
+                    <td><i class="fa-regular fa-square-check"></i></td>
+                    <td>
+                        <p>Admin account - setting</p>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>CRUD menu item, and user tabless </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Review order information</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Search and sort functionalitiess</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Daily & Monthly sales </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Top 10 Popular Menu Items</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="moderator-function">
+                <tbody>
+                    <td><i class="fa-regular fa-square-check"></i></td>
+                    <td>
+                        <p>Moderatorr account - setting</p>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>CRUD menu item tabless </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Review order information</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Search and sort functionalitiess</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Daily & Monthly sales </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><i class="fa-regular fa-square-check"></i></td>
+                        <td>
+                            <p>Top 10 Popular Menu Items</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class='window'>
             <div class='overlay'></div>
 
             <div class='content'>
-                <form action="./controller/admin_controller.php" method="POST">
+                <form action="./controller/login_controller.php" method="POST">
                     <div class='welcome'>Login</div>
-                    <div class='subtitle'>Please fill the required information to verify the admin authentication</div>
+                    <div class='subtitle'>Please fill the required information to verify the authentication</div>
+
+                    <label for="login-as">Login As: </label>
+                    <select name="user_level_id" id="login-as">
+                        <option value="1">Admin</option>
+                        <option value="2">Moderator</option>
+                    </select>
 
                     <div class='input-fields'>
                         <input type='text' placeholder='Username' name="name" class='input-line full-width' required></input>
@@ -69,6 +161,26 @@ if (!isset($_SESSION)) {
         unset($_SESSION["status-login"]);
     }
     ?>
+    <script>
+        $(document).ready(function() {
+
+            $("#login-as").on("change", function() {
+                var selectedValue = $(this).val();
+                
+                if (selectedValue === "1") {
+                    $("#admin-function").show();
+                    $("#moderator-function").hide();
+                } else if (selectedValue === "2") {
+                    $("#admin-function").hide();
+                    $("#moderator-function").show();
+                } else {
+
+                    $("#admin-function").hide();
+                    $("#moderator-function").hide();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

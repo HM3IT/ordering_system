@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300&display=swap");
+
+
+:root {
+  --color-background: #f6f6f9;
+  --brand-logo-width: 110px;
+  --brand-logo-height: 70px;
+  --nav-bar-height: 80px;
+  --nav-bar-btn-width: 100px;
+  --nav-bar-btn-height: 55px;
+  
+  --nav-bar-btn-bg-color: #fefefe;
+  --nav-bar-offset-left: -500px;
+  --action-color: #00ccff;
+  --color-white: white;
+  --color-primary: #ffbf00;
+  --color-danger: #ff7782;
+  --color-success: #41f1b6;
+  --color-warning: #ffbb55;
+  --color-information: rgb(0, 10, 197);
+  --color-dark: #363949;
+  --color-light: rgba(139, 145, 201, 0.2);
+  --color-info-dark: black;
+  --color-info-light: #dce1eb;
+}
+
+* {
+  font-family: "Roboto", sans-serif, Arial, Verdana;
+}
+
+.dark-theme-variables {
+  --color-background: #181a1e;
+  --color-white: #202528;
+  --color-dark: #edeffd;
+  --color-dark-variant: #a3bdcc;
+  --color-light: rgba(0, 0, 0, 0.4);
+  --box-shadow: 0 2rem 3rem var(--color-light);
+  --web-kit-dark: 1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  user-select: none;
+}
+/* Hide the scrollbar for elements with overflow: scroll */
+::-webkit-scrollbar {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+/* 3.3 utility classes */
+.primary {
+  color: var(--color-primary);
+}
+.primary-border {
+  border: 2px solid var(--color-primary);
+  color: var(--color-dark);
+}
+.primary-border:hover {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.danger {
+  color: var(--color-danger);
+}
+.danger-border {
+  border: 2px solid var(--color-danger);
+  color: var(--color-dark);
+}
+.danger-border:hover {
+  background-color: var(--color-danger);
+  color: var(--color-dark);
+}
+
+.success {
+  color: var(--color-success);
+}
+.success-bg {
+  background-color: var(--color-success);
+  color: white;
+  border: 2px solid transparent;
+}
+.success-bg:hover {
+  background-color: transparent;
+  border: 2px solid var(--color-success);
+  color: var(--color-success);
+}
+
+.success-border {
+  border: 2px solid var(--color-success);
+  color: var(--color-dark);
+}
+.success-border:hover {
+  background-color: var(--color-success);
+  color: var(--color-dark);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+.warning-border {
+  border: 2px solid var(--color-warning);
+  color: var(--color-dark);
+}
+.warning-border:hover {
+  background-color: var(--color-warning);
+  color: var(--color-dark);
+}
+
+.information {
+  color: var(--color-information);
+}
+.information-bg {
+  background-color: var(--color-information);
+  color: white;
+}
+.information-bg:hover {
+  background-color: white;
+  border: 2px solid var(--color-information);
+  color: var(--color-information);
+}
+.information-border {
+  background-color: white;
+  border: 2px solid var(--color-information);
+  color: var(--color-information);
+}
+.information-border:hover {
+  background-color: var(--color-information);
+  color: white;
+}
+
+.disable-text {
+  color: rgb(173, 168, 168);
+}
+.button-flex {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+
+#main-container {
+  display: grid;
+  width: 96%;
+  margin: 0 auto;
+  gap: 1.9rem;
+  grid-template-columns: 15rem auto;
+  background-color: var(--color-background);
+}
+/* For tablet */
+@media screen and (max-width: 1200px) {
+  #main-container {
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+}
+
+/* For  tablet and large mobile phone */
+@media screen and (max-width: 780px) {
+  #main-container {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  #table-wrapper{
+    width: 95%;
+    margin: 0 auto;
+  }
+  #empTable.all-product-table{
+    padding: 0;
+    font-size: .7rem;
+  }
+  #empTable tbody th, #empTable tbody td {
+    padding: 0;
+}
+}

@@ -12,16 +12,16 @@ if (isset($_POST["sign-in-btn"])) {
     $name =  $_POST["name"];
     $password = str_replace(' ', '', $_POST["password"]);
     $encryptedPassword = hash('sha512', $password);
+    $user_level_id = $_POST["user_level_id"];
 
-    $get_admin_qry = "SELECT * FROM users WHERE user_level_id = 1";
-    $dataset = $connection->query($get_admin_qry);
+    $get_user_qry = "SELECT * FROM users WHERE user_level_id =  $user_level_id ";
+    $dataset = $connection->query($get_user_qry);
 
     $found = false;
     while ($data  = $dataset->fetch()) {
 
         if (
             $name === $data["name"] &&
-            $answer === $data["answer"] &&
             $encryptedPassword ===  $data["password"]
         ) {
             // Set session cookie parameters

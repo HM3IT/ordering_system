@@ -1,0 +1,34 @@
+/*  product increment & decrement */
+.product-quantity-wrapper {
+  height: 30px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fefefe;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.product-quantity-wrapper span {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.product-quantity-wrapper span::selection {
+  background-color: transparent;
+}
+.product-quantity-wrapper .quantity {
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+}
+.product-quantity-wrapper > .minus,
+.product-quantity-wrapper > .plus {
+  cursor: pointer;
+}
+.product-quantity-wrapper > .minus:hover {
+  color: red;
+}
+.product-quantity-wrapper > .plus:hover {
+  color: rgb(0, 253, 0);
+}

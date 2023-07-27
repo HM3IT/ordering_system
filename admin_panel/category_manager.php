@@ -38,6 +38,7 @@ if (empty($_SESSION["status"])) {
                 <tr>
                     <th>No.</th>
                     <th>Category name</th>
+                    <th>Button Icon</th>
                     <th>Number of products</th>
                     <th>Action</th>
                 </tr>
@@ -54,8 +55,10 @@ if (empty($_SESSION["status"])) {
                     <tr>
                         <td><?php echo  $serial++  ?></td>
                         <td class="category-name-col">
-
                             <?php echo $row["category_name"]  ?>
+                        </td>
+                        <td>
+                        <?php echo $row["category_icon"]  ?>
                         </td>
                         <td><?php echo $row_count ?></td>
                         <td>
@@ -88,11 +91,15 @@ if (empty($_SESSION["status"])) {
                     <div class="group">
                         <label for="old-category">Old category Name</label>
                         <input type="hidden" name="old-category" class="old-category-name">
-                        <input type="text" class="old-category-name" disabled>
+                        <input type="text" name="old-category" class="old-category-name" disabled>
                     </div>
                     <div>
                         <label for="new-category">New category Name</label>
                         <input type="text" id="new-category" name="new-category" class="updated_category">
+                    </div>
+                    <div>
+                        <label for="new-category">Category Icon</label>
+                        <input type="text" id="category-icon" name="category-icon" class="updated_category">
                     </div>
                     <input type="submit" class="information-bg ask-login-btn" name="update-category" value="Update">
                 </form>

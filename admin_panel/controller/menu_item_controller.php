@@ -86,7 +86,7 @@ if (isset($_POST["add_item_submit"])) {
     if ($connection->query($image_insert_query)) {
         echo '<script> 
        alert("Successfully added the item"); 
-       location.href = "../item_manager.php"; 
+       location.href = "../menu_item_manager.php"; 
        </script>';
     } else {
         // Update failed
@@ -180,7 +180,7 @@ if (isset($_POST["update_item_submit"])) {
     if ($statement->execute()) {
         echo '<script> 
         alert("Successfully updated the item"); 
-        location.href = "../item_manager.php"; 
+        location.href = "../menu_item_manager.php"; 
         </script>';
     } else {
         // Update failed

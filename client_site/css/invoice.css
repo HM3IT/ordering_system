@@ -1,0 +1,299 @@
+/* Regular styles for the webpage */
+/* Content  
+
+1. invoice-section 
+2. header block:block & block2
+   2.1 businesss address table
+   2.2 customer address table
+3. Table coloring 
+4. order-list table
+*/
+
+/* 1. invoice-section */
+#invoice-popup-section {
+  min-width: 400px;
+  max-width: 820px;
+  margin: auto;
+  font-size: 1rem;
+  box-shadow: 3px 4px 5px black;
+}
+
+/* 2. header block */
+#invoice-popup-section .header-block {
+  display: flex;
+  padding: 10px 35px;
+  justify-content: space-between;
+}
+
+#invoice-popup-section .header-block div:first-child {
+  min-width: 380px;
+  min-width: 65%;
+}
+#invoice-popup-section .header-block.block1 h6 {
+  margin: 5px 0;
+}
+#invoice-icon {
+  width: 125px;
+  height: 85px;
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.company-info {
+  text-align: right;
+}
+
+/* 2.1 businesss address table */
+ 
+#customer-address-tbl tr td:first-child {
+  width: 100px;
+}
+
+#customer-address-tbl tr td:nth-child(2) {
+  text-align: left;
+  width: 260px;
+}
+
+/* 3. Table coloring */
+#invoice-popup-section .header-block.block1,
+#total-cost-row td:nth-child(2) {
+  background-color: rgb(225 134 5);
+  color: white;
+}
+
+#total-cost-row td:first-child {
+  background-color: rgb(249, 168, 127);
+}
+
+/* 4. order-list table */
+#invoice-popup-section #order-list-table {
+  /* width: 100%; */
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+}
+
+#order-list-table {
+  width: 80%;
+  margin: 50px auto;
+  padding: 30px;
+  text-align: center;
+}
+
+#order-list-table:hover {
+  box-shadow: none;
+}
+
+#order-list-table thead {
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+#order-list-table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid whitesmoke;
+  color: black;
+}
+
+#order-list-table .subtotal-col {
+  text-align: right;
+  width: 100px;
+  margin-top: 10px;
+  padding-right: 2rem;
+}
+
+#download-invoice {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2rem;
+}
+#print-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 15px;
+  border: 1px solid blue;
+  background-color: white;
+}
+#print-btn:hover {
+  background-color: blue;
+  color: white;
+}
+.description {
+  padding: 0 20px;
+  font-size: 0.7rem;
+  line-height: 1.1rem;
+  text-align: justify;
+}
+
+/* popup form  */
+/* overlay and popup valid or invalid noti */
+#ask-login-overlay,
+#checkout-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  z-index: 99;
+}
+#ask-login-form,
+#checkout-noti-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 495px;
+  min-width: 300px;
+  height: 160px;
+  border: 0.3px solid grey;
+  box-shadow: 3px 4px 6px black;
+  background-color: whitesmoke;
+  border-radius: 35px;
+  padding: 25px;
+  display: block;
+  z-index: 100;
+}
+#ask-login-form div,
+#checkout-noti-form div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#ask-login-form a,
+#checkout-noti-form a {
+  width: 100px;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+
+#ask-login-form #smilly-emoji,
+#checkout-noti-form #sad-emoji,
+#checkout-noti-form #smilly-emoji {
+  font-size: 5rem;
+}
+#checkout-noti-form #sad-emoji {
+  color: rgb(255, 172, 48);
+}
+#checkout-noti-form #smilly-emoji {
+  color: rgb(33, 250, 5);
+}
+#checkout-noti-form a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  margin: auto;
+  text-align: center;
+}
+.header-block.block2 h2 {
+  margin: 5px 0;
+  font-size: 1.3rem;
+}
+@media print {
+  #print-btn,
+  .header,
+  #web-footer {
+    display: none;
+  }
+  #invoice-popup-section .header-block.block1 {
+    color: orange;
+  }
+  #total-cost-row td:nth-child(2) {
+    color: blue;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  /* logo  */
+  #invoice-icon {
+    width: 90px;
+    height: 70px;
+  }
+
+  /* typography */
+  #customer-address-tbl {
+    font-size: 0.7rem;
+  }
+  .company-info {
+    text-align: right;
+    font-size: 0.9rem;
+  }
+  #ask-login-form #smilly-emoji,
+  #checkout-noti-form #sad-emoji,
+  #checkout-noti-form #smilly-emoji {
+    font-size: 2rem;
+  }
+  #ask-login-form,
+  #checkout-noti-form {
+    font-size: 0.7rem;
+    height: unset;
+  }
+  /* Adjusting the height and width  */
+  #invoice-popup-section .header-block {
+    padding: 10px;
+  }
+  #customer-address-tbl tr td:nth-child(2) {
+    width: 220px;
+  }
+  #order-list-table,
+  .header-block {
+    width: 480px;
+    margin: 0 auto;
+  }
+  #order-list-table .subtotal-col {
+    padding: 0;
+  }
+  #order-list-table .description {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  #order-list-table,
+  .header-block {
+    width: 460px;
+    margin: 0 auto;
+  }
+  #invoice-date ,
+  #customer-address-tbl {
+    font-size: 0.7rem;
+  }
+  #invoice-popup-section .header-block {
+    padding: 10px;
+  }
+
+  #invoice-popup-section .header-block div:first-child {
+    width: 360px;
+  }
+
+  .customer_name,
+  #invoice-popup-section #order-list-table {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* logo  */
+  #invoice-icon {
+    width: 90px;
+    height: 70px;
+  }
+  #order-list-table,
+  .header-block {
+    width: 400px;
+    margin: 0 auto;
+  }
+  #invoice-popup-section .header-block {
+    display: flex;
+    padding: 10px;
+  }
+  .customer_name,
+  #invoice-popup-section #order-list-table {
+    font-size: 0.65rem;
+  }
+}

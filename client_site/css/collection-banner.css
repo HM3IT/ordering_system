@@ -1,0 +1,152 @@
+/* ================
+1. Primary Banner styling
+2. banner box styling
+  2.1 primmary banner cover image
+  2.2 additional banner cover image
+3. Typography
+4. shop button
+=================== */
+
+/* 1. Banner container styling */
+
+.banner-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #fff;
+  align-items: center;
+}
+
+/* 2. banner box styling */
+.banner-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background-size: cover;
+  background-position: top;
+  border-radius: 10px;
+}
+#primary-banner .banner-box {
+  margin: 20px;
+  padding: 0 30px;
+  height: 300px;
+  width: 240px;
+  flex-grow: 0.5;
+}
+#additional-banner .banner-box {
+  width: 320px;
+  height: 280px;
+  flex: 1 1 169px;
+  padding: 0 50px;
+  margin: 10px 5px 30px 5px;
+}
+/* 2.1 primmary banner  cover image*/
+
+#primary-banner .banner-box1 {
+  background-image: url("../../images/Banner/RK-keyboards.jpg");
+}
+#primary-banner .banner-box2 {
+  background-image: url("../../images/Banner/keychron-keyboards.png");
+}
+
+/* 2.1 Additional banner cover image */
+#additional-banner .banner-box1 {
+  background-image: url("../../images/Banner/keycaps.jpg");
+  background-position-y: center;
+}
+#additional-banner .banner-box2 {
+  background-image: url("../../images/Banner/redragon-keyboards.jpg");
+}
+#additional-banner .banner-box3 {
+  background-image: url("../../images/Banner/NuPhy.jpeg");
+}
+/* 3. Typography */
+/* 3.1 primmary banner */
+
+#primary-banner .banner-box > h2 {
+  font-weight: 800;
+  font-size: 2.5rem;
+}
+#primary-banner .banner-box span {
+  font-size: 1rem;
+  font-weight: 800;
+  padding-bottom: 15px;
+  letter-spacing: 3px;
+  color: rgb(255, 0, 140);
+  text-shadow: 0.025rem 0.025rem 0 white, 0.075rem 0.075rem 0 black;
+}
+/* 3.1 Additional banner */
+
+#additional-banner .banner-box > h2 {
+  color: #2200fc;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  text-shadow: 0.025rem 0.025rem 0 yellow, 0.075rem 0.075rem 0 white;
+  /* 0.05rem 0.05rem 0 blue, */
+  /* 0.1rem 0.1rem 0 black; */
+}
+#additional-banner .banner-box h3 {
+  color: #00ff99;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  text-shadow: 0.025rem 0.025rem 0 yellow, 0.075rem 0.075rem 0 red,
+    0.1rem 0.1rem 0 black;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* 4. shop button */
+
+.btn-white {
+  display: block;
+  width: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin: 25px 0;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: center;
+}
+
+.btn-white:hover,
+.banner-box:hover a {
+  background-color: #088178;
+}
+
+@media (max-width: 920px) {
+  .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+  }
+
+  #additional-banner .banner-box > h2 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+  }
+  #additional-banner .banner-box h3 {
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 588px) {
+  #primary-banner .banner-box {
+    height: 220px;
+  }
+  #additional-banner .banner-box {
+    height: 130px;
+  }
+
+  #additional-banner .banner-box {
+    padding: 0 15px;
+    margin: 14px;
+  }
+}

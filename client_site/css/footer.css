@@ -1,0 +1,56 @@
+#web-footer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+  color: aliceblue;
+  justify-content: space-between;
+  padding: 0 30px;
+  flex: 1 1 200px;
+}
+.footer-block1,.footer-block4{
+  width: 400px;
+}
+.footer-block2, .footer-block3{
+  width: 160px;
+}
+.footer-block1 p{
+ margin: 5px 0;
+}
+.footer-block2 li,.footer-block3 li{
+    margin: 8px 0;
+}
+.footer-block2 ul a,
+.footer-block3 ul a {
+  text-decoration: none;
+  cursor: pointer;
+  color: aliceblue;
+
+}
+
+.footer-block2 ul a:hover,
+.footer-block3 ul a:hover{
+    color: #1da1f2;
+}
+.kpay-img{
+    border-radius: 20px;
+     
+}
+.footer-copyright{
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    text-align: center;
+}
+.footer-copyright p{
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 440px) {
+  .contact-us{
+    display: none;
+  }
+  .footer-copyright {
+    line-height: unset;
+}
+}
