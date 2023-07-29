@@ -13,7 +13,7 @@
   --nav-bar-offset-left: -500px;
   --action-color: #00ccff;
   --color-white: white;
-  --color-primary: #ffbf00;
+  --color-primary: #ff7300;
   --color-danger: #ff7782;
   --color-success: #41f1b6;
   --color-warning: #ffbb55;
@@ -155,7 +155,7 @@ li {
 #main-container {
   display: grid;
   width: 96%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   gap: 1.9rem;
   grid-template-columns: 15rem auto;
   background-color: var(--color-background);
@@ -164,25 +164,12 @@ li {
 @media screen and (max-width: 1200px) {
   #main-container {
     width: 94%;
-    grid-template-columns: 7rem auto 23rem;
+    grid-template-columns: 7rem auto;
   }
 }
 
 /* For  tablet and large mobile phone */
 @media screen and (max-width: 780px) {
-  #main-container {
-    width: 100%;
-    grid-template-columns: 1fr;
-  }
-  #table-wrapper{
-    width: 95%;
-    margin: 0 auto;
-  }
-  #empTable.all-product-table{
-    padding: 0;
-    font-size: .7rem;
-  }
-  #empTable tbody th, #empTable tbody td {
-    padding: 0;
-}
+  
+ 
 }

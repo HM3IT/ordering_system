@@ -21,9 +21,18 @@
     justify-content: space-around;
     width: 100%;
   }
+  .nav-bar-right ul li{
+    padding: 25px;
+    color: var(--color-dark);
+  }
+  .nav-bar-right ul a:hover li{
+    cursor: pointer;
+    color:var(--color-primary);
+  }
 
   #store-name{
-    font-weight: 800;
-    letter-spacing: 5px;
-    font-family: 'Roboto';
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-family: fangsong; 
   }

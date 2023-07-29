@@ -6,16 +6,16 @@ const hamburgerIcon = document.getElementById("hamburger-icon");
 const rootStyles = getComputedStyle(document.documentElement);
 const offsetLeft = rootStyles.getPropertyValue("--nav-bar-offset-left");
 
-hamburgerMenu.addEventListener("click", (event) => {
-  if (nav.style.left === "0px") {
-    nav.style.left = offsetLeft;
-    hamburgerIcon.style.color = "black";
-    hamburgerIcon.classList.remove("fa-outdent");
-    hamburgerIcon.classList.add("fas", "fa-indent");
-  } else {
-    nav.style.left = "0px";
-    hamburgerIcon.style.color = "orangered";
-    hamburgerIcon.classList.remove("fa-indent");
-    hamburgerIcon.classList.add("fas", "fa-outdent");
-  }
-});
+// hamburgerMenu.addEventListener("click", (event) => {
+//   if (nav.style.left === "0px") {
+//     nav.style.left = offsetLeft;
+//     hamburgerIcon.style.color = "black";
+//     hamburgerIcon.classList.remove("fa-outdent");
+//     hamburgerIcon.classList.add("fas", "fa-indent");
+//   } else {
+//     nav.style.left = "0px";
+//     hamburgerIcon.style.color = "orangered";
+//     hamburgerIcon.classList.remove("fa-indent");
+//     hamburgerIcon.classList.add("fas", "fa-outdent");
+//   }
+// });

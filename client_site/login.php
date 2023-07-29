@@ -15,10 +15,7 @@ session_start();
 </head>
 
 <body>
-    <?php
-    define('COMPONENTS_PATH', './pages/');
-    require COMPONENTS_PATH . 'navbar.php';
-    ?>
+ 
 
     <div class="login-wrap">
         <div id="login-img">
@@ -79,7 +76,7 @@ session_start();
                         <input type="email" id="email" class="input" name="email">
                     </div>
                     <div class="group">
-                        <label for="phone" class="label">Phone (recently used)</label>
+                        <label for="phone" class="label">Phone (Recent used)</label>
                         <input type="tel" id="phone" class="input" name="phone">
                     </div>
                     <div class="group">
@@ -87,7 +84,7 @@ session_start();
                         <input type="password" id="password-sign-up" class="input" name="password">
                     </div>
                     <div class="group">
-                        <label for="address" class="label">Address (For delivery)</label>
+                        <label for="address" class="label">Address</label>
                         <input type="text" id="address" class="input" name="address">
                     </div>
 
@@ -134,9 +131,7 @@ session_start();
         unset($_SESSION["status-login"]); // Clear the status once it's displayed
     }
     ?>
-    <?php
-    require COMPONENTS_PATH . 'footer.html';
-    ?>
+ 
     <script>
         var link = document.getElementById('reloadLink');
         link.addEventListener('click', function(event) {

@@ -18,6 +18,16 @@
       <h3>Staff</h3>
     </a>
 
+    <a href="./menu_item_manager.php" class="sidebar-link">
+      <i class="fa-solid fa-utensils"></i>
+      <h3>Menu items</h3>
+    </a>
+
+    <a href="./category_manager.php" class="sidebar-link">
+      <i class="fa-solid fa-tags"></i>
+      <h3>Category</h3>
+    </a>
+    
     <a href="./order_manager.php" class="sidebar-link">
       <i class="fa-solid fa-list-check"></i>
       <h3>Orders</h3>
@@ -30,15 +40,6 @@
                                   $row_count = $result->fetchColumn();
 
                                   echo $row_count; ?></span>
-    </a>
-    <a href="./menu_item_manager.php" class="sidebar-link">
-      <i class="fa-solid fa-warehouse"></i>
-      <h3>Menu items</h3>
-    </a>
-
-    <a href="./category_manager.php" class="sidebar-link">
-      <i class="fa-solid fa-tags"></i>
-      <h3>Category</h3>
     </a>
 
     <a onclick="openAuthenticationCheckForm()" class="sidebar-link">

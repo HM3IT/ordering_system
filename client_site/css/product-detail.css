@@ -41,12 +41,13 @@
 .view-product-section #main-img {
   position: relative;
   width: 400px;
-  height: 400px;
+  height: 290px;
   margin-bottom: 10px;
 }
 .view-product-section #main-img img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 /* 2.2 small image group */
 .view-product-section .small-img-group {

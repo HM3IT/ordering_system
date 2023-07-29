@@ -55,9 +55,6 @@ if (isset($_POST["authentication-check-submit"])) {
     $data = $dataset->fetch();
 
     if ($encryptedPassword ===  $data["password"]) {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
         // for security
         $_SESSION["authentication"] = "checked";
         header("Location: ../setting.php");

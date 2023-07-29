@@ -21,16 +21,7 @@ $dataset = $connection->query($get_category); // Fix the variable name here
     }
     ?>
 
-    <!-- <a href="./menu.php?food-type=bread" class="sidebar-link">
-    <i class="fa-solid fa-bread-slice"></i>
-      <h3>Bread</h3>
-    </a>
-    <a href="./menu.php?food-type=snack" class="sidebar-link">
-    <i class="fa-solid fa-cookie-bite"></i>
-      <h3>Snack</h3>
-    </a> -->
-
-    <a href="./special_menu.php" class="sidebar-link">
+    <a href="./special-menu.php" class="sidebar-link">
       <i class="fa-solid fa-calendar-minus"></i>
       <h3>Special Menu</h3>
     </a>
@@ -48,16 +39,6 @@ $dataset = $connection->query($get_category); // Fix the variable name here
 
                                   echo $row_count; ?></span>
     </a>
-
-    <!-- <a onclick="openAuthenticationCheckForm()" class="sidebar-link">
-      <i class="fa-solid fa-gear"></i>
-      <h3>Settings</h3>
-    </a> -->
-
-    <!-- <a href="./controller/admin_controller.php?logout" class="logout">
-      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      <h3>Logout</h3>
-    </a> -->
   </div>
 </aside>
 

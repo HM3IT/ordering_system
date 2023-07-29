@@ -21,8 +21,7 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 1.5rem;
   row-gap: 1rem;
-  box-shadow: 2px 3px 4px var(--color-white);
-}
+ }
 .user-img,
 .user-img img {
   display: inline-block;

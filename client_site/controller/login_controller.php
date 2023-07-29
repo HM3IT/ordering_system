@@ -17,7 +17,7 @@ if (isset($_POST["Sign-Up"])) {
     $created_date = time();
 
     // Prepare the statement
-    $statement = $connection->prepare("INSERT INTO customer (image, name, phone, email, password, address, created_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $statement = $connection->prepare("INSERT INTO users (image, name, phone, email, password, address,user_level_id) VALUES (?, ?, ?, ?, ?, ?,?)");
 
     // Bind the parameters
     $statement->bindParam(1,  $image_name);
@@ -26,25 +26,18 @@ if (isset($_POST["Sign-Up"])) {
     $statement->bindParam(4, $email);
     $statement->bindParam(5, $encryptedPassword);
     $statement->bindParam(6, $address);
-    $statement->bindParam(7, $created_date);
+    // operational staff user level
+    $statement->bindParam(7, '3');
     $statement->execute();
 
     $lastInsertedId = $connection->lastInsertId();
-    $_SESSION["login_customer_id"] = $lastInsertedId;
-
-    $_SESSION["customer_name"] = $name;
+    $_SESSION["login_user_id"] = $lastInsertedId;
+    $_SESSION["username"] = $name;
     $_SESSION["email"] = $email;
-    // $_SESSION["password"] = $password;
-
-    if (isset($_POST["current_page"])) {
-        $redirectPage = $_POST["current_page"];
-    } else {
-        $redirectPage = "index.php";
-    }
 
     echo '<script> 
             alert("Account is successfully created"); 
-            location.href = "../' . $redirectPage . '"; 
+            location.href = "../menu.php"; 
         </script>';
 }
 
@@ -53,23 +46,17 @@ if (isset($_POST["Sign-In"])) {
     $user_password = $_POST["password"];
     $encryptedPassword = hash('sha512', $user_password);
 
-    $get_all_user_qry = "SELECT * from customer";
+    $get_all_user_qry = "SELECT * from users";
     $dataset = $connection->query($get_all_user_qry);
 
     foreach ($dataset as $data) {
 
         if ($data["name"] === $name && $data["password"] === $encryptedPassword) {
-            $_SESSION["login_customer_id"] = $data["id"];
-            $_SESSION["customer_name"] = $name;
-            // $_SESSION["password"] = $password;
+            $_SESSION["login_user_id"] = $data["id"];
+            $_SESSION["username"] = $name;
             $_SESSION["status-login"] = "valid";
 
-            if (isset($_POST["current_page"])) {
-                $redirectPage = $_POST["current_page"];   
-                header("Location: ../" . $redirectPage);
-                exit;
-            }
-            header("Location: ../login.php");
+            header("Location: ../menu.php");
             exit;
         }
     }
@@ -85,22 +72,22 @@ if (isset($_GET["logout"])) {
     header("Cache-Control: no-cache, no-store, must-revalidate");
     header("Pragma: no-cache");
     header("Expires: 0");
-    header("Location: ../index.php");
+    header("Location: ../login.php");
     exit();
 }
 
 if (isset($_POST["update-customer"])) {
-    $customer_id = $_SESSION["login_customer_id"];
-    $old_customer_data = "SELECT * FROM customer WHERE id = $customer_id";
-    $customer_dataset = $connection->query($old_customer_data);
-    $customer_data = $customer_dataset->fetch();
+    $user_id = $_SESSION["login_user_id"];
+    $old_customer_data = "SELECT * FROM users WHERE id = $user_id";
+    $user_dataset = $connection->query($old_customer_data);
+    $user_data = $user_dataset->fetch();
 
-    // customer's old data
-    $name = $customer_data["name"];
-    $email =   $customer_data["email"];
-    $phone =   $customer_data["phone"];
-    $address =  $customer_data["address"];
-    $image_file_name =  $customer_data["image"];
+    // User's old data
+    $name = $user_data["name"];
+    $email =   $user_data["email"];
+    $phone =   $user_data["phone"];
+    $address =  $user_data["address"];
+    $image_file_name =  $user_data["image"];
 
     // if there has value, the old values will be overriden
     $name =  trim($_POST["name"]);
@@ -138,24 +125,20 @@ if (isset($_POST["update-customer"])) {
         $target_img_dir = "../../images/User/";
         $target_file = $target_img_dir . basename($image_file_name);
         if (move_uploaded_file($image_file_tmp, $target_file)) {
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            //improve performance by caching image file name
             $_SESSION["image"] = $image_file_name;
         } else {
             echo "target folder not found";
         }
     }
 
-    $update_customer_sql = "UPDATE customer SET 
+    $update_user_sql = "UPDATE users SET 
         image = '$image_file_name',
         name = '$name', 
         phone = '$phone', 
         address = '$address'
-        WHERE id = '$customer_id'";
+        WHERE id = '$user_id'";
 
-    if ($connection->query($update_customer_sql)) {
+    if ($connection->query($update_user_sql)) {
         header("Location:../setting.php");
     } else {
         // Update failed
@@ -166,14 +149,14 @@ if (isset($_POST["update-customer"])) {
 // change password
 if (!empty($_POST["new-password"])) {
     $new_password = $_POST["new-password"];
-    $current_customer_id = $_SESSION["login_customer_id"];
+    $current_user_id = $_SESSION["login_user_id"];
     $encryptedPassword = hash('sha512', $new_password);
 
-    $update_customer_sql = "UPDATE customer SET 
+    $update_user_sql = "UPDATE users SET 
     password = '$encryptedPassword'
-    WHERE id = $current_customer_id";
+    WHERE id = $current_user_id";
 
-    if ($connection->query($update_customer_sql)) {
+    if ($connection->query($update_user_sql)) {
         echo '<script> 
         alert("Successfully changed password"); 
         location.href = "../setting.php"; 
@@ -181,5 +164,29 @@ if (!empty($_POST["new-password"])) {
     } else {
         // Update failed
         echo "Error updating password ";
+    }
+}
+
+
+// ajuthentication check pop up form
+if (isset($_POST["authentication-check-submit"])) {
+    $password = str_replace(' ', '', $_POST["password"]);
+    $encryptedPassword = hash('sha512', $password);
+
+    $user_id =  $_SESSION["login_user_id"];
+    $get_user_password = "SELECT * FROM users WHERE id=$user_id";
+    $dataset = $connection->query($get_user_password);
+    $data = $dataset->fetch();
+
+    if ($encryptedPassword ===  $data["password"]) {
+        // for security
+        $_SESSION["authentication"] = "checked";
+        header("Location: ../setting.php");
+    } else {
+        echo '
+    <script> 
+        alert("Invalid authentication!"); 
+        location.href = "../menu.php"; 
+    </script>';
     }
 }

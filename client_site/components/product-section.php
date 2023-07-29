@@ -1,20 +1,10 @@
-
 <section class="product-section" id="product-section-anchor">
-  <h2>
-    <?php 
-    if( isset($_GET["food-type"])){
-      echo $_GET["food-type"];
-    }else{
-      echo "Food";
-    }
-    ?>
-  </h2>
-
   <div class="product-container">
 
     <?php
-    $item_per_page = 12;
+
     $counter = 0;
+
     foreach ($dataset  as $row) {
       $id = $row["id"];
       $name =  $row["name"];
@@ -34,7 +24,7 @@
       $data = $product_dataset->fetch();
       $primary_image = $data["primary_img"];
       $category = $data["category_name"];
-     ?>
+    ?>
       <div class="product-card">
         <form method="POST" class="cart-form">
           <input type="hidden" name="id" id="id" value="<?php echo  $id ?>">
@@ -59,7 +49,7 @@
             <img class="product-image" src="../images/Menu_items/<?php echo $category . '/' . $primary_image ?>" alt="<?php echo  $primary_image ?>" />
 
             <div class="product-info-div">
-               <div class="cart-description">
+              <div class="cart-description">
                 <h3 class="item-title"><?php echo $name  ?></h3>
 
                 <div class="rating-star"></div>
@@ -89,7 +79,7 @@
 
               </div>
               <div class="cart-btn-part">
-                <a href="./product-detail.php?view-product-id=<?php echo $id ?>" class="view-description-link">View Details</a>
+                <a href="./item_detail.php?view-item-id=<?php echo $id ?>" class="view-description-link">View Details</a>
                 <?php
                 if ($quantity   > 0) {
                 ?>

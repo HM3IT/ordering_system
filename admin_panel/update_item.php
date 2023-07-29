@@ -83,7 +83,7 @@ if (isset($_GET["update_item_id"])) {
                     </div>
 
                     <div class="inline-block">
-                        <label for="additional_imgs">Additional images (up to 3):</label>
+                        <label for="additional_imgs">Additional images (up to 4):</label>
                         <input type="file" name="additional_imgs[]" id="additional_imgs" multiple accept="image/*" max="4">
                     </div>
                     <label for="youtube_URL">Enter YouTube Video URL of item (<b>optional<b>) :</label>

@@ -1,14 +1,6 @@
 <?php
- 
 if (!isset($_SESSION)) {
     session_start();
-}
-if (!isset($_SESSION["login_user_id"])) {
-    echo '
-    <script> 
-        alert("Please login the account first"); 
-        location.href = "./login.php"; 
-    </script>';
 }
 require "../dao/connection.php";
 ?>
@@ -22,9 +14,12 @@ require "../dao/connection.php";
     <title>Ordering System</title>
 
     <?php require "./components/base-link.php" ?>
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/search-bar.css" />
     <link rel="stylesheet" href="css/pagination.css" />
     <link rel="stylesheet" href="css/product-section.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link rel="stylesheet" href="css/product-slider.css">
     <link rel="stylesheet" href="css/alert-box.css" />
     <Style>
         #product-slider-section {
@@ -32,7 +27,14 @@ require "../dao/connection.php";
         }
 
         @media screen and (max-width: 780px) {
-        
+            .product-container {
+                display: none;
+            }
+
+            .feature-section {
+                display: none;
+            }
+
             #product-slider-section {
                 display: block;
             }
@@ -51,21 +53,26 @@ require "../dao/connection.php";
         <?php
         require './components/sidebar.php';
         // default type
-        $category_id = 4;
-        if (isset($_GET["category-id"])) {
-            $category_id = $_GET["category-id"];
-        }
-        $get_all_menu_item_sql = "SELECT * FROM item WHERE category_id = $category_id";
-        $all_dataset = $connection->query($get_all_menu_item_sql);
+        // $category_id = 4;
+        // if (isset($_GET["category-id"])) {
+        //     $category_id = $_GET["category-id"];
+        //     $get_all_menu_item_sql = "SELECT * FROM item WHERE category_id = $category_id";
+        // }  
+
+        //test
+        $get_all_menu_item_sql = "SELECT * FROM item";
+        $all_dataset= $connection->query($get_all_menu_item_sql);
         $total_items = $all_dataset->rowCount();
+       
         ?>
         <div>
             <?php
 
             require './components/navbar.php';
 
-            $item_per_page = 8;
+            $item_per_page = 12;
             $page_num = 1;
+
             if (isset($_REQUEST["page-num"])) {
                 $page_num = $_REQUEST["page-num"];
             }
@@ -100,11 +107,11 @@ require "../dao/connection.php";
                 $orderBy = $_SESSION["ordby"];
                 $get_item_per_page = "SELECT * FROM item WHERE category_id =$category_id $orderBy LIMIT $offset, $item_per_page";
             } else {
-
+           
                 $get_item_per_page = "SELECT * FROM item WHERE category_id =$category_id ORDER BY id LIMIT $offset, $item_per_page";
             }
 
-            $dataset = $connection->query($get_item_per_page);
+            $dataset = $connection->query($get_item_per_page);   
             ?>
             <div>
                 <form action="" method="POST" id="sort-select-form">
@@ -131,13 +138,13 @@ require "../dao/connection.php";
                     </select>
                 </form>
             </div>
-            <?php require './components/product-section.php'; ?>
+            <?php  require './components/product-section.php'; ?>
 
             <div id="pagination">
 
-                <a href="menu.php?category-id=<?php echo $category_id ?>&page-num=<?php echo ($page_num - 1); ?>" class="page-link previous-page" <?php if ($page_num == 1) {
-                                                                                                                                                        echo 'onclick="return false;"';
-                                                                                                                                                    } ?>>
+                <a href="menu.php?page-num=<?php echo ($page_num - 1); ?>#main-container" class="page-link previous-page" <?php if ($page_num == 1) {
+               echo 'onclick="return false;"';
+               } ?>>
                     <li class="page-item">Prev </li>
                 </a>
 
@@ -146,10 +153,10 @@ require "../dao/connection.php";
 
                 $page_count = ceil($total_items / $item_per_page);
                 while ($i <= $page_count) {
-
+             
                     if ($i == $page_num) {
-                ?>
-                        <a href="menu.php?category-id=<?php echo $category_id ?>&page-num=<?php echo $i ?>" class="page-link current-page active">
+                    ?>
+                        <a href="menu.php?page-num=<?php echo $i ?>#main-container" class="page-link current-page active">
                             <li class="page-item">
                                 <?php echo $i  ?>
                             </li>
@@ -159,7 +166,7 @@ require "../dao/connection.php";
                         continue;
                     }
                     ?>
-                    <a href="menu.php?category-id=<?php echo $category_id ?>&page-num=<?php echo $i ?>" class="page-link">
+                    <a href="menu.php?page-num=<?php echo $i ?>#main-container" class="page-link">
                         <li class="page-item current-page">
                             <?php echo $i  ?>
                         </li>
@@ -170,9 +177,7 @@ require "../dao/connection.php";
                 }
                 ?>
 
-                <a href="menu.php?category-id=<?php echo $category_id ?>&page-num=<?php echo ($page_num + 1) ?>" class="page-link" <?php if ($page_num == $page_count) {
-                                                                                                                                        echo 'onclick="return false;"';
-                                                                                                                                    } ?>>
+                <a href="menu.php?page-num=<?php echo ($page_num + 1) ?>#main-container" class="page-link" <?php if ($page_num == $page_count) { echo 'onclick="return false;"';   } ?>>
                     <li class="page-item next-page">
                         Next
                     </li>
@@ -196,13 +201,6 @@ require "../dao/connection.php";
     ?>
 
     <script src="scripts/navbar.js"> </script>
-    <script>
-        $(document).ready(function() {
-            $('#sort-select').change(function() {
-                $('#sort-select-form').submit();
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="scripts/swiper.js"> </script>
 </body>

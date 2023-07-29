@@ -4,8 +4,11 @@ $valid_file_extensions = array("png", "jpeg", "jpg", "svg", "webp", "jfif");
 // removing item form the TABLE 
 if (isset($_GET["remove_item_id"])) {
     $id = $_GET["remove_product_id"];
+    $item_media_remove = "DELETE FROM item_item WHERE item_id =  $id  ";
+    $stmt1 =   $connection->query($item_delete_qry);
+    
     $item_delete_qry = "DELETE FROM item WHERE id =  $id  ";
-    $stmt =   $connection->query($item_delete_qry);
+    $stmt2 =   $connection->query($item_delete_qry);
     header("Location: ../product_manager.php");
     exit;
 }
@@ -116,7 +119,7 @@ if (isset($_POST["update_item_submit"])) {
     // Image uploading processes
     $primary_img;
     $additional_images = array();
-    $add_img_limit = 3;
+    $add_img_limit = 4;
 
     if (!empty($_FILES["primary_img"]["tmp_name"])) {
         $primary_image_file = $_FILES["primary_img"];

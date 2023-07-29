@@ -8,7 +8,7 @@
  ===========================*/
 
 #product-slider-section {
-  background-color: white;
+  /* background-color: white; */
 }
 #trends-product-title{
   font-size: 1.5rem;
@@ -38,6 +38,7 @@
   border-radius: 50%;
   transform: translateY(-50%);
   transition: transform 0.4s linear;
+  color: var(--color-primary);
 }
 .trend-product-wrapper #left-arrow-btn {
   left: -70px;

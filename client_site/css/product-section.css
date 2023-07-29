@@ -6,19 +6,19 @@
 
 .product-section {
   margin: 0;
-  background-color: #fff;
+ 
 }
 
 /* 1.1 typography */
-.product-section h2{
+/* .product-section h2{
   text-indent: 3rem;
-}
+} */
  
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  padding: 0px 100px;
+  justify-content: flex-start;
+  /* padding: 0px 100px; */
 }
 .product-card {
   width: 250px;
@@ -32,8 +32,7 @@
 .product-card .product-image {
   width: 200px;
   height: 190px;
-  margin: 10px;
-  margin-bottom: 0;
+  margin: 10px 5px 0 5px;
   border-radius: 20px;
   object-fit: scale-down;
 }
@@ -95,7 +94,7 @@ h4 {
   background-color: rgb(230, 22, 15);
 }
 .product-card .stock-info.in-stock {
-  background-color: rgb(34, 245, 34);
+  background-color: rgb(2, 124, 2);
 }
  .item-title{
   text-transform: capitalize;
