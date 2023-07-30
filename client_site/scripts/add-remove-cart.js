@@ -15,7 +15,7 @@ $(document).ready(function () {
         contentType: false,
         dataType: "json",
         success: function (data) {
-          console.log(data.out_of_stock);
+         
           if (data.out_of_stock) {
             $("#quantity-limit-overlay").css("display", "block");
             $("#out-of-stock-box").css("display", "block");
@@ -46,7 +46,7 @@ $(document).ready(function () {
     $(this).click(function (event) {
       event.preventDefault();
 
-      let productId = $(this).data("productId");
+      let itemId = $(this).data("itemId");
       let listItem = $(this).closest(".card-list-items");
 
       listItem.addClass("removing");
@@ -58,7 +58,7 @@ $(document).ready(function () {
       $.ajax({
         url: "./controller/cart_controller.php",
         method: "POST",
-        data: "remove_product_id=" + encodeURIComponent(productId),
+        data: "remove_item_id=" + encodeURIComponent(itemId),
         success: function () {
           let cartList = $("#card-list-ul");
           let emptyCartItems = cartList.find(

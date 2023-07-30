@@ -1,10 +1,10 @@
 <section class="cart-list-section">
-    <h2>My Shopping Cart</h2>
+    <h2>Order List</h2>
     <table id="cart-list-table">
         <thead>
             <tr>
                 <th>No.</th>
-                <th class="hide-col">Product</th>
+                <th class="hide-col">Item</th>
                 <th>Name</th>
                 <th class="hide-col">Price</th>
                 <th>Quantity</th>
@@ -13,50 +13,38 @@
             </tr>
         </thead>
         <?php
-        if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]) <= 0) {
-        ?>
-            <div id="empty-cart-noti-overlay"></div>
-            <div id="empty-cart-noti-form">
-                <div>
-                    <i class="fa-solid fa-face-grin-beam-sweat" id="sad-emoji"></i>
-                    <h2>Sorry, you have not added any product into the cart yet</h2>
-                </div>
-                <a href="./index.php#product-section-anchor" class="information-bg">OK</a>
-            </div>
-        <?php
-            exit;
-        }
         $serial = 1;
         $total_cost = 0;
         foreach ($_SESSION["cart"] as $key => $value) {
-            $product_id = $value['id'];
+            $item_id = $value['id'];
             $price = $value["price"];
             $quantity = $value["Quantity"];
             $subtotal = $price * $quantity;
             $total_cost += $subtotal;
             $formattedSubtotal = number_format($subtotal, 2, ',');
         ?>
-            <tr>
+            <tr class="card-list-row">
                 <td><?php echo  $serial++  ?></td>
                 <td class="hide-col">
-                    <img src="../images/Products/<?php echo $value["category"] ?>/<?php echo $value["image"]  ?>" alt="photo" class="product-tbl-img">
+                    <img src="../images/Menu_items/<?php echo $value["category"] ?>/<?php echo $value["image"]  ?>" alt="photo" class="product-tbl-img">
                 </td>
                 <td><?php echo $value["name"]  ?></td>
                 <td class="hide-col"><?php echo  $price   ?></td>
                 <td>
                     <div class="product-quantity-wrapper">
-                        <input type="hidden" class="cart-id" data-product-id="<?php echo $value['id']; ?>">
-                        <span class="minus" data-product-index="<?php echo $key; ?>">-</span>
-                        <span class="quantity" data-product-index="<?php echo $key; ?>">
+                        <input type="hidden" class="cart-id" data-item-id="<?php echo $value['id']; ?>">
+                        <span class="minus" data-item-index="<?php echo $key; ?>">-</span>
+                        <span class="quantity" data-item-index="<?php echo $key; ?>">
                             <?php echo $value["Quantity"] ?>
                         </span>
-                        <span class="plus" data-product-index="<?php echo $key; ?>">+</span>
+                        <span class="plus" data-item-index="<?php echo $key; ?>">+</span>
                     </div>
                 </td>
-                <td class="subtotal-col"><?php echo  $formattedSubtotal  ?></td>
+
+                <td class="subtotal-col item-price" data-base-price="<?php echo $price ?>"><?php echo  $formattedSubtotal  ?></td>
                 <td>
-                    <a href="product-detail.php?view-product-id=<?php echo $product_id  ?>" class="view-cart-a information-border">View</a>
-                    <a class="remove-cart-a danger-border" data-product-id="<?php echo $product_id; ?>">Remove</a>
+                    <a href="item_detail.php?view-item-id=<?php echo $item_id  ?>" class="view-cart-a information-border">View</a>
+                    <a class="remove-cart-a danger-border" data-item-id="<?php echo $item_id; ?>">Remove</a>
                 </td>
             </tr>
         <?php
@@ -70,53 +58,103 @@
                 ?></td>
             <td>
                 <?php
-                if (isset($_SESSION['customer_name'])) {
+                if (isset($_SESSION["cart"]) && count($_SESSION["cart"]) > 0) {
                 ?>
-                    <a href="#checkout-anchor" id="hide-order-btn" class="checkout-btn success-bg">Order Now</a>
-
-                <?php
-                } else {
-                ?>
-                    <a onclick="askLogin()" id="hide-order-btn"  class="checkout-btn success-bg">Order Now</a>
+                    <a onclick="showOrderNowForm()" id="hide-order-btn" class="checkout-btn success-bg">Order Now</a>
                 <?php
                 }
                 ?>
             </td>
         </tr>
     </table>
-    <?php
-    if (isset($_SESSION['customer_name'])) {
-    ?>
-        <a href="#checkout-anchor" id="mobile-btn" class="checkout-btn success-bg">Order Now</a>
-
-    <?php
-    } else {
-    ?>
-        <a onclick="askLogin()" id="mobile-btn" class="checkout-btn success-bg">Order Now</a>
-    <?php
-    }
-    ?>
 </section>
-<div id="ask-login-overlay"></div>
-<div id="ask-login-form">
+<div id="overlay"></div>
+<div id="order-form">
     <div>
-        <i class="fa-regular fa-face-laugh-beam" id="smilly-emoji"></i>
-        <h2>Please login to your account. </h2>
+        <i class="fa-solid fa-utensils" id="order-now-emoji"></i>
+        <h2>Order Now </h2>
     </div>
 
     <div>
-        <form action="./login.php" method="post">
-            <input type="hidden" name="current_page" class="current_page">
-            <input type="submit" class="information-bg ask-login-btn" name="login-for" value="Login">
+        <form method="post" id="order-now-form">
+            <div class="form-box-group">
+                <label for="table-num">Table number</label>
+                <input type="number" id="table-num" name="table-num" placeholder="e.g No. 7" required>
+            </div>
+            <div class="form-box-group">
+                <label for="table-num">Additional request (<i>Optional</i>)</label>
+                <textarea name="additional-req" id="additional-req" cols="60" rows="10"></textarea>
+            </div>
+            <div class="button-flex">
+                <input type="reset" class="warning-bg" id="cancel-order-btn" value="Cancel">
+                <input type="submit" class="information-bg" id="order-now-btn" name="order-now" value="Submit">
+            </div>
         </form>
     </div>
 </div>
 
+<div id="checkout-noti-form">
+    <div>
+        <i class="fa-regular fa-face-laugh-beam" id="smilly-emoji"></i>
+        <h2>Your order has been submitted. Please wait a few minutes.</h2>
+    </div>
+    <a class="information-bg" id="check-out-noti-close-btn">OK</a>
+</div>
+<!-- <script src="scripts/order-now.js"></script> -->
 <script>
-    function askLogin() {
-        document.getElementById("ask-login-overlay").style.display = "block";
-        document.getElementById("ask-login-form").style.display = "block";
+    $(document).ready(function() {
+
+        $("#check-out-noti-close-btn").on("click", function(e) {
+            hideOrderSubmitNoti();
+        });
+
+
+        $("#cancel-order-btn").on("click", function(e) {
+            hideOrderNowForm();
+        });
+    });
+
+    function showOrderSubmitNoti() {
+        $("#overlay").show();
+        $("#checkout-noti-form").show();
     }
-</script>
-<script src="./scripts/redirect.js">
+
+    function hideOrderSubmitNoti() {
+        $("#overlay").hide();
+        $("#checkout-noti-form").hide();
+        location.reload();
+    }
+
+    function showOrderNowForm() {
+        $("#overlay").show();
+        $("#order-form").show();
+    }
+
+    function hideOrderNowForm() {
+        $("#overlay").hide();
+        $("#order-form").hide();
+    }
+
+
+    $(document).on("submit", "#order-now-form", function(e) {
+        e.preventDefault();
+        let formData = new FormData($(this)[0]);
+
+        $.ajax({
+            url: "./controller/order_controller.php",
+            method: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(data) {
+                hideOrderNowForm();
+                showOrderSubmitNoti();
+  
+            },
+            error: function(error) {
+                console.log("fail");
+            },
+        });
+    });
 </script>

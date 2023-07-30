@@ -6,12 +6,12 @@ $(document).ready(function () {
     $(this).click(function (event) {
       event.preventDefault();
 
-      let productId = $(this).data("productId");
+      let itemId = $(this).data("itemId");
 
       $.ajax({
         url: "./controller/cart_controller.php",
         method: "POST",
-        data: "remove_product_id=" + encodeURIComponent(productId),
+        data: "remove_item_id=" + encodeURIComponent(itemId),
         beforeSend: function (xhr) {
           xhr.setRequestHeader(
             "Content-Type",
@@ -24,4 +24,6 @@ $(document).ready(function () {
       });
     });
   });
+
+ 
 });

@@ -1,11 +1,8 @@
-
-
- 
-
 document.addEventListener("DOMContentLoaded", function () {
+   
   let windowWidth = $(window).width();
-  $(window).resize(function() {
-   windowWidth = $(window).width();
+  $(window).resize(function () {
+    windowWidth = $(window).width();
   });
   // cart-list add remove animation
   const cartListOpenBtn =
@@ -16,26 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const cartList = document.getElementsByClassName("card-list")[0];
 
-  if( cartListOpenBtn != null){
+  if (cartListOpenBtn != null) {
     cartListOpenBtn.addEventListener("click", function () {
-
-
       if (windowWidth < 480) {
         cartList.style.right = "0px";
       } else {
-         
         cartList.style.right = "20px";
       }
-      
-
     });
-  
+
     cartListCloseBtn.addEventListener("click", () => {
       cartList.style.right = "-600px";
     });
-  
   }
-  
+
   let quantityOverlay = document.getElementById("quantity-limit-overlay");
   let quantityAlertBox = document.getElementById("quantity-limit-alert-box");
 
@@ -45,12 +36,21 @@ document.addEventListener("DOMContentLoaded", function () {
   quantityButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       let quantityElement = button.parentNode.querySelector(".quantity");
-      let productIndex = quantityElement.dataset.productIndex;
+      let itemIndex = quantityElement.dataset.itemIndex;
       let quantity = parseInt(quantityElement.textContent.trim());
 
-      let productID =
-        quantityElement.parentNode.querySelector(".cart-id").dataset.productId;
+      // to compatiable with both cart-list & cart-list table
+      let itemPriceElement;
+      if(quantityElement.closest(".card-list-box") == null){
+        itemPriceElement = quantityElement.closest(".card-list-row").querySelector(".item-price");
+      }else{
+         itemPriceElement = quantityElement.closest(".card-list-box").querySelector(".item-price");
+       }
 
+      let itemID = quantityElement.parentNode.querySelector(".cart-id").dataset.itemId;
+    
+      let basePrice = parseFloat(itemPriceElement.dataset.basePrice);
+ 
       if (button.classList.contains("minus")) {
         quantity = Math.max(quantity - 1, 1);
         if (quantity <= 0) {
@@ -64,38 +64,46 @@ document.addEventListener("DOMContentLoaded", function () {
           quantity += 1;
         }
       }
+    // Update the item quantity and price display
+    
+    let newPrice = (basePrice * quantity).toFixed(2);
+    
+    itemPriceElement.textContent = newPrice + " Ks";
+    quantityElement.textContent = quantity;
 
-      quantityElement.textContent = quantity;
-      handleQuantityChange(quantity, productIndex, productID, quantityElement);
+      itemStateHandler(quantity, newPrice, itemIndex, itemID);
+      
     });
   });
 
   let timer;
   let waitTimer = 500;
-  let updatedProductAry = [];
+  let updatedItemStateAry = [];
 
-  function handleQuantityChange(
-    quantity,
-    productIndex,
-    productID,
-    quantityElement
+  function itemStateHandler(
+    newQuantity,
+    newPrice,
+    itemIndex,
+    itemID
   ) {
     clearTimeout(timer);
-    updatedProductAry.push({
-      productIndex: productIndex,
-      productID: productID,
-      quantity: quantity,
+    updatedItemStateAry.push({
+      itemIndex: itemIndex,
+      itemID: itemID,
+      quantity: newQuantity,
+      price:newPrice
     });
 
     timer = setTimeout(function () {
       $.ajax({
         url: "controller/cart_controller.php",
         method: "POST",
-        data: JSON.stringify(updatedProductAry),
+        data: JSON.stringify(updatedItemStateAry),
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Content-Type", "application/json");
         },
         success: function (response) {
+       
           if (response.out_of_stock) {
             // Handle out of stock scenario
             let quantityOverlay = $("#quantity-limit-overlay")[0];
@@ -105,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(quantityOverlay).css("display", "block");
             $(outOfStockBox).css("display", "block");
             $(instockInfo).text(response.data);
-            $(quantityElement).text(response.data);
+            // $(quantityElement).text(response.data);
           }
         },
         error: function () {
@@ -117,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // Reset the array after sending the data
-      updatedProductAry = [];
+      updatedItemStateAry = [];
     }, waitTimer);
   }
 });

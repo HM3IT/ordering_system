@@ -4,7 +4,6 @@
     <?php
 
     $counter = 0;
-
     foreach ($dataset  as $row) {
       $id = $row["id"];
       $name =  $row["name"];
@@ -27,12 +26,12 @@
     ?>
       <div class="product-card">
         <form method="POST" class="cart-form">
-          <input type="hidden" name="id" id="id" value="<?php echo  $id ?>">
-          <input type="hidden" name="name" id="name" value="<?php echo $name ?>">
-          <input type="hidden" name="primary_img" id="image" value="<?php echo $primary_image ?>">
-          <input type="hidden" name="category" id="category" value="<?php echo $category ?>">
-          <input type="hidden" name="price" id="price" value="<?php echo $price ?>">
-          <input type="hidden" name="description" id="description" value="<?php echo $description ?>">
+          <input type="hidden" name="id" class="id" value="<?php echo  $id ?>">
+          <input type="hidden" name="name" class="name" value="<?php echo $name ?>">
+          <input type="hidden" name="primary_img" class="image" value="<?php echo $primary_image ?>">
+          <input type="hidden" name="category" class="category" value="<?php echo $category ?>">
+          <input type="hidden" name="price" class="price" value="<?php echo $price ?>">
+          <input type="hidden" name="description" class="description" value="<?php echo $description ?>">
           <input type="hidden" name="current_page" class="current_page">
           <?php
           if ($quantity   > 0) {

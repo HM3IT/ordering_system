@@ -27,7 +27,8 @@ require "../dao/connection.php";
     <div id="main-container">
         <?php
         require './components/sidebar.php';
-        require 'components/alert-box.php';
+        require './components/alert-box.php';
+        require './components/cart-list.php';
 
         if (isset($_GET["view-item-id"])) {
             $item_id = $_GET["view-item-id"];
@@ -170,13 +171,12 @@ require "../dao/connection.php";
     </div>
     <script src="scripts/navbar.js"> </script>
     <script src="scripts/view-product.js"></script>
-    <script src="scripts/redirect.js"> </script>
-    <script src="scripts/review-submit.js"> </script>
-    <script src="scripts/star-scale-rating.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="scripts/swiper.js"> </script>
-    <!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
+    <!-- <script src="scripts/redirect.js"> </script> -->
+    <!-- <script src="scripts/review-submit.js"> </script>
+    <script src="scripts/star-scale-rating.js"> </script> -->
+ 
 </body>
 
 </html>

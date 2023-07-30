@@ -21,12 +21,7 @@ $dataset = $connection->query($get_category); // Fix the variable name here
     }
     ?>
 
-    <a href="./special-menu.php" class="sidebar-link">
-      <i class="fa-solid fa-calendar-minus"></i>
-      <h3>Special Menu</h3>
-    </a>
-
-    <a href="./order_manager.php" class="sidebar-link">
+    <a href="./order-panel.php" class="sidebar-link">
       <i class="fa-solid fa-list-check"></i>
       <h3>Orders</h3>
       <span class="report-count"><?php

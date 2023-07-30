@@ -15,10 +15,9 @@
   box-shadow: 1px 2px 6px grey;
 }
 /* 1.1 Top of Sidebar styling */
-#sidebar .logo{
-
+#sidebar .logo {
   display: flex;
-      justify-content: center;
+  justify-content: center;
 }
 #sidebar .logo img {
   height: 120px;
@@ -101,13 +100,20 @@
   align-items: center;
   z-index: 999;
 }
+
 #popup-form-authentication-check > div {
   position: relative;
   background-color: var(--color-white);
   padding: 25px;
   border-radius: 5px;
 }
-
+#popup-authentication-form {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+  gap: 10px;
+}
 #popup-authentication-form > i {
   position: absolute;
   top: 5px;
@@ -118,9 +124,11 @@
 }
 #popup-authentication-form > i:hover {
   color: var(--color-danger);
+  
 }
 #popup-authentication-form input[type="submit"] {
   cursor: pointer;
+  padding: 5px 10px;
 }
 
 /*================== MEDIA QUERIES ================== */

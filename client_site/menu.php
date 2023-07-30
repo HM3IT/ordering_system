@@ -1,5 +1,5 @@
 <?php
- 
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -32,7 +32,7 @@ require "../dao/connection.php";
         }
 
         @media screen and (max-width: 780px) {
-        
+
             #product-slider-section {
                 display: block;
             }
@@ -49,6 +49,8 @@ require "../dao/connection.php";
 
     <div id="main-container">
         <?php
+        require './components/alert-box.php';
+        require './components/cart-list.php';
         require './components/sidebar.php';
         // default type
         $category_id = 4;
@@ -203,8 +205,6 @@ require "../dao/connection.php";
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="scripts/swiper.js"> </script>
 </body>
 
 </html>

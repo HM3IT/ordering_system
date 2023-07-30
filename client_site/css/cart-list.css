@@ -13,7 +13,7 @@
   position: fixed;
   bottom: 5%;
   right: -600px;
-  max-width: 480px;
+  max-width: 420px;
   background-color: #fefefe;
   transition: 0.5s;
   box-shadow: 0 40px 60px black;
@@ -41,7 +41,7 @@
   align-items: center;
 }
 .card-list-box-description1 {
-  padding: 5px;
+  padding: 5px 25px 5px 10px;
   width: 270px;
 }
 

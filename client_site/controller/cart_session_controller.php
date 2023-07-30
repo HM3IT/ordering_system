@@ -5,14 +5,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$productID = $_POST['id'];
+$item_id = $_POST['id'];
 $name = $_POST["name"];
 $image_name = $_POST["primary_img"];
 $category = $_POST["category"];
 $price = $_POST["price"];
 $description = $_POST["description"];
 
-$get_instock_quantity_qry = "SELECT quantity FROM product WHERE id=$productID";
+$get_instock_quantity_qry = "SELECT quantity FROM item WHERE id=$item_id";
 $dataset = $connection->query($get_instock_quantity_qry);
 $instock_quantity_row = $dataset->fetch();
 $instock_quantity = $instock_quantity_row["quantity"];
@@ -20,7 +20,7 @@ $instock_quantity = $instock_quantity_row["quantity"];
 if (!isset($_SESSION["cart"])) {
     // New session and new product
     $_SESSION["cart"][0] = array(
-        "id" => $productID,
+        "id" => $item_id,
         "name" => $name,
         "price" => $price,
         "category" => $category,
@@ -34,7 +34,7 @@ if (!isset($_SESSION["cart"])) {
 
     // old product checking
     foreach ($_SESSION["cart"] as $key => $value) {
-        if ($productID == $value["id"]) {
+        if ($item_id == $value["id"]) {
             $isExistingProduct = true;
 
             if ($instock_quantity <= $_SESSION["cart"][$key]["Quantity"]) {
@@ -54,7 +54,7 @@ if (!isset($_SESSION["cart"])) {
                     'status' => 'success',
                     'out_of_stock' => false,
                     'exceed_quantity' => true,
-                    'message' => 'Item ' . $productID . ' added to cart successfully'
+                    'message' => 'Item ' . $item_id . ' added to cart successfully'
                 );
                 header('Content-Type: application/json');
                 echo json_encode($response);
@@ -69,7 +69,7 @@ if (!isset($_SESSION["cart"])) {
         // New product
         $count = count($_SESSION["cart"]);
         $_SESSION["cart"][$count] = array(
-            "id" => $productID,
+            "id" => $item_id,
             "name" => $name,
             "price" => $price,
             "category" => $category,
@@ -84,7 +84,7 @@ $response = array(
     'status' => 'success',
     'out_of_stock' => false,
     'exceed_quantity' => false,
-    'message' => 'Item ' . $productID . ' added to cart successfully'
+    'message' => 'Item ' . $item_id . ' added to cart successfully'
 );
 header('Content-Type: application/json');
 echo json_encode($response);

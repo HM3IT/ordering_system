@@ -15,7 +15,7 @@
   --color-white: white;
   --color-primary: #ff7300;
   --color-danger: #ff7782;
-  --color-success: #41f1b6;
+  --color-success: #03d65b;
   --color-warning: #ffbb55;
   --color-information: rgb(0, 10, 197);
   --color-dark: #363949;
@@ -109,6 +109,11 @@ li {
 }
 
 .warning {
+  color: var(--color-warning);
+}
+.warning-bg {
+  background-color: transparent;
+  border: 2px solid  var(--color-warning);
   color: var(--color-warning);
 }
 .warning-border {

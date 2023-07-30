@@ -42,22 +42,24 @@ if (isset($_SESSION["cart"])) {
           ?>
         <li class="card-list-items">
           <div class="card-list-box">
-            <img src="../images/Products/<?php echo $value['category'] . '/' . $value['image'] ?>" alt="<?php echo $value['image'] ?>" />
+            <img src="../images/Menu_items/<?php echo $value['category'] . '/' . $value['image'] ?>" alt="<?php echo $value['image'] ?>" />
             <div class="card-list-box-description1">
-              <p> <?php echo $value["description"] ?></p>
+              <p> <?php echo $value["name"] ?></p>
 
               <div class="product-quantity-wrapper">
-                <input type="hidden" class="cart-id" data-product-id="<?php echo $value['id']; ?>">
-                <span class="minus" data-product-index="<?php echo $key; ?>">-</span>
-                <span class="quantity" data-product-index="<?php echo $key; ?>">
+                <input type="hidden" class="cart-id" data-item-id="<?php echo $value['id']; ?>">
+                <span class="minus" data-item-index="<?php echo $key; ?>">-</span>
+                <span class="quantity" data-item-index="<?php echo $key; ?>">
                   <?php echo $value["Quantity"] ?>
                 </span>
-                <span class="plus" data-product-index="<?php echo $key; ?>">+</span>
+                <span class="plus" data-item-index="<?php echo $key; ?>">+</span>
               </div>
             </div>
             <div class="card-list-box-description2">
-              <span><?php echo $value["price"] ?> Ks</span>
-              <button class="product-remove-btn" data-product-id="<?php echo $value['id']; ?>">
+                <span class="item-price" data-base-price="<?php echo $value["price"] ?>">
+                  <?php echo $value["price"] ?> Ks
+                </span>
+              <button class="product-remove-btn" data-item-id="<?php echo $value['id']; ?>">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
             </div>
