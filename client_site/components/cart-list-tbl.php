@@ -141,7 +141,7 @@
         let formData = new FormData($(this)[0]);
 
         $.ajax({
-            url: "./controller/order_controller.php",
+            url: "./controller/order_controller.php?order-now",
             method: "POST",
             data: formData,
             processData: false,

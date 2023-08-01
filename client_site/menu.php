@@ -23,7 +23,7 @@ require "../dao/connection.php";
 
     <?php require "./components/base-link.php" ?>
     <link rel="stylesheet" href="css/search-bar.css" />
-    <link rel="stylesheet" href="css/pagination.css" />
+    <link rel="stylesheet" href="css/pagination-sort.css" />
     <link rel="stylesheet" href="css/product-section.css">
     <link rel="stylesheet" href="css/alert-box.css" />
     <Style>
@@ -123,9 +123,10 @@ require "../dao/connection.php";
 
                         } else {
                         ?>
+                            <option value="discount">Discount</option>
+                            <option value="popular">Most popular </option>
                             <option value="price-lowest">Price (Lowest)</option>
                             <option value="price-highest">Prrice (Highest)</option>
-                            <option value="popular">Most popular </option>
                         <?php
                         }
                         ?>

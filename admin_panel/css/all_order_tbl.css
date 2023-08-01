@@ -44,8 +44,7 @@
   background-color: orange;
 }
 
-.order-approval,
-.delivery-status {
+.order-status {
   width: 100px;
   text-align: center;
   border: none;
@@ -58,8 +57,8 @@
 .text-red {
   color: red;
 }
-.text-orange {
-  color: orange;
+.text-blue {
+  color: blue;
 }
 .text-green {
   color: lime;
@@ -67,68 +66,6 @@
 
 .address {
   width: 200px;
-}
-
-/* Popup confirm form  */
-
-#confirm-status-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 990;
-}
-
-#confirm-status-box {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 420px;
-  height: 240px;
-  border-radius: 20px;
-  text-align: center;
-  z-index: 999;
-  background-color: var(--color-white);
-  padding: 25px;
-}
-
-#confirm-status-box div {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 80px;
-}
-
-#confirm-status-box .info {
-  color: rgb(255, 172, 48);
-}
-
-#confirm-status-box button {
-  width: 100px;
-  border-radius: 10px;
-  height: 40px;
-  line-height: 40px;
-  background-color: transparent;
-  border: 1px solid black;
-}
-#confirm-status-box button:hover {
-  cursor: pointer;
-}
-#confirm-status-box #confirm-btn:hover {
-  background-color: rgb(221, 163, 3);
-}
-#confirm-status-box #cancel-btn:hover {
-  background-color: rgb(23, 9, 105);
-}
-
-#confirm-status-box #information-icon {
-  font-size: 5rem;
-  color: darkblue;
 }
 
 /* overriding the property from the library */

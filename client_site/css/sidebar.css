@@ -9,6 +9,7 @@
 
 /*  1. Sidebar styling */
 #sidebar {
+  width: 260px;
   height: 100dvh;
   background-color: white;
   border-radius: 10px;
@@ -50,7 +51,7 @@
   width: 100%;
   color: var(--color-info-dark);
   margin-left: 6rem;
-  gap: 1rem;
+  gap: 0.7rem;
   align-items: center;
   position: relative;
   height: 3.5rem;

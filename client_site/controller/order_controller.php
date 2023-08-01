@@ -4,7 +4,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_SESSION["cart"])) {
+// insert order
+if (isset($_REQUEST['order-now']) && isset($_SESSION["cart"])) {
 
     $tbl_num = $_POST["table-num"];
     $additional_request = "";
@@ -17,7 +18,7 @@ if (isset($_SESSION["cart"])) {
     $today =  date('Y-m-d H:i:s');
     $order_status = "Pending";
 
-    $insert_order_qry = "INSERT INTO orders (order_date, total_price, order_status, additional_request, table_number, user_id) VALUES(?,?,?,?,?,?)";
+    $insert_order_qry = "INSERT INTO orders (order_datetime, total_price, order_status, additional_request, table_number, user_id) VALUES(?,?,?,?,?,?)";
     $statement1 = $connection->prepare($insert_order_qry);
     $statement1->execute(array($today, $total_price, $order_status, $additional_request, $tbl_num, $user_id));
 
@@ -57,12 +58,34 @@ if (isset($_SESSION["cart"])) {
         // Remove the product from the session
         unset($_SESSION['cart'][$key]);
     }
-   
+
     $response = array(
         'status' => 'success',
         'message' => 'Order has submitted'
     );
     header('Content-Type: application/json');
     echo json_encode($response);
+    exit;
+}
+
+// update order status
+
+if (isset($_REQUEST['completed_order_id']) && isset($_SESSION["cart"])) {
+    $order_id = $_REQUEST['completed_order_id'];
+    $update_order_status = "UPDATE orders SET order_status = 'Completed' WHERE id=?";
+    $update_status_stmt = $connection->prepare($update_order_status);
+    $update_status_stmt->bindValue(1, $order_id);
+    $update_status_stmt->execute();
+    header("Location: ../pending_order_panel.php");
+    exit;
+}
+
+if (isset($_REQUEST['archive_order_id']) && isset($_SESSION["cart"])) {
+    $order_id = $_REQUEST['archive_order_id'];
+    $update_order_status = "UPDATE orders SET order_status = 'Archive' WHERE id=?";
+    $update_status_stmt = $connection->prepare($update_order_status);
+    $update_status_stmt->bindValue(1, $order_id);
+    $update_status_stmt->execute();
+    header("Location: ../completed_order_panel.php");
     exit;
 }

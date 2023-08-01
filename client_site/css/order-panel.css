@@ -1,0 +1,82 @@
+/*========= Content =========  
+1. setction style
+2. order-card
+   2.1 order-card-head
+   2.2 order-card-body
+3. Order-card buttons 
+4. Filter button
+ =================  */
+
+/* 1. setction style */
+#order-display-panel {
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+/* 2. order-card */
+
+.order-card {
+  display: inline-block;
+  width: 340px;
+  height: fit-content;
+  border-radius: 15px;
+  background-color: rgb(254 254 254);
+}
+.order-card:hover {
+  box-shadow: 1px 2px 4px black;
+}
+
+/* 2.1 order-card-head */
+.order-card-head,
+.order-card-body {
+  padding: 10px;
+}
+.order-card-head {
+  height: 196px;
+  border-radius: 15px 15px 0 0;
+  background-color: #ffeac5;
+  color: black;
+  font-weight: bold;
+}
+
+.order-card-head tr td {
+  padding: 5px 0;
+}
+.order-card-head tr td:nth-child(1) {
+  width: 120px;
+}
+/* 2.2 order-card-body */
+.order-card-body{
+    max-height: 180px;
+}
+.order-card-body tr td {
+  padding: 10px;
+}
+
+/* 3. Order-card buttons */
+.order-card .button-flex{
+    justify-content: center;
+    gap: 20px;
+}
+.order-card-btns{
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+/* 4. Filter button */
+#filter-select-form {
+    display: block;
+    padding: 25px;
+  }
+  #filter-select-form label{
+    color: rgb(255, 115, 0);
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-shadow: 
+    0.025rem 0.025rem 0 white,
+    0.1rem 0.1rem 0 black;
+  }
+  #filter-select-form select{
+    height: 25px;
+    width: 150px;
+  }

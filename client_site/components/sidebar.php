@@ -19,25 +19,36 @@ $dataset = $connection->query($get_category); // Fix the variable name here
       </a>
     <?php
     }
+
+    if (!isset($connection)) {
+      require "../dao/connection.php";
+    }
+    $get_pending_order_sql = "SELECT COUNT(*) FROM orders WHERE order_status='Pending'";
+    $stmt1 = $connection->query($get_pending_order_sql);
+    $total_pending_orders = $stmt1->fetchColumn();
+
+    $get_completed_order_sql = "SELECT COUNT(*)  FROM orders WHERE order_status='Completed'";
+    $stmt2 = $connection->query($get_completed_order_sql);
+    $total_completed_orders = $stmt2->fetchColumn();
     ?>
 
-    <a href="./order-panel.php" class="sidebar-link">
+    <a href="./pending_order_panel.php" class="sidebar-link">
       <i class="fa-solid fa-list-check"></i>
-      <h3>Orders</h3>
-      <span class="report-count"><?php
-                                  if (!isset($connection)) {
-                                    require "../dao/connection.php";
-                                  }
-                                  $get_all_order_sql = "SELECT COUNT(*) AS row_count FROM orders";
-                                  $result = $connection->query($get_all_order_sql);
-                                  $row_count = $result->fetchColumn();
+      <h3>Pending Orders</h3>
+      <span class="report-count">
+        <?php echo $total_pending_orders; ?>
+      </span>
+    </a>
 
-                                  echo $row_count; ?></span>
+    <a href="./completed_order_panel.php" class="sidebar-link">
+    <i class="fa-solid fa-utensils"></i>
+      <h3>Completed Orders</h3>
+      <span class="report-count">
+        <?php echo $total_completed_orders; ?>
+      </span>
     </a>
   </div>
 </aside>
-
-
 
 <script>
   let currentPage = window.location.href;
