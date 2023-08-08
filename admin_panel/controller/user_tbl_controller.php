@@ -58,7 +58,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         "email" => $row['email'],
         "user_level" => $row['user_level'],
         "action" => '<a href="./view_user.php?view_user_id=' . $row['id'] . '" class="view-btn success-border">View</a> <a href="./update_user.php?update_user_id=' . $row['id'] . '" class="edit-btn information-border">Edit</a>
-        <a href="./controller/customer_controller.php?remove_customer_id=' . $row['id'] . '" class="remove-btn danger-border">Remove</a>
+        <a href="./controller/user_account_controller.php?remove_user_id=' . $row['id'] . '" class="remove-btn danger-border">Remove</a>
         '
     );
 }

@@ -6,7 +6,7 @@ $all_product_dataset = $connection->query($get_all_order_sql);
 $row_count = $all_product_dataset->rowCount();
 ?>
 <section class="product-section table-container-wrap">
-    <h2>Number of Inquiries: <?php echo  $row_count  ?></h2>
+    <h2>Number of Orders: <?php echo  $row_count  ?></h2>
     <div id="table-wrapper">
         <table id='empTable' class="all-product-table display dataTable">
             <thead>
@@ -30,7 +30,7 @@ $row_count = $all_product_dataset->rowCount();
       let ord_tbl =  $("#empTable").DataTable({
             processing: true,
             serverSide: true,
-            scrollY: '400px',
+            scrollY: '480px',
             scrollCollapse: true,
             serverMethod: "post",
             ajax: {

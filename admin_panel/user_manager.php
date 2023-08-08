@@ -41,7 +41,7 @@ require "../dao/connection.php";
 
         ?>
         <section class="customer-section table-container-wrap">
-            <h2>Customers</h2>
+            <h2>Employee</h2>
             <div id="table-wrapper">
                 <table id='empTable' class="all-customer-table display dataTable">
                     <thead>

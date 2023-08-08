@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <small class="text-muted" >Sales contribution to target sales </small>
+      <small class="text-muted">Sales contribution to target sales </small>
     </div>
     <!-- END of sales-card -->
 
@@ -73,70 +73,51 @@
 
   <!-- END of insights section -->
 
-  <!-- START of recent-order table section-->
+  <!-- START of top sale item table section-->
   <section class="recent-order">
-    <h2>Recent Orders</h2>
+    <h2>Top sales menu item</h2>
     <table id="recent-order-table">
       <thead>
         <tr>
-          <th>No.</th>
-          <th>Order ID</th>
-          <th>Customer</th>
-          <th>Payment</th>
-          <th>Status</th>
-          <th></th>
+          <th>Top</th>
+          <th>Item ID</th>
+          <th>Name</th>
+          <th>Sales</th>
+          <th>Sold quantity</th>
+          <th>Action</th>
         </tr>
       </thead>
       <?php
+     $get_top_sale_item = "SELECT *
+     FROM item
+     INNER JOIN item_media ON item.id = item_media.item_id 
+     ORDER BY (item.sold_quantity * item.price) DESC
+     LIMIT 5";
 
-      if (!isset($connection)) {
-        require "../dao/connection.php";
-      }
-      $get_recent_received = "SELECT `orders`.id AS order_id, `orders`.*, customer.*
-      FROM `orders`
-      INNER JOIN customer ON `orders`.customer_id = customer.id
-      WHERE `orders`.delivery_status = 'PENDING'
-      ORDER BY `orders`.order_date DESC
-      LIMIT 4";
+      $top_sale_dataset = $connection->query($get_top_sale_item);
+      $top_sales_data = $top_sale_dataset->fetchAll();
 
-
-
-      $stmt = $connection->prepare($get_recent_received);
-      $stmt->execute();
-      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $serial = 1;
-      foreach ($results as $row) {
+      foreach ($top_sales_data as $row) {
+        $item_id = $row["item_id"];
+        $sold_quantity = $row["sold_quantity"];
+        $price = $row["price"];
+        $sales = $sold_quantity * $price;
+        $discount = $row["discount"];
 
-        $order_received_date = $row['order_date'];
-
-        $current_time = time();
-        $received_time = strtotime($order_received_date);
-
-        $time_elapsed = $current_time - $received_time;
-
-        if ($time_elapsed < 60) {
-          $elapsed_time = $time_elapsed . " " . ($time_elapsed > 1 ? "s" : "") . " ago";
-        } elseif ($time_elapsed >= 60 && $time_elapsed < 3600) {
-          $elapsed_minutes = floor($time_elapsed / 60);
-          $elapsed_time = $elapsed_minutes . " minute" . ($elapsed_minutes > 1 ? "s" : "") . " ago";
-        } elseif ($time_elapsed >= 3600 && $time_elapsed < 86400) {
-          $elapsed_hours = floor($time_elapsed / 3600);
-          $elapsed_time = $elapsed_hours . " hour" . ($elapsed_hours > 1 ? "s" : "") . " ago";
-        } elseif ($time_elapsed >= 86400) {
-          $elapsed_days = floor($time_elapsed / 86400);
-          $elapsed_time = $elapsed_days . " day" . ($elapsed_days > 1 ? "s" : "") . " ago";
+        if ($discount > 0) {
+          // Calculate the discount price
+          $sales = $sales - ($sales * $discount / 100);
         }
-
 
       ?>
         <tr>
           <td><?php echo  $serial++; ?></td>
-          <td>ORD <?php echo $row["order_id"] ?></td>
+          <td>IR <?php echo $item_id  ?></td>
           <td><?php echo $row["name"] ?></td>
-          <td><?php echo $row["payment_method"] ?></td>
-          <td class="warning">Pending</td>
-          <td class="primary">
-            <a href="./view_order.php?view_order_id=<?php echo $row['order_id'] ?>">View Details</a>
+          <td class="warning"><?php echo $sales ?></td>
+          <td class="primary"><?php echo $sold_quantity  ?></td>
+          <td class="primary"><a href="./view_item.php?view-item-id=<?php echo $item_id  ?>">View</a></td>
           </td>
         </tr>
 
@@ -145,7 +126,7 @@
       ?>
       </tbody>
     </table>
-    <a href="./order_manager.php">Show All</a>
+    <a href="./menu_item_manager.php">See All items</a>
   </section>
   <!-- END of recent-order table section-->
 </main>

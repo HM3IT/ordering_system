@@ -32,10 +32,6 @@ require "../dao/connection.php";
             require  './components/navbar.php';
             require  './components/cart-list-tbl.php';
             require 'components/alert-box.php';
-            // if (isset($_SESSION['customer_name'])) {
-            //     require './checkout.php';
-            // }
-
             ?>
         </div>
     </div>

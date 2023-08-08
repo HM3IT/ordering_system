@@ -2,7 +2,7 @@
 #pagination {
     display: block;
     text-align: center;
-    margin: 20px auto;
+    margin: 5px auto;
   }
   
   #pagination a {
@@ -43,7 +43,7 @@
   
   #sort-select-form {
     display: block;
-    margin: 30px 0;
+    margin: 10px 20px;
   }
   #sort-select-form label{
     color: rgb(255, 123, 0);

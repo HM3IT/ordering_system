@@ -66,7 +66,7 @@ $dataset = $connection->query($get_user_level);
                     </div>
 
                     <label for="password">Password:</label>
-                    <input type="password" id="set_password" required />
+                    <input type="password" name="password" id="set_password" required />
                     <button type="button" id="togglePassword">Show</button>
 
 

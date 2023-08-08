@@ -1,12 +1,12 @@
 #header {
     display: flex;
-    margin-top: 20px;
+    margin: 20px 15px;
     padding: 10px 25px;
     border-radius: 5px;
     background-color: var(--color-white);
 }
 .nav-bar-left{
-    width: 380px;
+    width: 320px;
 }
 .nav-bar-right{
     display: flex;
@@ -36,3 +36,8 @@
     letter-spacing: 3px;
     font-family: fangsong; 
   }
+  /*================== MEDIA QUERIES ================== */
+/* For  tablet */
+@media screen and (max-width: 1133px) {
+
+}

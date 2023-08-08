@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <nav class="nav-bar nav-bar-left">
     <ul>
       <li class="">
-        <span id="store-name">SMART cafe & bakery shop</span>
+        <span id="store-name">SMART Café & Bakery Bar</span>
         <p id="slogan">Awesome Cafe and Beverages</p>
       </li>
     </ul>

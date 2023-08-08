@@ -38,7 +38,7 @@ require "../dao/connection.php";
         <div>
             <section id="order-display-panel">
                 <?php
-                $order_card_per_page = 3;
+                $order_card_per_page = 4;
                 $page_num = 1;
                 if (isset($_REQUEST["page-num"])) {
                     $page_num = $_REQUEST["page-num"];
@@ -46,7 +46,12 @@ require "../dao/connection.php";
                 $offset = ($page_num - 1) * $order_card_per_page;
                 $prefix_order_id = "IR ";
 
-                $get_all_order_sql = "SELECT * FROM orders WHERE order_status ='Pending' LIMIT $offset, $order_card_per_page";
+                $get_all_order_sql = "SELECT o.*, u.name as waiter_name
+                                      FROM orders AS o
+                                      JOIN users AS u ON o.user_id = u.id
+                                      WHERE o.order_status = 'Pending'
+                                      ORDER BY o.order_datetime ASC
+                                      LIMIT $offset, $order_card_per_page";
 
                 $dataset = $connection->query($get_all_order_sql);
                 $rows = $dataset->fetchAll();
@@ -62,7 +67,7 @@ require "../dao/connection.php";
                             <table>
                                 <tr>
                                     <td>Order Number:</td>
-                                    <td><?php echo $id; ?></td>
+                                    <td><?php echo $prefix_order_id . ':' . $row["id"]; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Table Number:</td>
@@ -70,7 +75,7 @@ require "../dao/connection.php";
                                 </tr>
                                 <tr>
                                     <td>Waiter:</td>
-                                    <td><?php echo $row["user_id"]; ?></td>
+                                    <td><?php echo $row["waiter_name"]; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Due Time</td>
@@ -80,10 +85,7 @@ require "../dao/connection.php";
                                     <td>Request</td>
                                     <td><span class="danger"><?php echo $row["additional_request"]; ?></span></td>
                                 </tr>
-                                <tr>
-                                    <td>Order Number</td>
-                                    <td><?php echo $prefix_order_id . ':' . $row["id"]; ?></td>
-                                </tr>
+
                             </table>
                         </div>
                         <div class="order-card-body">
@@ -106,11 +108,17 @@ require "../dao/connection.php";
                                     foreach ($rows as $row) {
                                     ?>
                                         <tr>
-                                            <td>
+                                            <td <?php if ($serial_num > 3) {
+                                                    echo "class='more-orders'";
+                                                } ?>>
                                                 <li><?php echo  $serial_num; ?> </li>
                                             </td>
-                                            <td><?php echo  $row['name']; ?> </td>
-                                            <td><?php echo  $row['num_ordered']; ?> </td>
+                                            <td <?php if ($serial_num > 3) {
+                                                    echo "class='more-orders'";
+                                                } ?>><?php echo  $row['name']; ?> </td>
+                                            <td <?php if ($serial_num > 3) {
+                                                    echo "class='more-orders'";
+                                                } ?>><?php echo  $row['num_ordered']; ?> </td>
                                         </tr>
                                     <?php
                                         $serial_num++;

@@ -18,9 +18,12 @@ require "../dao/connection.php";
     <link rel="stylesheet" href="css/product-section.css">
     <link rel="stylesheet" href="css/product-slider.css">
     <link rel="stylesheet" href="css/product-detail.css">
-    <!-- <link rel="stylesheet" href="css/star-scale-rating.css"> -->
-    <!-- <link rel="stylesheet" href="css/review-product.css"> -->
     <link rel="stylesheet" href="css/alert-box.css" />
+    <style>
+        #sidebar {
+            height: 130dvh;
+        }
+    </style>
 </head>
 
 <body>
@@ -105,12 +108,12 @@ require "../dao/connection.php";
                         <div class="product-description-head">
                             <h2 class="product-title "><?php echo $name ?></h2>
                             <h2 class="product-price "><?php echo $price ?> Ks</h2>
-                            <label for="Switch-color">Select Switch</label>
+                            <label for="Switch-color">Select Size</label>
                             <select name="switch-color" id="switch-color">
-                                <option value="red">Red</option>
-                                <option value="blue">Blue</option>
-                                <option value="brown">Brown</option>
-                                <option value="white">White</option>
+                                <option value="red">Small</option>
+                                <option value="blue">Medium</option>
+                                <option value="brown">Large</option>
+                                <option value="white">Extra Large</option>
                             </select>
                             <?php
                             if ($viewed_item_data["quantity"] > 0) {
@@ -176,7 +179,7 @@ require "../dao/connection.php";
     <!-- <script src="scripts/redirect.js"> </script> -->
     <!-- <script src="scripts/review-submit.js"> </script>
     <script src="scripts/star-scale-rating.js"> </script> -->
- 
+
 </body>
 
 </html>

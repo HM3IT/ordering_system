@@ -32,7 +32,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>CRUD menu item, and user tabless </p>
+                            <p>CRUD menu item, and user tables </p>
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>Search and sort functionalitiess</p>
+                            <p>Search and sort functionalities</p>
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +57,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>Top 10 Popular Menu Items</p>
+                            <p>Top 5 Popular Menu Items</p>
                         </td>
                     </tr>
                 </tbody>
@@ -73,7 +73,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>CRUD menu item tabless </p>
+                            <p>CRUD menu item tables </p>
                         </td>
                     </tr>
                     <tr>
@@ -85,7 +85,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>Search and sort functionalitiess</p>
+                            <p>Search and sort functionalities</p>
                         </td>
                     </tr>
                     <tr>
@@ -98,7 +98,7 @@ if (!isset($_SESSION)) {
                     <tr>
                         <td><i class="fa-regular fa-square-check"></i></td>
                         <td>
-                            <p>Top 10 Popular Menu Items</p>
+                            <p>Top 5 Popular Menu Items</p>
                         </td>
                     </tr>
                 </tbody>

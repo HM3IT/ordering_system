@@ -8,7 +8,7 @@
 .product-section a {
   text-align: center;
   display: block;
-  margin: 1rem auto;
+  margin: 7px auto;
 
 }
 .all-product-table {
@@ -34,6 +34,7 @@
   height: 100px;
 }
 
+.all-product-table .view-btn,
 .all-product-table .edit-btn,
 .all-product-table .remove-btn
 {

@@ -9,7 +9,7 @@
 
 /* 1. setction style */
 #order-display-panel {
-  padding: 25px;
+  padding: 10px 25px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -33,7 +33,7 @@
   padding: 10px;
 }
 .order-card-head {
-  height: 196px;
+  height: 148px;
   border-radius: 15px 15px 0 0;
   background-color: #ffeac5;
   color: black;
@@ -48,10 +48,15 @@
 }
 /* 2.2 order-card-body */
 .order-card-body{
-    max-height: 180px;
+    max-height: 140px;
+    overflow-y: scroll;
 }
 .order-card-body tr td {
   padding: 10px;
+}
+.more-orders{
+  border-top: 2px solid red;
+  /* box-shadow: 2px 0 5px red; */
 }
 
 /* 3. Order-card buttons */
@@ -80,3 +85,18 @@
     height: 25px;
     width: 150px;
   }
+/* For large tablet */
+@media screen and (max-width: 1060px) {
+
+.order-card-head tr td:nth-child(1) {
+  width: 90px;
+}
+  .order-card{
+    width: 245px;
+    font-size: .7rem;
+  }
+  .order-card-head {
+    height: 146px;
+}
+
+}

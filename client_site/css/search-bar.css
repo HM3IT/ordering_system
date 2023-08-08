@@ -61,7 +61,7 @@
   width: 100%;
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   color: black;
 }
@@ -117,4 +117,20 @@
   height: 50px;
   text-align: center;
   line-height: 50px;
+}
+
+@media screen and (max-width: 1300px) {
+  .product-search-bar-container {
+    width: 320px;
+  }
+}
+/* For tablet */
+
+@media screen and (max-width: 1134px) {
+.product-search-bar-container {
+  width: 190px;
+}
+.product-search-bar-container .matched-item-lists {
+  width: 480px;
+}
 }

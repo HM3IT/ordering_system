@@ -26,6 +26,17 @@ require "../dao/connection.php";
     <link rel="stylesheet" href="css/alert-box.css" />
     <link rel="stylesheet" href="css/order-panel.css" />
     <link rel="stylesheet" href="css/pagination-sort.css" />
+    <style>
+        .order-card-head {
+            height: 120px;
+        }
+
+
+        .order-card-body {
+            max-height: unset; 
+             overflow-y: unset; 
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +50,7 @@ require "../dao/connection.php";
 
         <div>
             <?php
-            $order_card_per_page = 6;
+            $order_card_per_page = 2;
             $page_num = 1;
             if (isset($_REQUEST["page-num"])) {
                 $page_num = $_REQUEST["page-num"];
@@ -57,7 +68,7 @@ require "../dao/connection.php";
                 $filter_type = $_POST['filter-type'];
                 $_SESSION["filter-type"] = $filter_type;
 
-                $get_order_per_page_qry = "SELECT * FROM orders WHERE order_status ='$filter_type' LIMIT $offset, $order_card_per_page";
+                $get_order_per_page_qry = "SELECT * FROM orders WHERE order_status ='$filter_type' ORDER BY order_datetime ASC LIMIT $offset, $order_card_per_page";
             } else {
                 if (isset($_SESSION["filter-type"])) {
                     $filter_type = $_SESSION["filter-type"];
@@ -87,23 +98,20 @@ require "../dao/connection.php";
 
                     // Format the date as 'Y-F-d h:i a' to get '2023-August-01 03:05 pm'
                     $formatted_date = $date->format('Y-F-d h:i a');
-                    
+
                 ?>
                     <div class="order-card">
                         <div class="order-card-head">
                             <table>
                                 <tr>
                                     <td>Order Number:</td>
-                                    <td><?php echo $id; ?></td>
+                                    <td><?php echo $prefix_order_id . ':' . $row["id"]; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Table Number:</td>
                                     <td><?php echo $row["table_number"]; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Waiter:</td>
-                                    <td><?php echo $row["user_id"]; ?></td>
-                                </tr>
+
                                 <tr>
                                     <td>Due Time</td>
                                     <td><?php echo $formatted_date; ?></td>
@@ -112,10 +120,7 @@ require "../dao/connection.php";
                                     <td>Request</td>
                                     <td><span class="danger"><?php echo $row["additional_request"]; ?></span></td>
                                 </tr>
-                                <tr>
-                                    <td>Order Number</td>
-                                    <td><?php echo $prefix_order_id . ':' . $row["id"]; ?></td>
-                                </tr>
+
                             </table>
                         </div>
                         <div class="order-card-body">
@@ -152,7 +157,7 @@ require "../dao/connection.php";
                             </table>
                             <div class="button-flex">
                                 <a href="./controller/order_controller.php?archive_order_id=<?php echo $id; ?>" class="order-card-btns warning-bg">Remove</a>
-                                <a href="./controller/generate_invoice.php?invoice_order_id=<?php echo $id; ?>" class="order-card-btns success-bg">Print Invoice</a>
+                                <a href="./invoice.php?invoice_order_id=<?php echo $id; ?>" class="order-card-btns success-bg">Print Invoice</a>
                             </div>
                         </div>
                     </div>
@@ -169,8 +174,8 @@ require "../dao/connection.php";
                 $total_orders = $count->fetchColumn();
                 ?>
                 <a href="shop-page.php?page-num=<?php echo ($page_num - 1); ?>" class="page-link previous-page" <?php if ($page_num == 1) {
-                              echo 'onclick="return false;"';
-                                    } ?>>
+                                                                                                                    echo 'onclick="return false;"';
+                                                                                                                } ?>>
                     <li class="page-item">Prev </li>
                 </a>
 
@@ -205,7 +210,8 @@ require "../dao/connection.php";
                 }
                 ?>
 
-                <a href="completed_order_page.php?page-num=<?php echo ($page_num + 1) ?>" class="page-link" <?php if ($page_num == $page_count) {    echo 'onclick="return false;"';
+                <a href="completed_order_page.php?page-num=<?php echo ($page_num + 1) ?>" class="page-link" <?php if ($page_num == $page_count) {
+                                                                                                                echo 'onclick="return false;"';
                                                                                                             } ?>>
                     <li class="page-item next-page">
                         Next

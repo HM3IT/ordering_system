@@ -13,21 +13,21 @@ if (isset($_POST["Sign-Up"])) {
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address = $_POST["address"];
-    $image_name = 'default-user-img.jpg';
-    $created_date = time();
+    $default_user_profile = 'default-user-img.jpg';
+    $default_user_level_id = 3;
 
     // Prepare the statement
     $statement = $connection->prepare("INSERT INTO users (image, name, phone, email, password, address,user_level_id) VALUES (?, ?, ?, ?, ?, ?,?)");
 
     // Bind the parameters
-    $statement->bindParam(1,  $image_name);
+    $statement->bindParam(1,  $default_user_profile);
     $statement->bindParam(2, $name);
     $statement->bindParam(3, $phone);
     $statement->bindParam(4, $email);
     $statement->bindParam(5, $encryptedPassword);
     $statement->bindParam(6, $address);
     // operational staff user level
-    $statement->bindParam(7, '3');
+    $statement->bindParam(7, $default_user_level_id);
     $statement->execute();
 
     $lastInsertedId = $connection->lastInsertId();
@@ -56,7 +56,7 @@ if (isset($_POST["Sign-In"])) {
             $_SESSION["username"] = $name;
             $_SESSION["status-login"] = "valid";
 
-            header("Location: ../menu.php");
+            header("Location: ../login.php");
             exit;
         }
     }

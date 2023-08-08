@@ -171,15 +171,18 @@ li {
   background-color: var(--color-background);
 }
 /* For tablet */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
   #main-container {
     width: 94%;
-    grid-template-columns: 7rem auto;
+    grid-template-columns: 230px auto;
   }
 }
 
 /* For  tablet and large mobile phone */
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1080px) {
   
- 
+  #main-container {
+    width: 94%;
+    grid-template-columns: 125px auto;
+  }
 }

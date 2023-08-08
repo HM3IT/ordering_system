@@ -17,20 +17,19 @@
 /* 1.1 Top of Sidebar styling */
 #sidebar .top {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-top: 1.4rem;
-}
-#sidebar .logo {
-  display: flex;
-  gap: 0.8rem;
 }
 
 #sidebar .logo img {
-  height: 5rem;
+  width: 100px;
+  height: 100px;
 }
 #sidebar .close {
   display: none;
+}
+#sidebar .close i {
+  font-size: 2rem;
 }
 s #sidebar.logout {
   position: absolute;
@@ -162,6 +161,12 @@ s #sidebar.logout {
     to {
       left: 0;
     }
+  }
+
+  #sidebar .top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   #sidebar .logo {
     margin-left: 1rem;

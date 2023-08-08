@@ -124,7 +124,7 @@ session_start();
                     <i class="fa-regular fa-face-laugh-beam" id="smilly-emoji"></i>
                     <h2>Yey!, login successfully </h2>
                 </div>
-                <a href="./index.php" class="information-bg">OK</a>
+                <a href="./menu.php" class="information-bg">OK</a>
             </div>
     <?php
         }

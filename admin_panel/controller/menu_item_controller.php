@@ -99,7 +99,7 @@ if (isset($_POST["add_item_submit"])) {
 
 // updating the old product from TABLE product where id (product)
 if (isset($_POST["update_item_submit"])) {
-    $id = $_POST['id'];
+    $item_id = $_POST['id'];
     $name = $_POST["name"];
     $price = $_POST["price"];
     $discount = $_POST["discount"];
@@ -162,7 +162,7 @@ if (isset($_POST["update_item_submit"])) {
     }
     // Remove the trailing comma and space from the SET clause
     $set_clause = rtrim($set_clause, ", ");
-    $update_item_img_sql = "UPDATE item_media SET $set_clause WHERE item_id = '$id'";
+    $update_item_img_sql = "UPDATE item_media SET $set_clause WHERE item_id = '$item_id'";
 
     $connection->query($update_item_img_sql);
 
@@ -178,13 +178,14 @@ if (isset($_POST["update_item_submit"])) {
     $statement->bindParam(':discount', $discount);
     $statement->bindParam(':quantity', $quantity);
     $statement->bindParam(':category_id', $category_id);
-    $statement->bindParam(':id', $id);
+    $statement->bindParam(':id', $item_id);
 
     if ($statement->execute()) {
         echo '<script> 
         alert("Successfully updated the item"); 
         location.href = "../menu_item_manager.php"; 
         </script>';
+     
     } else {
         // Update failed
         echo "Error updating product ";

@@ -5,7 +5,7 @@
 ================ */
 
 .product-section {
-  margin: 0;
+  margin: 0 15px;
  
 }
 
@@ -18,20 +18,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  /* padding: 0px 100px; */
+  gap: 5px;
 }
 .product-card {
   width: 250px;
   text-align: center;
   box-shadow: 3px 2px 10px black;
   border-radius: 20px;
-  margin: 12px;
+  margin: 5px 10px;
   background-color: #fff;
   transition: 1s all ease;
 }
 .product-card .product-image {
   width: 200px;
-  height: 190px;
+  height:140px;
   margin: 10px 5px 0 5px;
   border-radius: 20px;
   object-fit: scale-down;
@@ -99,76 +99,42 @@ h4 {
  .item-title{
   text-transform: capitalize;
 }
-@media screen and (max-width: 1300px) {
-.product-card {
-  width: 220px;
-  margin: 15px 10px;
-}
-.product-container {
-  padding: 0px 40px;
-}
-}
 /* For tablet */
-@media screen and (max-width: 1060px) {
-  .product-container {
-    padding: 0px;
-  }
-  .flex-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .product-card {
-    width: unset;
-    height: unset;
-    margin: 15px;
-  }
-
-  .product-card .product-image {
-    width: 125px;
-    margin: 0;
-  }
-
-  .product-info-div {
-    width: 125px;
-    height: 100%;
-  }
+@media screen and (max-width: 1333px) {
+.product-card {
+ 
 }
-/* For mobile */
-@media screen and (max-width: 840px) {
-  .product-card {
-    min-width: 200px;
-    height: unset;
-    margin: 10px;
-  }
-  .product-card .product-image {
-    width: 100px;
-    margin: 0;
-  }
-  .product-info-div {
-    width: 220px;
-    height: 100%;
-  }
-  .cart-description h3,
-  h4 {
-    font-size: 1rem;
-  }
+ 
+
 }
 
-/* For mobile and large phone*/
-@media screen and (max-width: 680px) {
+/* For small tablets*/
+@media screen and (max-width: 1080px) {
+  .product-section {
+    margin: 0 30px;
+}
+  .nav-bar-left {
+    width: 315px;
+}
+  .product-search-bar-container {
+    width: 150px;
+}
   .flex-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
   }
+  .product-container {
+    gap: 0;
+  }
   .product-card {
     min-width: 200px;
     height: unset;
     box-shadow: none;
-    margin: 10px;
+    margin: 0;
   }
+
   .product-card .product-image {
     width: 200px;
     margin: 5px;
@@ -185,30 +151,4 @@ h4 {
   h4 {
     font-size: 1rem;
   }
-}
-/* For small mobile  */
-@media screen and (max-width: 680px) {
- 
-  .product-card {
-    min-width: 180px;
-    height: unset;
-    box-shadow: none;
-    margin: 5px;
-  }
-  .product-card .product-image {
-    width: 180px;
-    margin: 0px;
-  }
-  .product-info-div {
-    width: 180px;
-    height: 100%;
-  }
-  .cart-description h3,
-  h4 {
-    font-size: .7rem;
-  }
-  .cart-description h3,
-  h4 {
-    font-size: .75rem;
-  }
-}
+

@@ -152,6 +152,16 @@ b {
 .success {
   color: var(--color-success);
 }
+.succcess-bg{
+  background-color: var(--color-success);
+  border: 0px;
+  border:2px solid transparent;
+}
+.succcess-bg:hover{
+  background-color: white;
+  border: 0px;
+  border:2px solid var(--color-success);
+}
 .success-border {
   border: 2px solid var(--color-success);
   color: var(--color-dark);
@@ -216,10 +226,19 @@ b {
   display: inline-block;
 }
 
+#category-icon{
+  width: 400px;
+}
+#new-category-form-title{
+  text-align: center;
+  color: var(--color-primary);
+}
+
 /* .table-container-wrap{
     overflow-y: scroll;
     max-height: 80dvh;
 } */
+
 #main-container {
   display: grid;
   width: 96%;

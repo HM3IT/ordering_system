@@ -46,7 +46,7 @@ if (isset($_POST["create-user-submit"])) {
     // Execute the statement
     $statement->execute();
     echo '<script> 
-       alert("Successfully added the product"); 
+       alert("Successfully created a new user account"); 
        location.href = "../user_manager.php"; 
        </script>';
 }

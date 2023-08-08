@@ -5,6 +5,7 @@
 
     $counter = 0;
     foreach ($dataset  as $row) {
+  
       $id = $row["id"];
       $name =  $row["name"];
       $price = $row["price"];

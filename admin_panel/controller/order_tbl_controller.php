@@ -37,7 +37,7 @@ $stmt3->execute();
 $data = array();
 
 while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
-
+$order_id =$row['order_id'];
     $date = new DateTime($row["order_datetime"]);
     // Format the date as 'Y-F-d h:i a' to get '2023-August-01 03:05 pm'
     $formatted_date = $date->format('Y-F-d h:i a');
@@ -54,13 +54,13 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
     }
 
     $data[] = array(
-        "order_id" => $row['order_id'],
+        "order_id" => $order_id,
         "waiter_name" => $row['waiter_name'],
         "order_datetime" => $formatted_date,
         "total_price" => $row['total_price'],
         "order_status" => '<div class="' . $class . '">' . $row['order_status'] . '</div>',
         "action" => '
-            <a href="./view_order.php?view_order_id=' . $row['order_id'] . '" class="view-btn information-border">View Details</a>'
+            <a href="./view_order.php?view_order_id=' . $order_id . '" class="view-btn information-border">View Details</a>'
     );
 }
 

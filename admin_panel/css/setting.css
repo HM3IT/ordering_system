@@ -136,3 +136,14 @@
     transform: translateX(0);
   }
 }
+
+#export-data-form .button-flex{
+  justify-content: flex-start;
+  gap: 10px;
+}
+#export-data-form #file-path{
+  width: 400px;
+}
+.user-expot-btn:hover{
+cursor: pointer;
+}

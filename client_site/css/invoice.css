@@ -27,14 +27,14 @@
 
 #invoice-popup-section .header-block div:first-child {
   min-width: 380px;
-  min-width: 65%;
+  /* min-width: 65%; */
 }
 #invoice-popup-section .header-block.block1 h6 {
   margin: 5px 0;
 }
 #invoice-icon {
-  width: 125px;
-  height: 85px;
+  width: 85px;
+  height: 90px;
   border: 2px solid white;
   padding: 10px;
   border-radius: 10px;
@@ -45,9 +45,11 @@
 }
 
 /* 2.1 businesss address table */
- 
+#business-address-tbl{
+  margin-left: 100px;
+}
 #customer-address-tbl tr td:first-child {
-  width: 100px;
+  width: 130px;
 }
 
 #customer-address-tbl tr td:nth-child(2) {
@@ -58,7 +60,7 @@
 /* 3. Table coloring */
 #invoice-popup-section .header-block.block1,
 #total-cost-row td:nth-child(2) {
-  background-color: rgb(225 134 5);
+  background-color: rgb(43, 43 ,44);
   color: white;
 }
 
@@ -68,17 +70,19 @@
 
 /* 4. order-list table */
 #invoice-popup-section #order-list-table {
-  /* width: 100%; */
+  width: 100%;
   margin: 0 auto;
   padding: 0px;
   text-align: center;
 }
 
-#order-list-table {
-  width: 80%;
-  margin: 50px auto;
-  padding: 30px;
-  text-align: center;
+ #order-list-table thead th:first-child,
+#order-list-table tr td:first-child{
+  text-align: right;
+}
+ #order-list-table thead th:last-child,
+#order-list-table tr td:last-child{
+  text-align: left;
 }
 
 #order-list-table:hover {
@@ -92,7 +96,7 @@
 
 #order-list-table tbody td {
   height: 2.8rem;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid #adadad;
   color: black;
 }
 
@@ -195,9 +199,19 @@
   margin: 5px 0;
   font-size: 1.3rem;
 }
+
+#invoice-popup-section #total-cost-data #total-cost-text-col{
+  background-color: #2B2B2C;
+  color: white;
+  text-align: center;
+  
+}
+#invoice-popup-section #total-cost-data #total-cost-col{
+  background-color:#E18605 ;
+  text-align: center;
+}
 @media print {
   #print-btn,
-  .header,
   #web-footer {
     display: none;
   }

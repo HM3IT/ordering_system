@@ -42,8 +42,9 @@ $data = array();
 
 $serial = $row + 1;
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $item_id = $row['item_id'];
     $data[] = array(
-        "item_id" => $row["item_id"],
+        "item_id" =>  $item_id,
         "image" => '<img src="../images/Menu_items/' . $row['category_name'] . '/' . $row['primary_img'] . '" alt="product-image" class="product-tbl-img">',
         "name" => $row['name'],
         // "description" => $row['description'],
@@ -54,7 +55,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         "quantity" => $row['quantity'],
         "sold_quantity" => $row['sold_quantity'],
         // "discount" => $row['discount'],
-        "action" => '<a href="./update_item.php?update_item_id=' . $row['item_id'] . '" class="edit-btn warning-border">Edit</a><a href="./controller/menu_item_controller.php?remove_item_id=' . $row['item_id'] . '" class="remove-btn danger-border">Remove</a>'
+        "action" => '<a href="./view_item.php?view_item_id=' .  $item_id . '" class="view-btn information-border">View</a>
+        <a href="./update_item.php?update_item_id=' . $item_id . '" class="edit-btn warning-border">Edit</a>
+        <a href="./controller/menu_item_controller.php?remove_item_id=' . $item_id . '" class="remove-btn danger-border">Remove</a>'
     );
 }
 

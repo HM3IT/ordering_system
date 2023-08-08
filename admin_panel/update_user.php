@@ -73,9 +73,6 @@ if (isset($_GET["update_user_id"])) {
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" value="<?php echo $data["password"] ?>" required />
 
-
-                    <button type="button" id="togglePassword">Show</button>
-
                     <label for="address" class="block">Address:</label>
                     <textarea name="address" id="address" cols="30" rows="5" required><?php echo $data["address"] ?></textarea>
 
@@ -92,9 +89,6 @@ if (isset($_GET["update_user_id"])) {
                 </div>
             </form>
         </section>
-        <script src="./scripts/password_toggle.js">
-
-        </script>
         <?php
         require "./pages/right-dashboard-panel.php";
         ?>

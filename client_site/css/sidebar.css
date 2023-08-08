@@ -133,55 +133,28 @@
 }
 
 /*================== MEDIA QUERIES ================== */
-/* For tablet */
+/* For small tablet */
 
-@media screen and (max-width: 1200px) {
-  #sidebar .sidebar-function-container h3 {
-    display: none;
-  }
-  #sidebar .sidebar-function-container a {
-    width: 5.6rem;
-  }
-  #sidebar .sidebar-function-container a:last-child {
-    position: relative;
-    margin-top: 1.8rem;
-  }
-}
-/* For  tablet */
-/* @media screen and (max-width: 780px) {
+@media screen and (max-width: 1080px) {
   #sidebar {
-    position: fixed;
-    left: -100%;
-    background-color: var(--color-white);
-    width: 18rem;
-    z-index: 3;
-    box-shadow: 1rem 3rem 4rem var(--color-white);
-    height: 100dvh;
-    padding-right: var(--card-padding);
-    display: none;
-    animation: showMenu 300ms ease forwards;
-  }
-  @keyframes showMenu {
-    to {
-      left: 0;
-    }
-  }
-  #sidebar .logo {
-    margin-left: 1rem;
+    width: 150px;
+    height: 115%;
   }
   #sidebar .sidebar-function-container h3 {
-    display: inline;
+    display: none;
   }
   #sidebar .sidebar-function-container a {
-    width: 100%;
-    height: 3.4rem;
+    width: 85px;
   }
-  #sidebar .sidebar-function-container a:last-child {
-    position: absolute;
-    bottom: 5rem;
+
+  #sidebar .sidebar-function-container {
+    height: 86dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  #sidebar .close {
-    display: inline-block;
-    cursor: pointer;
-  }
-} */
+  .sidebar-function-container a {
+    margin-left: 0;
+}
+
+}

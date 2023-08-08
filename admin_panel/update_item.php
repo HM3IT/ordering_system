@@ -22,6 +22,7 @@ if (isset($_GET["update_item_id"])) {
     $resultSet = $connection->query($get_item_and_media_sql);
     $data = $resultSet->fetch();
     $category_id = $data["category_id"];
+    $item_id = $data["item_id"];
 
     $get_category_sql = "SELECT id, category_name FROM category";
     $category_dataset = $connection->query($get_category_sql);
@@ -45,10 +46,11 @@ if (isset($_GET["update_item_id"])) {
         require "./pages/sidebar.php";
         ?>
         <section class="product-form-section">
+        <?php echo $item_id; ?>
             <h2 class="title warning">Menu Item Information Form</h2>
             <form class="product-form" action="controller/menu_item_controller.php" method="post" enctype="multipart/form-data">
                 <div>
-                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $item_id; ?>">
 
                     <label for="name">Item name</label>
                     <input type="text" name="name" id="name" value="<?php echo $data["name"] ?>" required>
@@ -91,7 +93,7 @@ if (isset($_GET["update_item_id"])) {
 
                     <div class="button-flex">
                         <!-- <input type="reset" value="Cancel" class="cancel-btn danger-border"> -->
-                        <a href="./product_manager.php" class="cancel-btn danger-border" id="back-btn"> Back </a>
+                        <a href="./menu_item_manager.php" class="cancel-btn danger-border" id="back-btn"> Back </a>
                         <input type="submit" value="update" name="update_item_submit" id="update-product-btn" class="submit-btn success-border">
                     </div>
                 </div>

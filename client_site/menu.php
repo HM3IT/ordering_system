@@ -11,6 +11,15 @@ if (!isset($_SESSION["login_user_id"])) {
     </script>';
 }
 require "../dao/connection.php";
+
+// default type
+$category_id = 4;
+if (isset($_GET["category-id"])) {
+    $category_id = $_GET["category-id"];
+}
+$get_all_menu_item_sql = "SELECT * FROM item WHERE category_id = $category_id";
+$all_dataset = $connection->query($get_all_menu_item_sql);
+$total_items = $all_dataset->rowCount();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,21 +61,13 @@ require "../dao/connection.php";
         require './components/alert-box.php';
         require './components/cart-list.php';
         require './components/sidebar.php';
-        // default type
-        $category_id = 4;
-        if (isset($_GET["category-id"])) {
-            $category_id = $_GET["category-id"];
-        }
-        $get_all_menu_item_sql = "SELECT * FROM item WHERE category_id = $category_id";
-        $all_dataset = $connection->query($get_all_menu_item_sql);
-        $total_items = $all_dataset->rowCount();
+
         ?>
         <div>
             <?php
-
             require './components/navbar.php';
 
-            $item_per_page = 8;
+            $item_per_page = 6;
             $page_num = 1;
             if (isset($_REQUEST["page-num"])) {
                 $page_num = $_REQUEST["page-num"];

@@ -80,7 +80,7 @@
 #add-category-form div,
 #update-category-form div {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   gap: 1.5rem;
 }
@@ -96,7 +96,13 @@
 #update-category-form label{
   color: orange;
 }
+#update-category-form label{
 
+  width: 130px;
+}
+#add-category-form label{
+  width: 100px;
+}
 #add-category-form .group,
 #update-category-form .group{
   display: flex;

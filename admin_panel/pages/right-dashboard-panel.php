@@ -39,23 +39,19 @@
 
     <!-- START of RECENT UPDATES section  -->
     <section id="recent-update">
-        <h2>Recent updates</h2>
+        <h2>Top 3 Performing Waiters</h2>
         <div class="update-container">
             <?php
-            if (!isset($conn)) {
-                require "../dao/old_connection.php";
-            }
-            $get_recent_received = "SELECT `orders`.*, customer.*
-            FROM `orders`
-            INNER JOIN customer ON `orders`.customer_id = customer.id
-            WHERE `orders`.delivery_status = 'RECEIVED'
-            ORDER BY `orders`.order_received_date DESC
-            LIMIT 3";
+            $top_3_waiter = "SELECT users.name AS waiter_name, users.*, COUNT(orders.user_id) AS total_orders
+               FROM orders
+               INNER JOIN users ON orders.user_id = users.id 
+               GROUP BY orders.user_id
+               ORDER BY total_orders DESC
+               LIMIT 3";
 
-
-            $stmt = $conn->prepare($get_recent_received);
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $waiters_dataset = $connection->query($top_3_waiter);
+            $results = $waiters_dataset->fetchAll(PDO::FETCH_ASSOC);
+            $top = 1;
 
             foreach ($results as $row) {
             ?>
@@ -64,36 +60,13 @@
                         <img src="../images/User/<?php echo  $row['image'] ?>" alt="<?php echo  $row['image'] ?>">
                     </div>
                     <div class="message">
-
-                        <?php
-                        $order_received_date = $row['order_received_date'];
-
-                        $current_time = time();
-                        $received_time = strtotime($order_received_date);
-
-                        $time_elapsed = $current_time - $received_time;
-
-                        if ($time_elapsed < 60) {
-                            $elapsed_time = $time_elapsed . " " . ($time_elapsed > 1 ? "s" : "") . " ago";
-                        } elseif ($time_elapsed >= 60 && $time_elapsed < 3600) {
-                            $elapsed_minutes = floor($time_elapsed / 60);
-                            $elapsed_time = $elapsed_minutes . " minute" . ($elapsed_minutes > 1 ? "s" : "") . " ago";
-                        } elseif ($time_elapsed >= 3600 && $time_elapsed < 86400) {
-                            $elapsed_hours = floor($time_elapsed / 3600);
-                            $elapsed_time = $elapsed_hours . " hour" . ($elapsed_hours > 1 ? "s" : "") . " ago";
-                        } elseif ($time_elapsed >= 86400) {
-                            $elapsed_days = floor($time_elapsed / 86400);
-                            $elapsed_time = $elapsed_days . " day" . ($elapsed_days > 1 ? "s" : "") . " ago";
-                        }
-
-                        ?>
-                        <p><b><?php echo  $row['name'] ?></b> has received the order.</p>
-                        <small class="text-muted"><?php echo  $elapsed_time ?></small>
+                        <p><b><?php echo $row['waiter_name']; ?></b> has delivered <?php echo  $row['total_orders'];  ?> Orders</p>
+                        <small class="text-muted">Top <?php echo $top; ?></small>
                     </div>
                 </div>
 
             <?php
-
+                $top++;
             }
 
             ?>
@@ -105,35 +78,34 @@
     <?php
     $today = date('Y-m-d');
     $yesterday = date('Y-m-d', strtotime('-1 day'));
-    
     // Set the time component to 00:00:00 for today and yesterday
     $todayStart = $today . ' 00:00:00';
     $todayEnd = $today . ' 23:59:59';
     $yesterdayStart = $yesterday . ' 00:00:00';
     $yesterdayEnd = $yesterday . ' 23:59:59';
-    
+
     // Query to retrieve today's total revenue
-    $todayQuery = "SELECT SUM(total_price) AS today_revenue FROM orders WHERE order_date >= :today_start AND order_date <= :today_end";
-    $todayStatement = $conn->prepare($todayQuery);
+    $todayQuery = "SELECT SUM(total_price) AS today_revenue FROM orders WHERE order_datetime >= :today_start AND order_datetime <= :today_end";
+    $todayStatement = $connection->prepare($todayQuery);
     $todayStatement->bindParam(':today_start', $todayStart);
     $todayStatement->bindParam(':today_end', $todayEnd);
     $todayStatement->execute();
     $todayData = $todayStatement->fetch(PDO::FETCH_ASSOC);
     $todayRevenue = $todayData['today_revenue'];
-    
+
     if (empty($todayRevenue)) {
         $todayRevenue = 0;
     }
-    
+
     // Query to retrieve yesterday's total revenue
-    $yesterdayQuery = "SELECT SUM(total_price) AS yesterday_revenue FROM orders WHERE order_date >= :yesterday_start AND order_date <= :yesterday_end";
-    $yesterdayStatement = $conn->prepare($yesterdayQuery);
+    $yesterdayQuery = "SELECT SUM(total_price) AS yesterday_revenue FROM orders WHERE order_datetime >= :yesterday_start AND order_datetime <= :yesterday_end";
+    $yesterdayStatement = $connection->prepare($yesterdayQuery);
     $yesterdayStatement->bindParam(':yesterday_start', $yesterdayStart);
     $yesterdayStatement->bindParam(':yesterday_end', $yesterdayEnd);
     $yesterdayStatement->execute();
     $yesterdayData = $yesterdayStatement->fetch(PDO::FETCH_ASSOC);
     $yesterdayRevenue = $yesterdayData['yesterday_revenue'];
-    
+
     if (empty($yesterdayRevenue)) {
         $yesterdayRevenue = 0;
     }
@@ -143,7 +115,7 @@
     $revenuePercentage = 0;
     if ($yesterdayRevenue > 0) {
         $revenuePercentage = ($revenueDifference / $yesterdayRevenue) * 100;
-    } 
+    }
     ?>
 
     <section id="sales-analytics">
@@ -160,67 +132,14 @@
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
                 <h5 class="<?php echo ($revenueDifference >= 0) ? 'success' : 'danger'; ?>">
-                <?php 
-                 echo ($revenueDifference >= 0) ? '+' : '-'; 
-                 echo number_format(abs($revenuePercentage), 2); ?>%</h5>
+                    <?php
+                    echo ($revenueDifference >= 0) ? '+' : '-';
+                    echo number_format(abs($revenuePercentage), 2); ?>%</h5>
 
                 <h3><?php echo $todayRevenue; ?> ks</h3>
             </div>
         </div>
         <!-- END of the item-online card  -->
-
-        <?php
-        // Get the current date and yesterday's date
-        $currentDate = date('Y-m-d');
-        $yesterdayDate = date('Y-m-d', strtotime('-1 day'));
-
-        // Query to fetch today's new customers
-        $todayQuery = "SELECT COUNT(*) AS today_new_customers FROM customer WHERE DATE(FROM_UNIXTIME(created_date)) = :currentDate";
-
-        // Query to fetch yesterday's new customers
-        $yesterdayQuery = "SELECT COUNT(*) AS yesterday_new_customers FROM customer WHERE DATE(FROM_UNIXTIME(created_date)) = :yesterdayDate";
-
-        $todayStatement = $conn->prepare($todayQuery);
-        $todayStatement->bindValue(':currentDate', $currentDate);
-        $todayStatement->execute();
-        $todayResult = $todayStatement->fetch(PDO::FETCH_ASSOC);
-        $todayNewCustomers = $todayResult['today_new_customers'];
-
-        $yesterdayStatement = $conn->prepare($yesterdayQuery);
-        $yesterdayStatement->bindValue(':yesterdayDate', $yesterdayDate);
-        $yesterdayStatement->execute();
-        $yesterdayResult = $yesterdayStatement->fetch(PDO::FETCH_ASSOC);
-        $yesterdayNewCustomers = $yesterdayResult['yesterday_new_customers'];
-
-        // Calculate the difference and percentage change
-        $customerDifference = $todayNewCustomers - $yesterdayNewCustomers;
-        $customerPercentage = 0;
-
-        if ($yesterdayNewCustomers > 0) {
-            $customerPercentage = ($customerDifference / $yesterdayNewCustomers) * 100;
-        }
-        ?>
-
-        <!-- START of the new customer card  -->
-        <div class="item-card new-customer-card">
-            <div class="icon">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="info">
-                <div>
-                    <h3>NEW CUSTOMERS</h3>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <h5 class="<?php echo ($customerDifference >= 0) ? 'success' : 'danger'; ?>">
-                    <?php
-                    echo ($customerDifference >= 0) ? '+' : '-'; 
-                    echo number_format(abs($customerPercentage), 2); ?>%
-                </h5>
-                <h3><?php echo $todayNewCustomers; ?> customers</h3>
-            </div>
-        </div>
-
-        <!-- END of the new customer card  -->
 
         <!-- START of add new product card  -->
         <a href="./add_menu_item.php">
@@ -233,8 +152,8 @@
         </a>
         <!-- END of add new product card  -->
 
-         <!-- START of add new user   -->
-         <a href="./create_user.php">
+        <!-- START of add new user   -->
+        <a href="./create_user.php">
             <div class="item-card create-user-card">
                 <div>
                     <i class="fa-solid fa-plus"></i>
@@ -253,7 +172,7 @@
                 </div>
             </div>
         </button>
-        
+
         <!-- END of add new product card  -->
     </section>
     <!-- END of the sales analytics section  -->
@@ -265,13 +184,17 @@
     <div id="close-btn-relative">
         <i class="fa-solid fa-circle-xmark" id="close-add-category-form"></i>
         <i class="fa-solid fa-circle-info info-emoji"></i>
-
     </div>
     <div>
         <form action="./controller/category_controller.php" method="post">
+ <h4 id="new-category-form-title">New Category</h4>
             <div>
-                <label for="new-category">New category Name</label>
+                <label for="new-category">Category Name</label>
                 <input type="text" id="new-category" name="category" class="category-category">
+            </div>
+            <div>
+                <label for="new-category">Category Icon</label>
+                <input type="text" id="category-icon" name="category-icon" class="updated_category" placeholder="Need to be <i> tag from https://fontawesome.com">
             </div>
             <input type="submit" class="information-bg add-category" name="add-category" value="Submit">
         </form>

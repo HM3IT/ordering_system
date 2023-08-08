@@ -45,11 +45,9 @@ if (isset($_REQUEST['order-now']) && isset($_SESSION["cart"])) {
         $sold_quantity = $item_quantity_data["sold_quantity"];
 
         $updated_quantity = $original_quantity - $bought_quantity;
-        if ($sold_quantity != null) {
-            $sold_quantity = $sold_quantity + $bought_quantity;
-        } else {
-            $sold_quantity = 0;
-        }
+
+        $sold_quantity = $sold_quantity + $bought_quantity;
+
 
         $update_item_quantity = "UPDATE item SET quantity = ?, sold_quantity = ? WHERE id = ?";
         $statement3 = $connection->prepare($update_item_quantity);
@@ -61,7 +59,7 @@ if (isset($_REQUEST['order-now']) && isset($_SESSION["cart"])) {
 
     $response = array(
         'status' => 'success',
-        'message' => 'Order has submitted'
+        'message' => 'Order has submitted '.$additional_request
     );
     header('Content-Type: application/json');
     echo json_encode($response);
