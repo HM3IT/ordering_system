@@ -59,7 +59,7 @@ if (isset($_GET["update_item_id"])) {
                     <textarea name="description" id="description" cols="30" rows="10" required><?php echo $data["description"] ?></textarea>
 
                     <div class="inline-block">
-                        <label for="price">Price:</label>
+                        <label for="price">Price (Ks):</label>
                         <input type="text" id="price" name="price" pattern="[0-9]*" inputmode="numeric" placeholder="Enter price in Kyat" value="<?php echo $data["price"] ?>" required>
 
                         <label for="discount">Discount percent:</label>

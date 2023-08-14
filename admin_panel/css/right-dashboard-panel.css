@@ -2,7 +2,9 @@
  +++++ Right-side panel +++++
 1. TOP of right-side panel 
    1.1 theme toggler
-   1.2 Admin Profile
+   1.2 Notification button
+     1.2.1 Noti card
+   1.3 Admin Profile
 2. RECENT UPDATES section
    2.1 update div styling
 3. SALES ANALYTICS SECTION 
@@ -20,13 +22,13 @@
 /* 1. TOP of right-side panel  */
 #right-side-panel .top {
   display: flex;
-  justify-content: space-around;
-  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--color-background);
   padding: 10px;
   border-radius: var(--border-radius-2);
 }
-#right-side-panel .top button {
+#right-side-panel #menu-btn {
   display: none;
 }
 /* 1.1 THEME TOGGLER (dark mode and light mode)  */
@@ -54,41 +56,118 @@
   border-radius: var(--border-radius-1);
   transition: all 0.3s ease-in;
 }
+/*    1.2 Notification button*/
+/*    1.2.1 Noti card */
+#noti-btn {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  background-color: transparent;
 
-/*   1.2 Admin Profile*/
+  transition: all 0.5s ease;
+}
+#noti-btn:hover i {
+  cursor: pointer;
+  color: var(--color-danger);
+  font-size: 1.7rem;
+}
+
+#noti-btn #noti-btn-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-danger);
+  font-size: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+}
+
+#low-quantity-noti {
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: -10px 7px 5px grey;
+  display: none;
+}
+#low-quantity-noti th {
+  font-size: 1rem;
+}
+#low-quantity-noti .noti-card {
+  display: flex;
+  height: 55px;
+  background-color: var(--color-white);
+  border: 1px solid #e1e1e1;
+  justify-content: space-between;
+  align-items: center;
+}
+#low-quantity-noti .noti-header {
+  display: flex;
+  font-size: 1rem;
+  border-radius: 18px 18px 0 0;
+  background-color: var(--color-white);
+  height: 40px;
+  line-height: 40px;
+}
+#low-quantity-noti .item-name {
+  width: 180px;
+  padding-left: 15px;
+  text-align: left;
+  font-size: 1rem;
+}
+#low-quantity-noti .sold-quantity {
+  width: 60px;
+  text-align: center;
+}
+#low-quantity-noti .in-stock {
+  width: 60px;
+  text-align: center;
+  color: red;
+}
+
+/*   1.3 Admin Profile*/
+#right-side-panel .admin-info {
+  line-height: 50px;
+}
 #right-side-panel .top .profile {
   display: flex;
   gap: 10px;
   text-align: right;
 }
+#admin-name {
+  font-size: 0.7rem;
+}
 
 /* 2. RECENT UPDATES section  */
-#recent-update {
+#top3-highly-performed-waiter {
   margin-top: 1rem;
 }
-#recent-update h2 {
+#top3-highly-performed-waiter h2 {
   margin-bottom: 0.8rem;
 }
 
-#recent-update .update-container {
+#top3-highly-performed-waiter .update-container {
   background-color: var(--color-background);
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
   transition: all 0.3s ease;
 }
-#recent-update .update-container:hover {
+#top3-highly-performed-waiter .update-container:hover {
   box-shadow: none;
 }
 
 /* 2.1 update div styling */
-#recent-update .update-container .update {
+#top3-highly-performed-waiter .update-container .update {
   display: grid;
   grid-template-columns: 4rem auto;
   align-items: center;
 }
 
-#recent-update .update-container .update .profile-photo > img,
+#top3-highly-performed-waiter .update-container .update .profile-photo > img,
 #admin-img {
   width: 50px;
   height: 50px;
@@ -109,7 +188,7 @@
   background-color: var(--color-white);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
   margin-bottom: 0.7rem;
   padding: 1.4rem var(--card-padding);
   border-radius: var(--border-radius-3);
@@ -120,8 +199,8 @@
   box-shadow: none;
 }
 
-#sales-analytics .add-product-card, 
-#sales-analytics .create-user-card, 
+#sales-analytics .add-product-card,
+#sales-analytics .create-user-card,
 #sales-analytics .add-category-card {
   display: flex;
   background-color: transparent;
@@ -129,16 +208,16 @@
   justify-content: center;
   cursor: pointer;
 }
-#sales-analytics .add-product-card{
+#sales-analytics .add-product-card {
   border: 2px dashed var(--color-primary);
   color: var(--color-primary);
 }
-#sales-analytics .add-category-card{
+#sales-analytics .add-category-card {
   border: 2px dashed blue;
   color: blue;
 }
 
-#sales-analytics .create-user-card{
+#sales-analytics .create-user-card {
   border: 2px dashed green;
   color: green;
 }
@@ -162,56 +241,48 @@
 #sales-analytics .online-card .icon {
   background-color: var(--color-success);
 }
-#sales-analytics .new-customer-card .icon {
+#sales-analytics .user-acc-card .icon {
   background-color: var(--color-primary);
 }
 /* 3.3 Info of item card */
-#sales-analytics .info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-}
+
 #sales-analytics .add-product-card div h3,
 #sales-analytics .create-user-card div h3,
 #sales-analytics .add-category-card div h3 {
   font-weight: 600;
 }
 
-
-#add-category-btn{
+#add-category-btn {
   background-color: transparent;
   width: 100%;
 }
 
 /* Overlay & popup form  */
 
-#overlay{
+#overlay {
   display: none;
- position: fixed;
- top: 0;
- left: 0;
- bottom: 0;
- right: 0;
- background-color: rgba(0, 0, 0, 0.7);
- z-index: 990;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 990;
 }
 
-#add-category-form{
- display: none;
- position: fixed;
- top: 50%;
- left: 50%;
- transform: translate(-50%,-50%);
- border: 0.3px solid grey;
- box-shadow: 3px 4px 6px black;
- background-color: var(--color-light);
- border-radius: 35px;
- padding: 25px;
- z-index: 999;
+#add-category-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.3px solid grey;
+  box-shadow: 3px 4px 6px black;
+  background-color: var(--color-light);
+  border-radius: 35px;
+  padding: 25px;
+  z-index: 999;
 }
-
 
 #add-category-form div {
   display: flex;
@@ -220,12 +291,11 @@
   gap: 1.5rem;
 }
 
-
-#add-category-form label{
+#add-category-form label {
   color: orange;
 }
 
-#add-category-form .group{
+#add-category-form .group {
   display: flex;
 }
 
@@ -250,20 +320,90 @@
   width: 100px;
 }
 
-
- #close-btn-relative{
+#close-btn-relative {
   position: relative;
- }
- #close-add-category-form{
+}
+#close-add-category-form {
   position: absolute;
   font-size: 2rem;
   top: 0;
   right: 5px;
   color: orange;
 }
-#close-add-category-form:hover{
+#close-add-category-form:hover {
   color: red;
   cursor: pointer;
+}
+
+/* monthly-performance-card-kpi */
+
+#yearly-sales-kpi-card {
+  background-color: var(--color-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin: 20px 0;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+
+#yearly-sales-kpi-card i {
+  background-color: var(--card-income-bg-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 2rem;
+}
+
+#yearly-sales-kpi-card svg circle {
+  stroke-dashoffset: 35;
+  stroke-dasharray: 110;
+}
+
+#yearly-sales-kpi-card i {
+  background-color: var(--card-income-bg-color);
+}
+
+#yearly-sales-kpi-card .middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#yearly-sales-kpi-card .middle .left {
+  width: 200px;
+}
+
+/* 3.3 SVG styling */
+
+#yearly-sales-kpi-card .progress {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+#yearly-sales-kpi-card svg {
+  width: 7rem;
+  height: 7rem;
+  z-index: 1;
+}
+#yearly-sales-kpi-card svg circle {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 110;
+  stroke-dashoffset: 92;
+}
+#yearly-sales-kpi-card .progress .number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* For tablet  */
@@ -291,7 +431,7 @@
     right: 5%;
     width: 4.4rem;
   }
-  #right-side-panel .profile .info {
+  #right-side-panel .profile-photo > p {
     display: none;
   }
   #right-side-panel .top button {
@@ -303,6 +443,6 @@
     cursor: pointer;
   }
   #right-side-panel button i {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 }

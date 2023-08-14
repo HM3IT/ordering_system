@@ -48,7 +48,7 @@ $category_dataset = $connection->query($get_categories_sql);
                     <textarea name="description" id="description" cols="30" rows="10" required></textarea>
 
                     <div class="inline-block">
-                        <label for="price">Price:</label>
+                        <label for="price">Price (Ks):</label>
                         <input type="text" id="price" name="price" pattern="[0-9]*" inputmode="numeric" placeholder="Enter price in Kyat" required>
 
                         <label for="discount">Discount percent:</label>

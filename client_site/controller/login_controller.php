@@ -46,7 +46,7 @@ if (isset($_POST["Sign-In"])) {
     $user_password = $_POST["password"];
     $encryptedPassword = hash('sha512', $user_password);
 
-    $get_all_user_qry = "SELECT * from users";
+    $get_all_user_qry = "SELECT * from users WHERE user_level_id = '3'";
     $dataset = $connection->query($get_all_user_qry);
 
     foreach ($dataset as $data) {

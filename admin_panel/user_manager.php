@@ -60,7 +60,7 @@ require "../dao/connection.php";
                 $("#empTable").DataTable({
                     processing: true,
                     serverSide: true,
-                    scrollY: '400px',
+                    scrollY: '480px',
                     scrollCollapse: true,
                     serverMethod: "POST",
                     ajax: {

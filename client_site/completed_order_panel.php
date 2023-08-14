@@ -156,7 +156,13 @@ require "../dao/connection.php";
                                 </tbody>
                             </table>
                             <div class="button-flex">
+                      <?php
+                      if(isset($_POST['filter-type']) && $_POST['filter-type'] !== 'Archive'){
+                      ?>
                                 <a href="./controller/order_controller.php?archive_order_id=<?php echo $id; ?>" class="order-card-btns warning-bg">Remove</a>
+                                <?php
+                                }
+                      ?>
                                 <a href="./invoice.php?invoice_order_id=<?php echo $id; ?>" class="order-card-btns success-bg">Print Invoice</a>
                             </div>
                         </div>
@@ -173,9 +179,7 @@ require "../dao/connection.php";
                 $count = $connection->query($get_order_count_qry);
                 $total_orders = $count->fetchColumn();
                 ?>
-                <a href="shop-page.php?page-num=<?php echo ($page_num - 1); ?>" class="page-link previous-page" <?php if ($page_num == 1) {
-                                                                                                                    echo 'onclick="return false;"';
-                                                                                                                } ?>>
+                <a href="completed_order_panel.php?page-num=<?php echo ($page_num - 1); ?>" class="page-link previous-page" <?php if ($page_num == 1) {  echo 'onclick="return false;"'; } ?>>
                     <li class="page-item">Prev </li>
                 </a>
 
@@ -189,7 +193,7 @@ require "../dao/connection.php";
                     <?php
                     if ($i == $page_num) {
                     ?>
-                        <a href="completed_order_page.php?page-num=<?php echo $i ?>" class="page-link current-page active">
+                        <a href="completed_order_panel.php?page-num=<?php echo $i ?>" class="page-link current-page active">
                             <li class="page-item">
                                 <?php echo $i  ?>
                             </li>
@@ -199,7 +203,7 @@ require "../dao/connection.php";
                         continue;
                     }
                     ?>
-                    <a href="completed_order_page.php?page-num=<?php echo $i ?>" class="page-link">
+                    <a href="completed_order_panel.php?page-num=<?php echo $i ?>" class="page-link">
                         <li class="page-item current-page">
                             <?php echo $i  ?>
                         </li>
@@ -210,8 +214,7 @@ require "../dao/connection.php";
                 }
                 ?>
 
-                <a href="completed_order_page.php?page-num=<?php echo ($page_num + 1) ?>" class="page-link" <?php if ($page_num == $page_count) {
-                                                                                                                echo 'onclick="return false;"';
+                <a href="completed_order_panel.php?page-num=<?php echo ($page_num + 1) ?>" class="page-link" <?php if ($page_num == $page_count) {    echo 'onclick="return false;"';
                                                                                                             } ?>>
                     <li class="page-item next-page">
                         Next

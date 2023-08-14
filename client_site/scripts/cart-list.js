@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  const limitQuanitty = 10;
    
   let windowWidth = $(window).width();
   $(window).resize(function () {
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
           quantity == 1;
         }
       } else if (button.classList.contains("plus")) {
-        if (quantity >= 5) {
+        if (quantity >= limitQuanitty) {
           quantityOverlay.style.display = "block";
           quantityAlertBox.style.display = "block";
         } else {
@@ -72,12 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
     quantityElement.textContent = quantity;
 
       itemStateHandler(quantity, newPrice, itemIndex, itemID);
-      
+    
     });
   });
 
   let timer;
-  let waitTimer = 500;
+  let waitTimer = 1000;
   let updatedItemStateAry = [];
 
   function itemStateHandler(
@@ -115,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(instockInfo).text(response.data);
             // $(quantityElement).text(response.data);
           }
+          location.reload();
         },
         error: function () {
           console.log("Failed to update quantity.");
@@ -126,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Reset the array after sending the data
       updatedItemStateAry = [];
+  
     }, waitTimer);
   }
 });

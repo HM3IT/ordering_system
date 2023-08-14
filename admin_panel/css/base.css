@@ -28,6 +28,7 @@
 
   --card-sale-bg-color: #7380ec;
   --card-expense-bg-color: #ff7782;
+  --card-monthly-sale-bg-color: #850cff;
   --card-income-bg-color: #41f1b6;
 
   --card-border-radius: 2rem;
@@ -75,7 +76,6 @@ body {
   font-family: poppins, Arial, Helvetica, sans-serif;
   font-size: 0.88rem;
   background-color: var(--color-background);
-  /* background-color: rgb(115, 128, 236); */
   user-select: none;
   overflow-x: hidden;
 }

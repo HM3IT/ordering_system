@@ -8,7 +8,7 @@
                 <th>Name</th>
                 <th class="hide-col">Price</th>
                 <th>Quantity</th>
-                <th>Subtotal (ks)</th>
+                <th>Subtotal</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -21,7 +21,12 @@
             $quantity = $value["Quantity"];
             $subtotal = $price * $quantity;
             $total_cost += $subtotal;
-            $formattedSubtotal = number_format($subtotal, 2, ',');
+          
+            $integerPart = floor($subtotal);
+            $decimalPart = $subtotal - $integerPart;
+            
+            $formattedSubtotal = number_format($integerPart, 2, '.', ',') . substr($decimalPart, 1);
+
         ?>
             <tr class="card-list-row">
                 <td><?php echo  $serial++  ?></td>
@@ -41,7 +46,7 @@
                     </div>
                 </td>
 
-                <td class="subtotal-col item-price" data-base-price="<?php echo $price ?>"><?php echo  $formattedSubtotal  ?></td>
+                <td class="subtotal-col item-price" data-base-price="<?php echo $price ?>"><?php echo  $formattedSubtotal  ?> Ks</td>
                 <td>
                     <a href="item_detail.php?view-item-id=<?php echo $item_id  ?>" class="view-cart-a information-border">View</a>
                     <a class="remove-cart-a danger-border" data-item-id="<?php echo $item_id; ?>">Remove</a>
@@ -54,7 +59,13 @@
             <td colspan="5">Total Cost</td>
             <td><?php
                 $_SESSION["total_cost"] =  $total_cost;
-                echo  number_format($total_cost, 2, ',') . ' Ks';
+
+                $integerPart = floor($total_cost);
+                $decimalPart = $total_cost - $integerPart;
+                
+                $formattedTotal = number_format($integerPart, 2, '.', ',') . substr($decimalPart, 1);
+
+                echo  $formattedTotal . ' Ks';
                 ?></td>
             <td>
                 <?php
@@ -108,7 +119,6 @@
             hideOrderSubmitNoti();
         });
 
-
         $("#cancel-order-btn").on("click", function(e) {
             hideOrderNowForm();
         });
@@ -150,7 +160,7 @@
             success: function(data) {
                 hideOrderNowForm();
                 showOrderSubmitNoti();
-  
+
             },
             error: function(error) {
                 console.log("fail");

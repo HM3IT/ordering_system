@@ -33,6 +33,8 @@ if (empty($_SESSION["status"])) {
         ?>
     </div>
 </body>
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!-- <script src="../assets/js/core/popper.min.js"></script> -->
 <script src="./scripts/performance_card.js"></script>
 <script src="./scripts/sidebar.js"></script>
 <script src="./scripts/theme-togggler.js"></script>

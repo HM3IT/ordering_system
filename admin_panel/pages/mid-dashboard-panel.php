@@ -1,82 +1,94 @@
 <main>
-  <h1>Dashboard</h1>
-  <div class="date">
-    <input type="date" id="dateInput" max="<?php echo date('Y-m-d'); ?>" onchange="compareDates()" />
+  <div id="dashbaord-head">
+    <h1>Dashboard</h1>
+    <div class="date">
+      <label for="dateInput">Choose date: </label>
+      <input type="date" id="dateInput" max="<?php echo date('Y-m-d'); ?>" onchange="compareDates()" />
+    </div>
   </div>
-
-
+ 
   <!-- START of insights section-->
   <section class="insights">
-    <!-- START of sales-card -->
+
+    <!-- START of daily sales-card -->
     <div class="card sales-card">
-      <i class="fa-solid fa-chart-line"></i>
-      <div class="middle">
-        <div class="left">
+      <div class="card-content">
+        <i class="fa-solid fa-chart-line"></i>
+        <div class="card-info">
+
           <h3>Daily Sales</h3>
           <h2 id="daily-sales">350,00K ks</h2>
         </div>
-        <div class="progress">
-          <svg>
-            <circle cx="38" cy="38" r="36"></circle>
-          </svg>
-          <div class="number">
-            <p id="daily-sales-percent">81%</p>
-          </div>
-        </div>
       </div>
-      <small class="text-muted">Sales contribution to target sales </small>
+      <div class="performance-percent">
+        <p class="text-muted"><span id="daily-sales-percent">81% </span> than yesterday</p>
+      </div>
+
     </div>
-    <!-- END of sales-card -->
+    <!-- END of daily sales-card -->
 
     <!-- START of order-card -->
     <div class="card order-card">
-      <i class="fa-solid fa-chart-simple"></i>
-      <div class="middle">
-        <div class="left">
+      <div class="card-content">
+        <i class="fa-solid fa-chart-simple"></i>
+        <div class="card-info">
           <h3>Daily Total orders</h3>
           <h2 id="total-order">6</h2>
         </div>
-        <div class="progress">
-          <svg>
-            <circle cx="38" cy="38" r="36"></circle>
-          </svg>
-          <div class="number">
-            <p id="total-order-percent">44%</p>
-          </div>
-        </div>
       </div>
-      <small class="text-muted" id="target-order"> Last 24 Hours </small>
+      <div class="performance-percent">
+        <p class="text-muted"><span id="total-order-percent">44% </span> than yesterday</p>
+      </div>
     </div>
+
     <!-- END of order-card -->
 
-    <!-- START of income-card -->
+    <!-- START of monthly-sale-card -->
     <div class="card montly-sales-card">
-      <i class="fa-solid fa-magnifying-glass-dollar"></i>
-      <div class="middle">
-        <div class="left">
-          <h3>Monly Sales KPI</h3>
-          <h2 id="monthly-sales-kpi">350,00K ks</h2>
-        </div>
-        <div class="progress">
-          <svg>
-            <circle cx="38" cy="38" r="36"></circle>
-          </svg>
-          <div class="number">
-            <p id="monthly-sales-percent">60%</p>
-          </div>
+      <div class="card-content">
+        <i class="fa-solid fa-dollar-sign"></i>
+        <div class="card-info">
+          <h3>This Month Sales</h3>
+          <h2 id="monthly-sales">350,00K ks</h2>
         </div>
       </div>
-      <small class="text-muted" id="target-sales"> Monthly performance insights</small>
+      <div class="performance-percent">
+        <p class="text-muted"><span id="monthly-sales-percent">44% </span> than last month</p>
+      </div>
     </div>
-    <!-- END of income-card -->
+    <!-- END of monthly-sale-card -->
+
+  </section>
+  <section id="bar-chart-section">
+    <div class="card">
+
+      <div id="order-count-bar-chart">
+        <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+        <h2 id="no-order-info">No Order In the Last Week</h2>
+      </div>
+      <div class="performance-percent">
+        <p class="text-muted"><i class="fa-regular fa-clock"></i>Lastly week order frequency</p>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div id="daily-sale-chart">
+        <canvas id="line-chart" class="chart-canvas" height="170"></canvas>
+        <h2 id="no-sales-info">No Slaes In the Past Week</h2>
+      </div>
+      <div class="performance-percent">
+        <p class="text-muted"><i class="fa-regular fa-clock"></i>Lastly week sales</p>
+      </div>
+    </div>
   </section>
 
   <!-- END of insights section -->
 
   <!-- START of top sale item table section-->
-  <section class="recent-order">
+  <section class="top-sale-item">
     <h2>Top sales menu item</h2>
-    <table id="recent-order-table">
+    <table id="top-sale-table">
       <thead>
         <tr>
           <th>Top</th>
@@ -84,11 +96,12 @@
           <th>Name</th>
           <th>Sales</th>
           <th>Sold quantity</th>
+          <th>Instock quantity</th>
           <th>Action</th>
         </tr>
       </thead>
       <?php
-     $get_top_sale_item = "SELECT *
+      $get_top_sale_item = "SELECT *
      FROM item
      INNER JOIN item_media ON item.id = item_media.item_id 
      ORDER BY (item.sold_quantity * item.price) DESC
@@ -101,6 +114,7 @@
       foreach ($top_sales_data as $row) {
         $item_id = $row["item_id"];
         $sold_quantity = $row["sold_quantity"];
+        $instock_quantity = $row["quantity"];
         $price = $row["price"];
         $sales = $sold_quantity * $price;
         $discount = $row["discount"];
@@ -115,9 +129,12 @@
           <td><?php echo  $serial++; ?></td>
           <td>IR <?php echo $item_id  ?></td>
           <td><?php echo $row["name"] ?></td>
-          <td class="warning"><?php echo $sales ?></td>
-          <td class="primary"><?php echo $sold_quantity  ?></td>
-          <td class="primary"><a href="./view_item.php?view-item-id=<?php echo $item_id  ?>">View</a></td>
+          <td><?php echo $sales ?></td>
+          <td><?php echo $sold_quantity  ?></td>
+          <td <?php if ($instock_quantity < 5) {
+                echo "class='danger'";
+              } ?>><?php echo $instock_quantity  ?></td>
+          <td class="information"><a href="./view_item.php?view-item-id=<?php echo $item_id  ?>">View</a></td>
           </td>
         </tr>
 
@@ -126,7 +143,9 @@
       ?>
       </tbody>
     </table>
-    <a href="./menu_item_manager.php">See All items</a>
   </section>
   <!-- END of recent-order table section-->
 </main>
+<script src="scripts/chart-data.js">
+
+</script>

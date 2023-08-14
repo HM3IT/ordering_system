@@ -1,7 +1,6 @@
 <?php
 require "../../dao/connection.php";
 
-
 if (isset($_POST["add-category"])) {
     $new_category = $_POST["category"];
 

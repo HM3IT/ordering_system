@@ -4,8 +4,8 @@ $valid_file_extensions = array("png", "jpeg", "jpg", "svg", "webp", "jfif");
 // remove user account form TABLE users
 if (isset($_GET["remove_user_id"])) {
     $id = $_GET["remove_user_id"];
-    $user_acc_delete_qry = "DELETE FROM users WHERE id =  $id  ";
-    $stmt =   $connection->query($user_acc_delete_qry);
+    $user_acc_deactive_qry = "UPDATE users SET user_status = 'Delete' WHERE id = $id";
+    $stmt =   $connection->query($user_acc_deactive_qry);
     header("Location: ../user_manager.php");
     exit;
 }

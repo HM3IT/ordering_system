@@ -122,7 +122,9 @@
   display: inline-block;
   margin: 12px 0;
 }
-
+#order-now-form{
+  width: 100%;
+}
 #order-form div,
 #checkout-noti-form div{
   display: flex;
@@ -142,6 +144,7 @@
 
 #order-form #additional-req {
   margin: 15px 0;
+  width: 100%;
 }
 #cancel-order-btn,
 #order-now-btn {
