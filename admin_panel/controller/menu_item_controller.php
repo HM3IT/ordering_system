@@ -39,7 +39,7 @@ if (isset($_POST["add_item_submit"])) {
 
     $additional_image_files = $_FILES["additional_imgs"];
     $additional_images = array();
-    $add_img_limit = 3;
+    $add_img_limit = 4;
 
     for ($i = 0; $i < $add_img_limit; $i++) {
         if (!empty($additional_image_files["tmp_name"][$i])) {

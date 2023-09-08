@@ -40,7 +40,10 @@ $get_all_product_sql = "SELECT * FROM item";
                     data: "name"
                 },
                 {
-                    data: "price"
+                    data: "price",
+                    render: function(data, type, row) {
+                        return data + " Ks";
+                    }
                 },
                 {
                     data: "quantity"

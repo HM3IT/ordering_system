@@ -103,7 +103,7 @@ if (!isset($_SESSION)) {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>  
         <div class='window'>
             <div class='overlay'></div>
 

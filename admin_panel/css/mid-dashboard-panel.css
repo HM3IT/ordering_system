@@ -69,7 +69,6 @@ main .insights {
   border-top: 1px solid #e2e1e1;
 }
 
-
 /* 3.1 Icon styling */
 .insights .card i {
   border-radius: 50%;
@@ -128,7 +127,9 @@ main .insights small {
   top: -50px;
   border-radius: 10px;
 }
+
 #daily-sale-chart #line-chart,
+#monthly-sale-chart #monthly-line-chart,
 #order-count-bar-chart #chart-bars {
   display: block;
   width: 358px;
@@ -138,11 +139,16 @@ main .insights small {
 #order-count-bar-chart {
   background-color: rgb(80, 8, 181);
 }
-#daily-sale-chart{
+#daily-sale-chart {
   background-color: #0a875e;
 }
+#monthly-sale-chart {
+  background-color: rgb(27, 28, 29);
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
 #no-order-info,
-#no-sales-info{
+#no-sales-info {
   text-align: center;
   display: none;
 }
@@ -150,13 +156,15 @@ main .insights small {
 #daily-sale-chart,
 #order-count-bar-chart,
 #no-order-info,
-#no-sales-info
- {
+#no-sales-info {
   height: 220px;
   line-height: 220px;
 }
-
-#bar-chart-section .card .performance-percent  i {
+#monthly-sale-chart{
+  height: 260px;
+  line-height: 220px;
+}
+#bar-chart-section .card .performance-percent i {
   width: 20px;
 }
 /* 5 RRECENT ORDERS TABLE  */

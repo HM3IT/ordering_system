@@ -57,3 +57,11 @@
     height: 25px;
     width: 150px;
   }
+  @media screen and (max-width: 1133px) {
+  /* Pagination */
+#pagination {
+  display: block;
+  text-align: center;
+  margin: 50px auto;
+}
+  }

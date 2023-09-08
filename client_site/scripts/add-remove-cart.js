@@ -44,10 +44,17 @@ $(document).ready(function () {
 
   removeButtons.each(function () {
     $(this).click(function (event) {
+     
       event.preventDefault();
 
       let itemId = $(this).data("itemId");
       let listItem = $(this).closest(".card-list-items");
+
+
+      let currentQuantity = parseInt($('#cart-items-counter').text());
+      currentQuantity -= 1;
+      $('#cart-items-counter').text(currentQuantity);
+      $('#cart-quantity').text(currentQuantity);
 
       listItem.addClass("removing");
       setTimeout(function () {
@@ -64,7 +71,8 @@ $(document).ready(function () {
           let emptyCartItems = cartList.find(
             ".card-list-items:not(.removing)"
           );
-
+          let itemCount = emptyCartItems.length;
+          console.log(itemCount)
           if (emptyCartItems.length === 0) {
             let emptyCartItem = $("<li>").addClass("card-list-items");
             let emptyCartBox = $("<div>").addClass("card-list-box");
@@ -84,7 +92,7 @@ $(document).ready(function () {
             emptyCartItem.append(emptyCartBox);
 
             cartList.append(emptyCartItem);
-          }
+          } 
         },
       });
     });

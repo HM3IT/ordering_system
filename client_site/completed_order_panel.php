@@ -97,7 +97,7 @@ require "../dao/connection.php";
                     $date = new DateTime($row["order_datetime"]);
 
                     // Format the date as 'Y-F-d h:i a' to get '2023-August-01 03:05 pm'
-                    $formatted_date = $date->format('Y-F-d h:i a');
+                    $formatted_date = $date->format('Y-M-d h:i a');
 
                 ?>
                     <div class="order-card">
@@ -157,7 +157,7 @@ require "../dao/connection.php";
                             </table>
                             <div class="button-flex">
                       <?php
-                      if(isset($_POST['filter-type']) && $_POST['filter-type'] !== 'Archive'){
+                      if(isset($filter_type ) && $filter_type  !== 'Archive'){
                       ?>
                                 <a href="./controller/order_controller.php?archive_order_id=<?php echo $id; ?>" class="order-card-btns warning-bg">Remove</a>
                                 <?php

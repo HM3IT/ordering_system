@@ -43,6 +43,7 @@ $data = array();
 $serial = $row + 1;
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $item_id = $row['item_id'];
+    $price = $row['price'] ;
     $data[] = array(
         "item_id" =>  $item_id,
         "image" => '<img src="../images/Menu_items/' . $row['category_name'] . '/' . $row['primary_img'] . '" alt="product-image" class="product-tbl-img">',
@@ -51,7 +52,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // "added_date" => $row['added_date'],
         // "sold_quantity" => $row['sold_quantity'],
         // "category" => $row['category_name'],
-        "price" => $row['price'],
+        "price" => $price ,
         "quantity" => $row['quantity'],
         "sold_quantity" => $row['sold_quantity'],
         // "discount" => $row['discount'],

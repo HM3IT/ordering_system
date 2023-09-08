@@ -23,7 +23,7 @@ session_start();
         </div>
         <section class="login-form-section">
             <input id="tab-1" type="radio" name="tab" class="sign-in-rdbtn" checked><label for="tab-1" class="tab">Sign In</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up-rdbtn"><label for="tab-2" class="tab">Sign Up</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up-rdbtn"><label for="tab-2" class="tab"></label>
             <div class="login-form">
                 <!-- START of SIGN IN FORM  -->
                 <form class="sign-in-form" action="controller/login_controller.php" method="post">

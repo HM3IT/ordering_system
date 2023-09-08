@@ -19,6 +19,15 @@ if (session_status() == PHP_SESSION_NONE) {
     <ul>
       <a href="view-cart-list.php" class="view-cart-icon">
         <li class="nav-bar-btn view-cart-btn">
+          <span id="cart-quantity">
+            <?php
+
+            if (isset($_SESSION["cart"])) {
+
+              $count = count($_SESSION["cart"]);
+              echo  $count;
+            }?>
+          </span>
           <i class="fa-solid fa-cart-arrow-down"></i>
         </li>
       </a>

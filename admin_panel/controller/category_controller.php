@@ -3,12 +3,14 @@ require "../../dao/connection.php";
 
 if (isset($_POST["add-category"])) {
     $new_category = $_POST["category"];
+    $new_category_icon = $_POST["category-icon"];
 
-    $insert_category_query = "INSERT INTO category (category_name) VALUES (:category_name)";
+    $insert_category_query = "INSERT INTO category (category_name, category_icon) VALUES (:category_name, :category_icon)";
 
     $stmt = $connection->prepare($insert_category_query);
 
-    $stmt->bindParam(':category_name', $new_category);
+    $stmt->bindParam(':category_name', $new_category, PDO::PARAM_STR);
+    $stmt->bindParam(':category_icon', $new_category_icon, PDO::PARAM_STR);
 
     $stmt->execute();
 
@@ -42,24 +44,29 @@ if (isset($_POST["update-category"])) {
 
     $update_category_query = "UPDATE category SET category_name = :new_category";
     $bind_values = array(':new_category' => $new_category);
-    
+
     if (isset($_POST["category-icon"]) && !empty($_POST["category-icon"])) {
         $category_icon = $_POST["category-icon"];
         $update_category_query .= ", category_icon = :category_icon";
         $bind_values[':category_icon'] = $category_icon;
     }
- 
+
     $update_category_query .= " WHERE category_name = :old_category";
     $bind_values[':old_category'] = $old_category;
 
     $stmt = $connection->prepare($update_category_query);
 
     if ($stmt->execute($bind_values)) {
-        echo "Category updated successfully!";
+
+        echo "
+        <script>
+            alert('Category is supdated successfully!');
+            location.href='../category_manager.php';
+        </script>";
     } else {
         echo "Failed to update category.";
     }
-   
+
     echo "
     <script>
         alert('Category has been updated');

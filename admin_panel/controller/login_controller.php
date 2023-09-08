@@ -33,6 +33,8 @@ if (isset($_POST["sign-in-btn"])) {
 
             $_SESSION["status"] = "login";
             $_SESSION["status-login"] = "valid";
+
+            $_SESSION['user_level_id']=$data["id"];
             $found = true;
             break;
         }
@@ -57,6 +59,7 @@ if (isset($_POST["authentication-check-submit"])) {
     if ($encryptedPassword ===  $data["password"]) {
         // for security
         $_SESSION["authentication"] = "checked";
+       
         header("Location: ../setting.php");
     } else {
         echo '

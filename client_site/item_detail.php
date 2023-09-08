@@ -164,10 +164,7 @@ require "../dao/connection.php";
                     </div>
                 </div>
                 <?php
-                // require COMPONENTS_PATH . 'reviewed_item_data.php';
-                // require COMPONENTS_PATH . 'cart-list.php';
                 require './components/product-slider.php';
-
                 ?>
             </section>
         </div>

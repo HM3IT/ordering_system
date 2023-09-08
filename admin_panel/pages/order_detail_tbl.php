@@ -87,7 +87,7 @@ if (isset($_GET["view_order_id"])) {
                     <td><?php echo $item_row["price"]  ?></td>
                     <td><?php echo  $num_ordered  ?></td>
                     <td> 
-                        <a href="view_item.php?view_item_id= <?php echo $item_id ?>" class="view-btn information-bg">View Detail</a> 
+                        <a href="view_item.php?view_item_id= <?php echo $item_id ?>" class="view-btn information-bg">View Details</a> 
                        </td>
                 </tr>
             <?php

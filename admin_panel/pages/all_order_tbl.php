@@ -48,7 +48,10 @@ $row_count = $all_product_dataset->rowCount();
                     data: "order_datetime"
                 },
                 {
-                    data: "total_price"
+                    data: "total_price",
+                    render: function(data, type, row) {
+                        return data + " Ks";
+                    }
                 },
                 {
                     data: "order_status"

@@ -13,11 +13,18 @@
       <h3>Dashboard</h3>
     </a>
 
+   <?php
+   if(isset($_SESSION["user_level_id"]) && $_SESSION["user_level_id"] == 1){
+
+
+   ?>
     <a href="./user_manager.php" class="sidebar-link">
       <i class="fa-solid fa-user"></i>
       <h3>Staff</h3>
     </a>
-
+    <?php
+       }
+   ?>
     <a href="./menu_item_manager.php" class="sidebar-link">
       <i class="fa-solid fa-utensils"></i>
       <h3>Menu items</h3>
@@ -35,7 +42,7 @@
                                   if (!isset($connection)) {
                                     require "../dao/connection.php";
                                   }
-                                  $get_all_order_sql = "SELECT COUNT(*) AS row_count FROM orders";
+                                  $get_all_order_sql = "SELECT COUNT(*) AS row_count FROM orders WHERE order_status='Pending'";
                                   $result = $connection->query($get_all_order_sql);
                                   $row_count = $result->fetchColumn();
 

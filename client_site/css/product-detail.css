@@ -129,17 +129,31 @@
   justify-content: end;
   margin-top: 25px;
 }
-
+@media (max-width: 1133px) {
+  :root {
+    
+    --product-box-max-width: 780px;
+  }
+.view-product-box {
+  margin: 20px 20px;
+}
+.trend-product-wrapper {
+  max-width: 780px;
+}
+}
 @media (max-width: 820px) {
   :root {
     --image-section-width: 100%;
+    --product-box-max-width: 780px;
   }
+
   .view-product-box {
     display: flex;
     flex-direction: column;
     width: 80%;
     justify-content: center;
     border: none;
+    margin: 20px 0px;
   }
 
   .view-product-section #main-img {

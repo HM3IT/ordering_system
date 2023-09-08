@@ -1,24 +1,22 @@
 /* Back button style */
- #back-btn{
+#back-btn {
   display: inline-block;
   padding: 10px 15px;
   background-color: orangered;
   color: black;
-  border-radius:10px;
+  border-radius: 10px;
   margin-top: 40px;
   border: 2px solid transparent;
 }
- #back-btn > i{
+#back-btn > i {
   color: white;
   font-size: 2rem;
 }
- #back-btn:hover{
+#back-btn:hover {
   border: 2px solid orangered;
   background-color: white;
- 
- 
 }
- #back-btn:hover i{
+#back-btn:hover i {
   color: orangered;
 }
 
@@ -66,31 +64,32 @@
   border-collapse: collapse;
 }
 
-#payment-check{
+#payment-check {
   display: flex;
-  gap:2rem;
+  gap: 2rem;
 }
-#k-pay-img{
+#k-pay-img {
   width: 300px;
 }
-#check-customer-btn{
+#check-customer-btn {
   padding: 10px 15px;
   background-color: darkblue;
   color: white;
 }
-#check-customer-btn:hover{
+#check-customer-btn:hover {
   cursor: pointer;
   background-color: blue;
 }
 
-#all-product-table .view-btn{
+#all-product-table .view-btn {
   padding: 10px 15px;
   display: inline-block;
   border-radius: 10px;
-  
+  font-weight: 700;
+  font-size: 1rem;
+  color: orangered;
 }
 
-#order-detail-table-th{
+#order-detail-table-th {
   background-color: var(--color-background);
-
 }

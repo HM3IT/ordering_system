@@ -36,21 +36,8 @@ $total_items = $all_dataset->rowCount();
     <link rel="stylesheet" href="css/product-section.css">
     <link rel="stylesheet" href="css/alert-box.css" />
     <Style>
-        #product-slider-section {
-            display: none;
-        }
-
-        @media screen and (max-width: 780px) {
-
-            #product-slider-section {
-                display: block;
-            }
-
-            .product-section h2,
-            .product-section p {
-                display: none;
-            }
-        }
+      
+ 
     </Style>
 </head>
 

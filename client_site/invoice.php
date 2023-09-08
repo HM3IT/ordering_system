@@ -45,6 +45,7 @@ $order_id = $_REQUEST["invoice_order_id"];
         margin: 0 auto;
       }
 
+
     }
   </style>
 </head>
@@ -142,7 +143,7 @@ WHERE o.id = :order_id";
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Amount (ks)</th>
+                <th >Amount (ks)</th>
               </thead>
               <?php
               $serial = 1;
@@ -160,7 +161,7 @@ WHERE o.id = :order_id";
                 $quantity = $value["num_ordered"];
                 $subtotal = $price * $quantity;
                 $total_cost += $subtotal;
-                $formattedSubtotal = number_format($subtotal, 2, ',');
+                $formattedSubtotal = $subtotal ." Ks";
               ?>
                 <tr>
                   <td><?php echo  $serial++  ?></td>
@@ -171,14 +172,17 @@ WHERE o.id = :order_id";
                     <span class="quantity"><?php echo $quantity ?></span>
       </div>
       </td>
-      <td class="subtotal-col"><?php echo  $formattedSubtotal  ?></td>
+      <td class="subtotal-col" style=" text-align: right;"><?php echo  $formattedSubtotal  ?></td>
       </tr>
     <?php
               }
     ?>
     <tr id="total-cost-data" class="information">
       <td colspan="4" id="total-cost-text-col">Total Cost</td>
-      <td colspan="2" id="total-cost-col"><?php echo  number_format($total_cost, 2, ',') . ' Ks'; ?>
+      <td colspan="2" id="total-cost-col"><?php
+       //  echo  number_format($total_cost, 2, ',') . ' Ks'; 
+        echo $total_cost . ' Ks'; 
+       ?>
       </td>
     </tr>
     </table>

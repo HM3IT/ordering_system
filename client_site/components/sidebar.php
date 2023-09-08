@@ -1,4 +1,7 @@
 <?php
+if (!isset($connection)) {
+  require "../dao/connection.php";
+}
 $get_category = "SELECT * FROM category";
 $dataset = $connection->query($get_category); // Fix the variable name here
 ?>
@@ -12,16 +15,17 @@ $dataset = $connection->query($get_category); // Fix the variable name here
   <div class="sidebar-function-container">
     <?php
     while ($data = $dataset->fetch()) {
+      /*
+      * Althoughht this condition checking ($data["id"] == 8) is hardcoding, 
+      *the ID will not be changed, as it is not allowed to remove the Special menu in the admin site.
+       */
+      if ($data["id"] == 8) continue;
     ?>
       <a href="./menu.php?category-id=<?php echo $data["id"]; ?>" class="sidebar-link">
         <?php echo $data["category_icon"]; ?>
         <h3><?php echo $data["category_name"]; ?></h3>
       </a>
     <?php
-    }
-
-    if (!isset($connection)) {
-      require "../dao/connection.php";
     }
     $get_pending_order_sql = "SELECT COUNT(*) FROM orders WHERE order_status='Pending'";
     $stmt1 = $connection->query($get_pending_order_sql);
@@ -31,7 +35,10 @@ $dataset = $connection->query($get_category); // Fix the variable name here
     $stmt2 = $connection->query($get_completed_order_sql);
     $total_completed_orders = $stmt2->fetchColumn();
     ?>
-
+    <a href="./special-menu.php" class="sidebar-link">
+      <i class="fa-solid fa-calendar-minus"></i>
+      <h3>Special Menu</h3>
+    </a>
     <a href="./pending_order_panel.php" class="sidebar-link">
       <i class="fa-solid fa-list-check"></i>
       <h3>Pending Orders</h3>
@@ -41,7 +48,7 @@ $dataset = $connection->query($get_category); // Fix the variable name here
     </a>
 
     <a href="./completed_order_panel.php" class="sidebar-link">
-    <i class="fa-solid fa-utensils"></i>
+      <i class="fa-solid fa-utensils"></i>
       <h3>Completed Orders</h3>
       <span class="report-count">
         <?php echo $total_completed_orders; ?>

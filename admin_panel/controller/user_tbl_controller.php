@@ -26,20 +26,20 @@ if ($searchValue != '') {
 }
 
 ## Total number of records without filtering
-$stmt = $connection->query("SELECT COUNT(*) AS allcount FROM users");
+$stmt = $connection->query("SELECT COUNT(*) AS allcount FROM users WHERE user_status = 'Active'");
 $records = $stmt->fetch(PDO::FETCH_ASSOC);
 $totalRecords = $records['allcount'];
 
 ## Total number of records with filtering
-$stmt = $connection->query("SELECT COUNT(*) AS allcount FROM users WHERE 1" . $searchQuery);
+$stmt = $connection->query("SELECT COUNT(*) AS allcount FROM users WHERE user_status = 'Active'" . $searchQuery);
 $records = $stmt->fetch(PDO::FETCH_ASSOC);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Fetch records
- $empQuery = "SELECT u.*, ul.user_level
+$empQuery = "SELECT u.*, ul.user_level
              FROM users u
              LEFT JOIN user_levels ul ON u.user_level_id = ul.id
-             WHERE 1" . $searchQuery . "
+             WHERE user_status = 'Active'" . $searchQuery . "
              ORDER BY " . $columnName . " " . $columnSortOrder . "
              LIMIT " . $row . "," . $rowperpage;
 

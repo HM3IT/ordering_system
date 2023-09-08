@@ -1,5 +1,5 @@
 <section id="product-slider-section">
-  <h3 id="trends-product-title">Special Menu</h3>
+  <h3 id="trends-product-title">Popular Menu</h3>
   <div class="trend-product-wrapper">
     
     <i id="left-arrow-btn" class="fa-solid fa-square-caret-left"></i>

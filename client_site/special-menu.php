@@ -16,33 +16,20 @@ require "../dao/connection.php";
     <?php require "./components/base-link.php" ?>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/search-bar.css" />
-    <link rel="stylesheet" href="css/pagination.css" />
+    <link rel="stylesheet" href="css/pagination-sort.css" />
     <link rel="stylesheet" href="css/product-section.css">
     <link rel="stylesheet" href="css/swiper.css">
     <link rel="stylesheet" href="css/product-slider.css">
     <link rel="stylesheet" href="css/alert-box.css" />
     <Style>
-        #product-slider-section {
-            display: none;
+        #sidebar {
+            height: 100%;
         }
 
-        @media screen and (max-width: 780px) {
-            .product-container {
-                display: none;
-            }
-
-            .feature-section {
-                display: none;
-            }
-
-            #product-slider-section {
-                display: block;
-            }
-
-            .product-section h2,
-            .product-section p {
-                display: none;
-            }
+        #pagination {
+            display: block;
+            text-align: center;
+            margin: 45px auto;
         }
     </Style>
 </head>
@@ -51,19 +38,14 @@ require "../dao/connection.php";
 
     <div id="main-container">
         <?php
+        require './components/alert-box.php';
+        require './components/cart-list.php';
         require './components/sidebar.php';
-        // default type
-        // $category_id = 4;
-        // if (isset($_GET["category-id"])) {
-        //     $category_id = $_GET["category-id"];
-        //     $get_all_menu_item_sql = "SELECT * FROM item WHERE category_id = $category_id";
-        // }  
 
-        //test
-        $get_all_menu_item_sql = "SELECT * FROM item";
-        $all_dataset= $connection->query($get_all_menu_item_sql);
+        $category_id = 8;
+        $get_special_menu_sql = "SELECT * FROM item WHERE  category_id =$category_id";
+        $all_dataset = $connection->query($get_special_menu_sql);
         $total_items = $all_dataset->rowCount();
-       
         ?>
         <div>
             <?php
@@ -101,17 +83,17 @@ require "../dao/connection.php";
                         $orderBy = 'ORDER BY (price - (price * discount / 100)) ASC';
                         break;
                 }
-                $get_item_per_page = "SELECT * FROM item WHERE category_id =$category_id $orderBy LIMIT $offset, $item_per_page";
+                $get_item_per_page = "$get_special_menu_sql $orderBy LIMIT $offset, $item_per_page";
                 $_SESSION["ordby"] = $orderBy;
             } else if (isset($_SESSION["ordby"])) {
                 $orderBy = $_SESSION["ordby"];
-                $get_item_per_page = "SELECT * FROM item WHERE category_id =$category_id $orderBy LIMIT $offset, $item_per_page";
+                $get_item_per_page = "$get_special_menu_sql $orderBy LIMIT $offset, $item_per_page";
             } else {
-           
-                $get_item_per_page = "SELECT * FROM item WHERE category_id =$category_id ORDER BY id LIMIT $offset, $item_per_page";
+
+                $get_item_per_page = "$get_special_menu_sql ORDER BY id LIMIT $offset, $item_per_page";
             }
 
-            $dataset = $connection->query($get_item_per_page);   
+            $dataset = $connection->query($get_item_per_page);
             ?>
             <div>
                 <form action="" method="POST" id="sort-select-form">
@@ -138,13 +120,13 @@ require "../dao/connection.php";
                     </select>
                 </form>
             </div>
-            <?php  require './components/product-section.php'; ?>
+            <?php require './components/product-section.php'; ?>
 
             <div id="pagination">
 
                 <a href="menu.php?page-num=<?php echo ($page_num - 1); ?>#main-container" class="page-link previous-page" <?php if ($page_num == 1) {
-               echo 'onclick="return false;"';
-               } ?>>
+                                                                                                                                echo 'onclick="return false;"';
+                                                                                                                            } ?>>
                     <li class="page-item">Prev </li>
                 </a>
 
@@ -153,9 +135,9 @@ require "../dao/connection.php";
 
                 $page_count = ceil($total_items / $item_per_page);
                 while ($i <= $page_count) {
-             
+
                     if ($i == $page_num) {
-                    ?>
+                ?>
                         <a href="menu.php?page-num=<?php echo $i ?>#main-container" class="page-link current-page active">
                             <li class="page-item">
                                 <?php echo $i  ?>
@@ -177,28 +159,27 @@ require "../dao/connection.php";
                 }
                 ?>
 
-                <a href="menu.php?page-num=<?php echo ($page_num + 1) ?>#main-container" class="page-link" <?php if ($page_num == $page_count) { echo 'onclick="return false;"';   } ?>>
+                <a href="menu.php?page-num=<?php echo ($page_num + 1) ?>#main-container" class="page-link" <?php if ($page_num == $page_count) {
+                                                                                                                echo 'onclick="return false;"';
+                                                                                                            } ?>>
                     <li class="page-item next-page">
                         Next
                     </li>
                 </a>
 
             </div>
+            <?php
+            require './components/product-slider.php';
+            ?>
         </div>
-        <?php
-
-        // require "./compoenets/right-dashboard-panel.php";
-        ?>
     </div>
-    <?php
-
-
-    // require COMPONENTS_PATH . 'product-slider.php';
-    // require 'components/alert-box.php';
-    // require COMPONENTS_PATH . 'swiper.html';
-    // require COMPONENTS_PATH . 'cart-list.php';
-    // require COMPONENTS_PATH . 'footer.html';
-    ?>
+    <script>
+        $(document).ready(function() {
+            $('#sort-select').change(function() {
+                $('#sort-select-form').submit();
+            });
+        });
+    </script>
 
     <script src="scripts/navbar.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

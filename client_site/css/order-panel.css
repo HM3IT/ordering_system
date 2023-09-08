@@ -48,11 +48,12 @@
 }
 /* 2.2 order-card-body */
 .order-card-body{
-    max-height: 140px;
-    overflow-y: scroll;
+    /* max-height: 140px; */
+    /* overflow-y: scroll; */
 }
 .order-card-body tr td {
   padding: 10px;
+  text-align: center;
 }
 .more-orders{
   border-top: 2px solid red;

@@ -38,7 +38,7 @@ require "../dao/connection.php";
         <div>
             <section id="order-display-panel">
                 <?php
-                $order_card_per_page = 4;
+                $order_card_per_page = 2;
                 $page_num = 1;
                 if (isset($_REQUEST["page-num"])) {
                     $page_num = $_REQUEST["page-num"];
@@ -57,10 +57,17 @@ require "../dao/connection.php";
                 $rows = $dataset->fetchAll();
                 foreach ($rows as $row) {
                     $id = $row["id"];
+
+                    $req =  $row["additional_request"];
+                    if (empty($req)) {
+                        $req = "None";
+                    }
+
                     $date = new DateTime($row["order_datetime"]);
 
-                    // Format the date as 'Y-F-d h:i a' to get '2023-August-01 03:05 pm'
-                    $formatted_date = $date->format('Y-F-d h:i a');
+
+                    // Format the date as '2023-Aug-01 03:05 pm'
+                    $formatted_date = $date->format('Y-M-d h:i a');
                 ?>
                     <div class="order-card">
                         <div class="order-card-head">
@@ -79,11 +86,15 @@ require "../dao/connection.php";
                                 </tr>
                                 <tr>
                                     <td>Due Time</td>
-                                    <td><?php echo $formatted_date; ?></td>
+                                    <td><?php 
+                                    echo $formatted_date;
+                        
+                                     ?>
+                                </td>
                                 </tr>
                                 <tr>
                                     <td>Request</td>
-                                    <td><span class="danger"><?php echo $row["additional_request"]; ?></span></td>
+                                    <td><span class="danger"><?php echo $req; ?></span></td>
                                 </tr>
 
                             </table>
@@ -108,17 +119,11 @@ require "../dao/connection.php";
                                     foreach ($rows as $row) {
                                     ?>
                                         <tr>
-                                            <td <?php if ($serial_num > 3) {
-                                                    echo "class='more-orders'";
-                                                } ?>>
+                                            <td>
                                                 <li><?php echo  $serial_num; ?> </li>
                                             </td>
-                                            <td <?php if ($serial_num > 3) {
-                                                    echo "class='more-orders'";
-                                                } ?>><?php echo  $row['name']; ?> </td>
-                                            <td <?php if ($serial_num > 3) {
-                                                    echo "class='more-orders'";
-                                                } ?>><?php echo  $row['num_ordered']; ?> </td>
+                                            <td><?php echo  $row['name']; ?> </td>
+                                            <td><?php echo  $row['num_ordered']; ?> </td>
                                         </tr>
                                     <?php
                                         $serial_num++;

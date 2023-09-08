@@ -22,7 +22,7 @@
     width: 100%;
   }
   .nav-bar-right ul li{
-    padding: 25px;
+    padding: 15px;
     color: var(--color-dark);
   }
   .nav-bar-right ul a:hover li{
@@ -35,6 +35,21 @@
     font-weight: 900;
     letter-spacing: 3px;
     font-family: fangsong; 
+  }
+
+  .view-cart-btn{
+    position: relative;
+  }
+  #cart-quantity{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-danger);
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
   }
   /*================== MEDIA QUERIES ================== */
 /* For  tablet */

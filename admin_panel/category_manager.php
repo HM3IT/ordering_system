@@ -64,7 +64,7 @@ if (empty($_SESSION["status"])) {
                         <td>
                             <button type="button" class="edit-btn warning-border" data-category-name="<?php echo $category_name; ?>">Edit category</button>
 
-                            <a href="./controller/category_controller.php?remove_category_id=<?php echo $row['id']; ?>" class="remove-btn danger-border <?php if ($row_count > 0) echo 'disableLink'; ?>">
+                            <a href="./controller/category_controller.php?remove_category_id=<?php echo $row['id']; ?>" class="remove-btn danger-border <?php if ($row_count > 0 || $category_id == 8) echo 'disableLink'; ?>">
                                 Remove
                             </a>
 

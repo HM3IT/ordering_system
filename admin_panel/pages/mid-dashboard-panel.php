@@ -6,7 +6,7 @@
       <input type="date" id="dateInput" max="<?php echo date('Y-m-d'); ?>" onchange="compareDates()" />
     </div>
   </div>
- 
+
   <!-- START of insights section-->
   <section class="insights">
 
@@ -63,27 +63,42 @@
     <div class="card">
 
       <div id="order-count-bar-chart">
-        <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+        <canvas id="chart-bars" class="chart-canvas" height="170" style="width:380px"></canvas>
         <h2 id="no-order-info">No Order In the Last Week</h2>
       </div>
       <div class="performance-percent">
-        <p class="text-muted"><i class="fa-regular fa-clock"></i>Lastly week order frequency</p>
+        <p class="text-muted"><i class="fa-regular fa-clock"></i>Last week order frequency</p>
       </div>
 
     </div>
 
     <div class="card">
       <div id="daily-sale-chart">
-        <canvas id="line-chart" class="chart-canvas" height="170"></canvas>
+        <canvas id="line-chart" class="chart-canvas" height="170"  style="width:380px"></canvas>
         <h2 id="no-sales-info">No Slaes In the Past Week</h2>
       </div>
       <div class="performance-percent">
-        <p class="text-muted"><i class="fa-regular fa-clock"></i>Lastly week sales</p>
+        <p class="text-muted"><i class="fa-regular fa-clock"></i>Last week sales</p>
       </div>
     </div>
   </section>
 
   <!-- END of insights section -->
+
+  <section>
+    <!-- Testing -->
+    <div class="card">
+      <div id="monthly-sale-chart">
+        <canvas id="monthly-line-chart" class="chart-canvas" height="280"></canvas>
+        <h2 id="no-sales-info">No Sales In the Past Week</h2>
+      </div>
+      <div class="performance-percent">
+        <p class="text-muted"><i class="fa-regular fa-clock"></i>Monthly sales Comparison</p>
+      </div>
+    </div>
+
+    <!-- Testing -->
+  </section>
 
   <!-- START of top sale item table section-->
   <section class="top-sale-item">
@@ -134,7 +149,7 @@
           <td <?php if ($instock_quantity < 5) {
                 echo "class='danger'";
               } ?>><?php echo $instock_quantity  ?></td>
-          <td class="information"><a href="./view_item.php?view-item-id=<?php echo $item_id  ?>">View</a></td>
+          <td class="information"><a href="./view_item.php?view_item_id=<?php echo $item_id  ?>">View</a></td>
           </td>
         </tr>
 

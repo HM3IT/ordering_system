@@ -15,7 +15,10 @@ if (isset($_REQUEST['order-now']) && isset($_SESSION["cart"])) {
 
     $total_price = $_SESSION["total_cost"];
     $user_id =  $_SESSION["login_user_id"];
-    $today =  date('Y-m-d H:i:s');
+    
+    date_default_timezone_set('Asia/Yangon'); // Myanmar time zone
+    $today = date('Y-m-d H:i:s');
+   
     $order_status = "Pending";
 
     $insert_order_qry = "INSERT INTO orders (order_datetime, total_price, order_status, additional_request, table_number, user_id) VALUES(?,?,?,?,?,?)";
