@@ -133,9 +133,26 @@
 }
 
 /*================== MEDIA QUERIES ================== */
-/* For small tablet */
 
+/* For THE tablet */
 @media screen and (max-width: 1080px) {
+#sidebar .sidebar-function-container {
+ 
+  padding-left: 25px;
+ 
+}
+#sidebar {
+  width: 240px;
+}
+.nav-bar-left {
+  width: 280px;
+}
+#store-name {
+  font-size: .8rem;
+}
+}
+/* For small tablet */
+@media screen and (max-width: 1079px) {
   #sidebar {
     width: 150px;
     height: 115%;

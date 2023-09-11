@@ -72,17 +72,17 @@ $data = $dataset->fetch();
                 </form>
             </div>
 
-            <div>
+            <!-- <div>
                 <form action="./controller/export_controller.php" method="post" id="export-data-form">
                     <label for="file-path">File Path:</label>
                     <input type="text" id="file-path" name="file-path" placeholder="Please insert your file path (downloaded)" required>
                     <div class="button-flex">
-                        <input type="submit" class="information-bg user-expot-btn" name="export-user-data" Value="Export User Data">
+                        <input type="submit" class="information-bg user-expot-btn" name="export-data" Value="Export User Data">
                         <input type="submit" class="succcess-bg user-expot-btn" name="export-item-data" Value="Export Item Data">
                     </div>
 
                 </form>
-            </div>
+            </div> -->
 
             <!-- Popup form for change password -->
             <div id="popup-form-change-password" class="change-password-overlay">

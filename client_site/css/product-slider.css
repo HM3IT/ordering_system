@@ -117,10 +117,17 @@
   width: 160px;
   object-fit: fill;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1133px) {
   .trend-product-wrapper .carousel {
     grid-auto-columns: calc((100% / 3) - 9px);
   }
+}
+
+@media (max-width: 1133px) {
+ 
+.trend-product-wrapper {
+  max-width: 780px;
+}
 }
 
 @media screen and (max-width: 600px) {

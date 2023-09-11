@@ -40,7 +40,7 @@ require "../dao/connection.php";
             $item_id = $_SESSION["current-view-item"];
         }
 
-        $get_item_query = "SELECT item.*, category.*, item_media.* 
+        $get_item_query = "SELECT item.*, item_media.*, category.category_name 
         FROM item
         LEFT JOIN category ON item.category_id = category.id
         LEFT JOIN item_media ON item.id = item_media.item_id
@@ -58,9 +58,15 @@ require "../dao/connection.php";
             $price = $viewed_item_data['price'];
             $quantity = $viewed_item_data['quantity'];
             $description = $viewed_item_data['description'];
-            $category_id =  $viewed_item_data["category_id"];
             $category_name =  $viewed_item_data["category_name"];
+ 
             $primary_image = $viewed_item_data["primary_img"];
+
+            $discount = $viewed_item_data["discount"];
+            if ($discount > 0) {
+                // Calculate the discount price
+                $discount_price = $price - ($price * $discount / 100);
+            }  
         } else {
 
             echo "data retriving error! Please contact with the developer team";
@@ -107,7 +113,12 @@ require "../dao/connection.php";
                     <div class="product-description">
                         <div class="product-description-head">
                             <h2 class="product-title "><?php echo $name ?></h2>
-                            <h2 class="product-price "><?php echo $price ?> Ks</h2>
+                            <h2 class="product-price">
+                            <span class="<?php if(isset($discount_price)) echo 'strike-text'; ?>">  <?php echo $price ?> Ks</span>    
+                           
+                             <span class="discount-price">
+                                <?php if(isset($discount_price)) echo $discount_price. " Ks"; ?></span>
+                            </h2>
                             <label for="Switch-color">Select Size</label>
                             <select name="switch-color" id="switch-color">
                                 <option value="red">Small</option>
@@ -122,9 +133,16 @@ require "../dao/connection.php";
                                 <form method="POST" class="cart-form">
                                     <input type="hidden" name="id" id="id" value="<?php echo  $item_id ?>">
                                     <input type="hidden" name="name" id="name" value="<?php echo $name ?>">
-                                    <input type="hidden" name="primary_img" id="image" value="<?php echo $primary_image ?>">
-                                    <input type="hidden" name="category" id="category" value="<?php echo $category ?>">
-                                    <input type="hidden" name="price" id="price" value="<?php echo $price ?>">
+                                   
+                                    <input type="hidden" name="primary_img" class="image" value="<?php echo $primary_image ?>">
+                                    <input type="hidden" name="category" id="category" value="<?php echo $category_name ?>">
+                                    <input type="hidden" name="price" id="price" value="<?php 
+                                    if(isset($discount_price)){
+                                        echo $discount_price;
+                                    }else{
+                                        echo $price ;
+                                    }
+                                    ?>">
                                     <input type="hidden" name="description" id="description" value="<?php echo $description ?>">
                                     <input type="hidden" name="current_page" class="current_page">
 

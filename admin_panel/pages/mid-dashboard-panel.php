@@ -74,7 +74,7 @@
 
     <div class="card">
       <div id="daily-sale-chart">
-        <canvas id="line-chart" class="chart-canvas" height="170"  style="width:380px"></canvas>
+        <canvas id="line-chart" class="chart-canvas" height="170" style="width:380px"></canvas>
         <h2 id="no-sales-info">No Slaes In the Past Week</h2>
       </div>
       <div class="performance-percent">
@@ -115,20 +115,34 @@
           <th>Action</th>
         </tr>
       </thead>
+
       <?php
-      $get_top_sale_item = "SELECT *
-     FROM item
-     INNER JOIN item_media ON item.id = item_media.item_id 
-     ORDER BY (item.sold_quantity * item.price) DESC
-     LIMIT 5";
+      // $get_top_sale_item = "SELECT *FROM item
+      // ORDER BY (item.sold_quantity * item.price) DESC
+      // LIMIT 5";
+
+      $get_top_sale_item =   
+      "SELECT * 
+      FROM (
+          SELECT i.*, SUM(oi.num_ordered) AS total_sold_quantity
+          FROM item AS i
+          JOIN order_item AS oi ON i.id = oi.item_id
+          JOIN orders AS o ON oi.order_id = o.id
+          WHERE MONTH(o.order_datetime) = MONTH(CURDATE()) AND YEAR(o.order_datetime) = YEAR(CURDATE())
+          GROUP BY i.id
+      ) AS subquery
+      ORDER BY (total_sold_quantity * price) DESC
+      LIMIT 5;
+      ";
+      
 
       $top_sale_dataset = $connection->query($get_top_sale_item);
       $top_sales_data = $top_sale_dataset->fetchAll();
 
       $serial = 1;
       foreach ($top_sales_data as $row) {
-        $item_id = $row["item_id"];
-        $sold_quantity = $row["sold_quantity"];
+        $item_id = $row["id"];
+        $sold_quantity = $row["total_sold_quantity"];
         $instock_quantity = $row["quantity"];
         $price = $row["price"];
         $sales = $sold_quantity * $price;

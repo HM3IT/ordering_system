@@ -99,17 +99,8 @@ h4 {
  .item-title{
   text-transform: capitalize;
 }
-/* For tablet */
-@media screen and (max-width: 1333px) {
-.product-card {
- 
-}
- 
-
-}
-
 /* For small tablets*/
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1079px) {
   .product-section {
     margin: 0 30px;
 }
@@ -152,3 +143,4 @@ h4 {
     font-size: 1rem;
   }
 
+}

@@ -76,6 +76,14 @@
 .product-description {
   padding-left: 20px;
 }
+
+.strike-text{
+  text-decoration: line-through;
+  color: rgb(163, 166, 166);
+}
+.discount {
+  color: red;
+}
 /* 3.2 size selection */
 .view-product-box select {
   margin: 10px;

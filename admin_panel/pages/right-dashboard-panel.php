@@ -77,14 +77,16 @@ $low_quantity_data = $low_quantity_dataset->fetchAll();
         <h2>Top 3 Performing Waiters</h2>
         <div class="update-container">
             <?php
-        $top_3_waiter = "SELECT users.name AS waiter_name, users.*, COUNT(orders.user_id) AS total_orders
-               FROM orders
-               INNER JOIN users ON orders.user_id = users.id 
-               WHERE MONTH(orders.order_datetime) = MONTH(CURRENT_DATE()) AND YEAR(orders.order_datetime) = YEAR(CURRENT_DATE())
-               GROUP BY orders.user_id
-               ORDER BY total_orders DESC
-               LIMIT 3";
 
+
+            $top_3_waiter =
+                "SELECT users.name AS waiter_name, users.*, COUNT(orders.user_id) AS total_orders
+                 FROM orders
+                 INNER JOIN users ON orders.user_id = users.id 
+                 WHERE MONTH(orders.order_datetime) = MONTH(CURRENT_DATE()) AND YEAR(orders.order_datetime) = YEAR(CURRENT_DATE())
+                 GROUP BY orders.user_id
+                 ORDER BY total_orders DESC
+                 LIMIT 3";
 
             $waiters_dataset = $connection->query($top_3_waiter);
             $results = $waiters_dataset->fetchAll(PDO::FETCH_ASSOC);
@@ -141,150 +143,150 @@ $low_quantity_data = $low_quantity_dataset->fetchAll();
                 <small class="text-muted" id="target-kpi-sales"> </small>
             </div>
             <!-- END TEST card  -->
-            <?php
+        <?php
         }
-?>
-            <?php
-            $date = date('Y-m-d H:i:s');
-            $thisYear = date('Y', strtotime($date));
-            $thisMonth = date('m', strtotime($date));
+        ?>
+        <?php
+        $date = date('Y-m-d H:i:s');
+        $thisYear = date('Y', strtotime($date));
+        $thisMonth = date('m', strtotime($date));
 
-            $monthly_order_qry = "SELECT COUNT(*) AS total_orders
+        $monthly_order_qry = "SELECT COUNT(*) AS total_orders
                               FROM orders WHERE YEAR(order_datetime) = $thisYear
                               AND MONTH(order_datetime) = :selected_month";
 
-            $monthly_orders = $connection->prepare($monthly_order_qry);
-            $monthly_orders->bindParam(':selected_month', $thisMonth, PDO::PARAM_INT);
-            $monthly_orders->execute();
-            $this_month_order_dataset = $monthly_orders->fetch();
-            $this_month_order_count = $this_month_order_dataset["total_orders"];
+        $monthly_orders = $connection->prepare($monthly_order_qry);
+        $monthly_orders->bindParam(':selected_month', $thisMonth, PDO::PARAM_INT);
+        $monthly_orders->execute();
+        $this_month_order_dataset = $monthly_orders->fetch();
+        $this_month_order_count = $this_month_order_dataset["total_orders"];
 
 
-            // Calculate last month
-            $lastMonth = date('m', strtotime('-1 month', strtotime($date)));
+        // Calculate last month
+        $lastMonth = date('m', strtotime('-1 month', strtotime($date)));
 
-            $monthly_orders->bindParam(':selected_month', $lastMonth, PDO::PARAM_INT);
-            $monthly_orders->execute();
-            $last_month_order_dataset = $monthly_orders->fetch();
-            $last_month_order_count = $last_month_order_dataset["total_orders"];
+        $monthly_orders->bindParam(':selected_month', $lastMonth, PDO::PARAM_INT);
+        $monthly_orders->execute();
+        $last_month_order_dataset = $monthly_orders->fetch();
+        $last_month_order_count = $last_month_order_dataset["total_orders"];
 
-            $orderDifference = $this_month_order_count - $last_month_order_count;
-            $orderDiffPercentage = 0;
+        $orderDifference = $this_month_order_count - $last_month_order_count;
+        $orderDiffPercentage = 0;
 
-            // Avoid division by zero
-            if ($last_month_order_count !== 0) {
-                $orderDiffPercentage = ($orderDifference / $last_month_order_count) * 100;
-            }
+        // Avoid division by zero
+        if ($last_month_order_count !== 0) {
+            $orderDiffPercentage = ($orderDifference / $last_month_order_count) * 100;
+        }
 
-            ?>
-            <!-- START of the item-online card  -->
+        ?>
+        <!-- START of the item-online card  -->
 
-            <div class="item-card online-card">
-                <div class="icon">
-                    <i class="fa-brands fa-shopify"></i>
+        <div class="item-card online-card">
+            <div class="icon">
+                <i class="fa-brands fa-shopify"></i>
+            </div>
+            <div class="info">
+                <div>
+                    <h3>Total Orders: <?php echo $this_month_order_count; ?></h3>
+                    <small class="text-muted">This Month</small>
                 </div>
-                <div class="info">
-                    <div>
-                        <h3>Total Orders: <?php echo $this_month_order_count; ?></h3>
-                        <small class="text-muted">This Month</small>
-                    </div>
 
 
+            </div>
+            <div style="text-align: center;">
+                <h5 class="<?php echo ($orderDifference >= 0) ? 'success' : 'danger'; ?>">
+                    <?php
+                    echo ($orderDifference >= 0) ? '+' : '-';
+                    echo number_format(abs($orderDiffPercentage), 2); ?>% </h5>
+                <h4>than last month</h4>
+            </div>
+        </div>
+        <!-- END of the item-online card  -->
+
+
+        <?php
+        $thisYear = date('Y');
+        $total_expense = 12_50_0;
+        $formatted_expense = number_format($total_expense);
+
+        $current_employee_qry = "SELECT COUNT(*) FROM users WHERE user_status = 'Active'";
+        $employee_count_dataset = $connection->query($current_employee_qry);
+        $employee_count = $employee_count_dataset->fetchColumn();
+
+        $signout_employee_qry = "SELECT COUNT(*) FROM users WHERE user_status = 'Delete' AND YEAR(created_date) = $thisYear";
+        $signout_employee_count_dataset = $connection->query($signout_employee_qry);
+        $signout_employee_count = $signout_employee_count_dataset->fetchColumn();
+        $employee = $signout_employee_count;
+
+
+        // Avoid division by zero
+        $employee_turnover_rate = 0;
+        if ($signout_employee_count != 0) {
+            $average_employee_count = ($employee_count + $signout_employee_count) / 2;
+            $employee_turnover_rate = ($signout_employee_count / $average_employee_count) * 100;
+        }
+
+        ?>
+
+        <!-- START of the employee card  -->
+        <div class="item-card user-acc-card">
+            <div class="icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="info">
+                <div>
+                    <h3>Number of employees: <?php echo $employee_count; ?></h3>
+                    <small class="text-muted">Total Expense: <?php echo  $formatted_expense; ?> Ks</small>
                 </div>
-                <div style="text-align: center;">
-                    <h5 class="<?php echo ($orderDifference >= 0) ? 'success' : 'danger'; ?>">
-                        <?php
-                        echo ($orderDifference >= 0) ? '+' : '-';
-                        echo number_format(abs($orderDiffPercentage), 2); ?>% </h5>
-                    <h4>than last month</h4>
+
+            </div>
+            <div style="text-align: center;">
+                <h5 class="<?php echo ($employee_turnover_rate <= 50) ? 'success' : 'danger'; ?>">
+                    Turnover rate:
+                    <?php
+                    echo ($employee_turnover_rate >= 0) ? '+' : '-';
+                    echo number_format(abs($employee_turnover_rate), 2); ?>%
+
+                </h5>
+                <h6 class="danger">Left Employee: <?php echo $signout_employee_count; ?></h6>
+            </div>
+        </div>
+
+        <!-- END of the employee card  -->
+
+
+        <!-- START of add new product card  -->
+        <a href="./add_menu_item.php">
+            <div class="item-card add-product-card">
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <h3>Add Menu Item</h3>
                 </div>
             </div>
-            <!-- END of the item-online card  -->
+        </a>
+        <!-- END of add new product card  -->
 
-
-            <?php
-            $thisYear = date('Y');
-            $total_expense = 12_50_0;
-            $formatted_expense = number_format($total_expense);
-
-            $current_employee_qry = "SELECT COUNT(*) FROM users WHERE user_status = 'Active'";
-            $employee_count_dataset = $connection->query($current_employee_qry);
-            $employee_count = $employee_count_dataset->fetchColumn();
-
-            $signout_employee_qry = "SELECT COUNT(*) FROM users WHERE user_status = 'Delete' AND YEAR(created_date) = $thisYear";
-            $signout_employee_count_dataset = $connection->query($signout_employee_qry);
-            $signout_employee_count = $signout_employee_count_dataset->fetchColumn();
-            $employee = $signout_employee_count;
-
-
-            // Avoid division by zero
-            $employee_turnover_rate = 0;
-            if ($signout_employee_count != 0) {
-                $average_employee_count = ($employee_count + $signout_employee_count) / 2;
-                $employee_turnover_rate = ($signout_employee_count / $average_employee_count) * 100;
-            }
-
-            ?>
-
-            <!-- START of the employee card  -->
-            <div class="item-card user-acc-card">
-                <div class="icon">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <div class="info">
-                    <div>
-                        <h3>Number of employees: <?php echo $employee_count; ?></h3>
-                        <small class="text-muted">Total Expense: <?php echo  $formatted_expense; ?> Ks</small>
-                    </div>
-
-                </div>
-                <div style="text-align: center;">
-                    <h5 class="<?php echo ($employee_turnover_rate <= 50) ? 'success' : 'danger'; ?>">
-                        Turnover rate:
-                        <?php
-                        echo ($employee_turnover_rate >= 0) ? '+' : '-';
-                        echo number_format(abs($employee_turnover_rate), 2); ?>%
-
-                    </h5>
-                    <h6 class="danger">Left Employee: <?php echo $signout_employee_count; ?></h6>
+        <!-- START of add new user   -->
+        <a href="./create_user.php">
+            <div class="item-card create-user-card">
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <h3>Create User Account</h3>
                 </div>
             </div>
+        </a>
+        <!-- END of add new user  -->
 
-            <!-- END of the employee card  -->
-
-
-            <!-- START of add new product card  -->
-            <a href="./add_menu_item.php">
-                <div class="item-card add-product-card">
-                    <div>
-                        <i class="fa-solid fa-plus"></i>
-                        <h3>Add Menu Item</h3>
-                    </div>
+        <!-- START of add new product card  -->
+        <button type="button" id="add-category-btn">
+            <div class="item-card add-category-card">
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <h3>Add category</h3>
                 </div>
-            </a>
-            <!-- END of add new product card  -->
-
-            <!-- START of add new user   -->
-            <a href="./create_user.php">
-                <div class="item-card create-user-card">
-                    <div>
-                        <i class="fa-solid fa-plus"></i>
-                        <h3>Create User Account</h3>
-                    </div>
-                </div>
-            </a>
-            <!-- END of add new user  -->
-
-            <!-- START of add new product card  -->
-            <button type="button" id="add-category-btn">
-                <div class="item-card add-category-card">
-                    <div>
-                        <i class="fa-solid fa-plus"></i>
-                        <h3>Add category</h3>
-                    </div>
-                </div>
-            </button>
-            <!-- END of add new product card  -->
+            </div>
+        </button>
+        <!-- END of add new product card  -->
 
     </section>
     <!-- END of the sales analytics section  -->
@@ -331,7 +333,7 @@ $low_quantity_data = $low_quantity_dataset->fetchAll();
             let timeTaken = 600;
 
             if ($notification.is(":hidden")) {
-                 // Sidedown Animation
+                // Sidedown Animation
                 $notification.slideDown(timeTaken);
             } else {
                 $notification.slideUp(timeTaken, function() {

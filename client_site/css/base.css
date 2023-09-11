@@ -182,7 +182,7 @@ li {
 @media screen and (max-width: 1080px) {
   
   #main-container {
-    width: 94%;
-    grid-template-columns: 125px auto;
+    width: 100%;
+    grid-template-columns: 200px auto;
   }
 }

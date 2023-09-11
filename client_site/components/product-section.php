@@ -24,6 +24,12 @@
       $data = $product_dataset->fetch();
       $primary_image = $data["primary_img"];
       $category = $data["category_name"];
+
+      $discount =   $row["discount"];
+      if ($discount > 0) {
+        // Calculate the discount price
+        $discount_price = $price - ($price * $discount / 100);
+      }
     ?>
       <div class="product-card">
         <form method="POST" class="cart-form">
@@ -31,7 +37,12 @@
           <input type="hidden" name="name" class="name" value="<?php echo $name ?>">
           <input type="hidden" name="primary_img" class="image" value="<?php echo $primary_image ?>">
           <input type="hidden" name="category" class="category" value="<?php echo $category ?>">
-          <input type="hidden" name="price" class="price" value="<?php echo $price ?>">
+          <input type="hidden" name="price" class="price" value="<?php 
+              if(isset($discount_price)){
+                echo $discount_price;
+            }else{
+                echo $price ;
+            } ?>">
           <input type="hidden" name="description" class="description" value="<?php echo $description ?>">
           <input type="hidden" name="current_page" class="current_page">
           <?php
@@ -56,12 +67,10 @@
 
                 <?php
 
-                $discount =   $row["discount"];
+         
 
                 if ($discount > 0) {
-                  // Calculate the discount price
-                  $discount_price = $price - ($price * $discount / 100);
-
+ 
                 ?>
                   <h4 class="price"><span class="actual-price"><?php echo $price   ?> Ks</span>
                     <span class="discount-price"><?php echo   $discount_price ?> Ks</span>

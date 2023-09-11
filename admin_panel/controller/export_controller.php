@@ -1,9 +1,7 @@
 <?php
 require "../../dao/connection.php";
-
-if (isset($_POST['export-user-data'])) {
-    echo "exporting";
-
+ 
+ 
     $query = "SELECT * FROM users";
     $stmt = $connection->prepare($query);
     $stmt->execute();
@@ -29,6 +27,7 @@ if (isset($_POST['export-user-data'])) {
     alert("CSV file has been successfully exported.");
     location.href = "../setting.php";
     </script>';
+  
     
-}
+ 
 // Close the CSV file

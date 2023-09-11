@@ -6,7 +6,8 @@ $(document).ready(function () {
       e.preventDefault();
 
       let formData = new FormData($(this)[0]);
-
+     
+  
       $.ajax({
         url: "./controller/cart_session_controller.php",
         method: "POST",
