@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let addToCartForms = $(".cart-form");
+ 
 
   addToCartForms.each(function () {
     $(this).submit(function (e) {
@@ -26,6 +27,8 @@ $(document).ready(function () {
             setTimeout(function () {
               $("#popup-info-box").css("display", "none");
             }, 800);
+          
+
             setTimeout(function () {
               location.reload();
             }, 1000);

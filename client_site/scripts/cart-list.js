@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $(instockInfo).text(response.data);
             // $(quantityElement).text(response.data);
           }
-          location.reload();
+          // location.reload();
         },
         error: function () {
           console.log("Failed to update quantity.");

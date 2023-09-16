@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
 $get_low_quantity_item = "SELECT * FROM item WHERE quantity <= 10 ORDER BY quantity ASC LIMIT 4";
 $low_quantity_dataset = $connection->query($get_low_quantity_item);
 $low_instock_item_count = $low_quantity_dataset->rowCount();
@@ -19,15 +20,9 @@ $low_quantity_data = $low_quantity_dataset->fetchAll();
             <i class="fa-solid fa-bell"></i>
             <div id="low-quantity-noti">
                 <div class="noti-header">
-                    <div class="item-name">
-                        Name
-                    </div>
-                    <div class="sold-quantity">
-                        Sold
-                    </div>
-                    <div class="in-stock">
-                        Instock
-                    </div>
+                    <div class="item-name">  Name  </div>
+                    <div class="sold-quantity"> Sold  </div>
+                    <div class="in-stock">  Instock   </div>
                 </div>
                 <?php
 

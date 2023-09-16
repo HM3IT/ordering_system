@@ -71,7 +71,7 @@ if (isset($_REQUEST['order-now']) && isset($_SESSION["cart"])) {
 
 // update order status
 
-if (isset($_REQUEST['completed_order_id']) && isset($_SESSION["cart"])) {
+if (isset($_REQUEST['completed_order_id'])) {
     $order_id = $_REQUEST['completed_order_id'];
     $update_order_status = "UPDATE orders SET order_status = 'Completed' WHERE id=?";
     $update_status_stmt = $connection->prepare($update_order_status);
@@ -81,7 +81,7 @@ if (isset($_REQUEST['completed_order_id']) && isset($_SESSION["cart"])) {
     exit;
 }
 
-if (isset($_REQUEST['archive_order_id']) && isset($_SESSION["cart"])) {
+if (isset($_REQUEST['archive_order_id'])) {
     $order_id = $_REQUEST['archive_order_id'];
     $update_order_status = "UPDATE orders SET order_status = 'Archive' WHERE id=?";
     $update_status_stmt = $connection->prepare($update_order_status);

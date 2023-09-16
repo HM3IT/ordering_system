@@ -34,7 +34,7 @@
                     <img src="../images/Menu_items/<?php echo $value["category"] ?>/<?php echo $value["image"]  ?>" alt="photo" class="product-tbl-img">
                 </td>
                 <td><?php echo $value["name"]  ?></td>
-                <td class="hide-col"><?php echo  $price   ?></td>
+                <td class="hide-col"><?php echo  $price   ?> Ks</td>
                 <td>
                     <div class="product-quantity-wrapper">
                         <input type="hidden" class="cart-id" data-item-id="<?php echo $value['id']; ?>">

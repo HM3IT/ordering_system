@@ -38,7 +38,7 @@ if (isset($_SESSION["cart"])) {
         } else {
 
           foreach ($_SESSION["cart"] as $key => $value) {
-
+             $actual_price  = $value["price"] * $value["Quantity"] ;
           ?>
         <li class="card-list-items">
           <div class="card-list-box">
@@ -56,8 +56,8 @@ if (isset($_SESSION["cart"])) {
               </div>
             </div>
             <div class="card-list-box-description2">
-                <span class="item-price" data-base-price="<?php echo $value["price"] ?>">
-                  <?php echo $value["price"] ?> Ks
+                <span class="item-price" data-base-price="<?php echo $value["price"];  ?>">
+                  <?php echo  $actual_price; ?> Ks
                 </span>
               <button class="product-remove-btn" data-item-id="<?php echo $value['id']; ?>">
                 <i class="fa-regular fa-trash-can"></i>

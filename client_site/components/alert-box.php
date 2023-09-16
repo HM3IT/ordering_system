@@ -4,7 +4,7 @@
          <i class="fa-solid fa-face-grin-beam-sweat" id="sad-emoji"></i>
        </div>
        <h2 class="info">Sorry, Limit Exceeded</h2>
-       <p class="message">We kindly ask that you do not exceed a maximum quantity of <span class="warning"> 5 per product.</span> This helps us ensure that all our customers have an equal opportunity to purchase. Thank you for your understanding.</p>
+       <p class="message">We kindly ask that you do not exceed a maximum quantity of <span class="warning"> 10 per product.</span> This helps us ensure that all our customers have an equal opportunity to purchase. Thank you for your understanding.</p>
        <div>
          <button onclick="closeQuantityForm()">Ok</button>
        </div>
@@ -32,5 +32,6 @@
          let outOfStockBox = document.getElementById("out-of-stock-box");
          quantityOverlay.style.display = "none";
          outOfStockBox.style.display = "none";
+         location.reload();
        }
      </script>
