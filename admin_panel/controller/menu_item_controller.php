@@ -3,13 +3,13 @@ require "../../dao/connection.php";
 $valid_file_extensions = array("png", "jpeg", "jpg", "svg", "webp", "jfif");
 // removing item form the TABLE 
 if (isset($_GET["remove_item_id"])) {
-    $id = $_GET["remove_product_id"];
-    $item_media_remove = "DELETE FROM item_item WHERE item_id =  $id  ";
-    $stmt1 =   $connection->query($item_delete_qry);
+    $id = $_GET["remove_item_id"];
+    $item_media_remove = "DELETE FROM item_media WHERE item_id =  $id  ";
+    $stmt1 =   $connection->query($item_media_remove);
     
     $item_delete_qry = "DELETE FROM item WHERE id =  $id  ";
     $stmt2 =   $connection->query($item_delete_qry);
-    header("Location: ../product_manager.php");
+    header("Location: ../menu_item_manager.php");
     exit;
 }
 
